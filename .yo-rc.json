@@ -1,0 +1,9 @@
+{
+  "generator-react-webpack": {
+    "appName": "vtb24-debit",
+    "style": "less",
+    "cssmodules": false,
+    "postcss": false,
+    "generatedWithVersion": 4
+  }
+}
