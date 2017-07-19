@@ -1,22 +1,25 @@
 import React from 'react';
 import YeomanImage from './YeomanImage';
+import Filter from './Filter'
 import './app.css';
+// import '../styles/vtb_site.css';
 
 class AppComponent extends React.Component {
 
   render() {
     return (
-      <div className="index">
-        <YeomanImage />
-        <div className="notice">
-          Please edit <code>src/components/App.js</code> to get started!
+      <div>
+        <div className="index">
+          <Filter/>
+        </div>
+        <div className="index">
+          Список подходящих продуктов
         </div>
       </div>
     );
   }
 }
 
-AppComponent.defaultProps = {
-};
+AppComponent.defaultProps = {};
 
 export default AppComponent;
