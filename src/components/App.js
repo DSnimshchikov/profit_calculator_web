@@ -1,6 +1,7 @@
 import React from 'react';
 import YeomanImage from './YeomanImage';
 import Filter from './Filter'
+import Product from './ru/tn/components/Product'
 import './app.css';
 // import '../styles/vtb_site.css';
 
@@ -12,8 +13,8 @@ class AppComponent extends React.Component {
         <div className="index">
           <Filter/>
         </div>
-        <div className="index">
-          Список подходящих продуктов
+        <div className="index" >
+          <Product/>
         </div>
       </div>
     );
