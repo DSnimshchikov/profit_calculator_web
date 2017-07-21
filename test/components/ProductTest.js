@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Product from 'components/Product.js';
+import Product from 'product/Product.js';
 
 describe('<Product />', function () {
 

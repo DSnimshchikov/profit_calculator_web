@@ -1,9 +1,5 @@
 {
-  "presets": [
-    ["es2015", { "modules": false }],
-    "react",
-    "airbnb"
-  ],
+  "presets": [ [ "es2015", { "modules": false } ], "es2016", "react" ] ,
   "plugins": [
     "transform-decorators-legacy",
     "transform-object-rest-spread",
