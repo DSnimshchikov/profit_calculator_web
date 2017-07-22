@@ -8,9 +8,10 @@ class ProductList extends React.Component {
   render() {
     return (
       <div className="product-list-component container-fluid">
-        {this.props.data.map(productGroup =>
-          <Product data={productGroup}/>
-
+        {this.props.data.map((productGroup, index) =>
+          <div key={index}>
+            <Product data={productGroup}/>
+          </div>
         )}
       </div>
     );
