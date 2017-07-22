@@ -4,6 +4,7 @@ import Product from './product/Product'
 import ProductList from './product/ProductList'
 import {connect} from 'react-redux'
 import './app.css';
+import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 var productList = [{
   "products": [

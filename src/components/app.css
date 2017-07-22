@@ -9,18 +9,24 @@ body {
 
 .index {
   width: 40%;
-  display:block;
-  overflow:auto;
+  display: block;
+  overflow: auto;
   margin: 50px auto;
   padding: 10px;
   background: #fff;
-  border: 1px solid #000;
+  /*border: 1px solid #000;*/
   border-radius: 2px;
-  text-align: center;
   box-sizing: border-box;
 }
 
+ul, menu, dir {
+  display: block;
+  list-style-type: none;
+}
 
+.top-distance {
+  margin-top: 10px;
+}
 
 .index code {
   padding: 3px 6px;
@@ -44,7 +50,86 @@ body {
   border-width: 1px 0;
   background: #666;
 }
+/*selector mode to component*/
+input.cmn-toggle-round + label {
+  padding: 2px;
+  width: 60px;
+  height: 30px;
+  background-color: #dddddd;
+  border-radius: 30px;
+}
+input.cmn-toggle-round + label:before,
+input.cmn-toggle-round + label:after {
+  display: block;
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  bottom: 1px;
+  content: "";
+}
+input.cmn-toggle-round + label:before {
+  right: 1px;
+  background-color: #f1f1f1;
+  border-radius: 60px;
+  transition: background 0.4s;
+}
+input.cmn-toggle-round + label:after {
+  width: 30px;
+  background-color: #fff;
+  border-radius: 100%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  transition: margin 0.4s;
+}
+input.cmn-toggle-round:checked + label:before {
+  background-color: #2196F3;
+}
+input.cmn-toggle-round:checked + label:after {
+  margin-left: 32px;
+}
+.cmn-toggle {
+  position: absolute;
+  margin-left: -9999px;
+  visibility: hidden;
+}
+.cmn-toggle + label {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+}
+/**/
 
+body, input, textarea, select, button {
+  font-family: 'Open Sans', sans-serif
+}
+
+body {
+  min-width: 1200px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: .75em;
+  line-height: 1.5em;
+  font-weight: inherit;
+  -webkit-text-size-adjust: none;
+  -webkit-font-smoothing: antialiased;
+  background: #fff
+}
+
+input, textarea, select, button {
+  font-size: 1em
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: none
+}
+
+a {
+  color: #1262b2;
+  text-decoration: none;
+  -webkit-transition: .3s;
+  transition: .3s
+}
 
 .e-range {
   position: relative
@@ -1115,7 +1200,7 @@ body {
   line-height: 26px;
   letter-spacing: -.25px;
   color: #3b4256;
-  font-weight: 600;
+  font-weight: 500;
   margin-bottom: 15px;
   display: block
 }
@@ -1344,7 +1429,7 @@ body {
 
 .b-deposits-calculator--table-name {
   font-size: 22px;
-  font-weight: 600;
+  font-weight: 500;
   color: #1262b3
 }
 
@@ -1438,7 +1523,7 @@ body {
 }
 
 .b-discount--cards--item--title {
-  font-weight: 600;
+  font-weight: 500;
   color: #1262b2;
   font-size: 16px;
   display: block;
@@ -1659,8 +1744,8 @@ body {
 
 .product-card--content-right {
   width: 360px;
-  display:block;
-  overflow:auto;
+  display: block;
+  overflow: auto;
   /*float: right;*/
   padding: 40px;
   background: #e6ffff;
@@ -1679,10 +1764,7 @@ body {
   margin-bottom: 25px
 }
 
-
-
-
-.product-card--content-right--value b  {
+.product-card--content-right--value b {
   float: left;
   font-size: 24px;
   color: #3b4256;
@@ -1727,20 +1809,19 @@ body {
   border-radius: 2px;
 }
 
-.product-card--content-wrap{
+.product-card--content-wrap {
   margin-left: 40px;
 }
 
-
 .raised {
-  position:relative;
-  width:40%;
-  padding:1em;
-  margin:2em 10px 4em;
-  background:#fff;
-  -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-  -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-  box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  position: relative;
+  width: 40%;
+  padding: 1em;
+  margin: 2em 10px 4em;
+  background: #fff;
+  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
   -webkit-box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
   -moz-box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
   box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
@@ -1748,12 +1829,12 @@ body {
 
 .raised:before,
 .raised:after {
-  content:"";
-  position:absolute;
-  z-index:-2;
+  content: "";
+  position: absolute;
+  z-index: -2;
 }
 
 .raised p {
-  font-size:16px;
-  font-weight:bold;
+  font-size: 16px;
+  font-weight: bold;
 }
