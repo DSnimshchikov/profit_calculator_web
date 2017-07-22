@@ -6,19 +6,59 @@ class Product extends React.Component {
 
   render() {
     return (
-      <div className="product-card--content-right raised">
-        <div className="product-card--content-right--head"> «Мультикарта ВТБ24»<br/> с опцией «Сбережения»</div>
-        <div className="product-card--content-wrap">
-          <div className="product-card--content-right--value"><b className="income">25, 000</b> <p>Доход по вкладу</p></div>
-          <div className="product-card--content-right--value"><b className="sum">125, 000</b> <p>Сумма в конце срока</p></div>
-          <div className="product-card--content-right--value"><b>10%</b> <p>Ставка</p></div>
-          <div className="product-card--content-right--value"><b>5</b> <p>Срок</p></div>
-          <div className="product-card--content-right--value"><b>5</b> <p>Срок</p></div>
-          <div className="product-card--content-right--value"><b>5</b> <p>Срок</p></div>
-          <div className="product-card--content-right--value"><b>5</b> <p>Срок</p></div>
+      <div className="product-card ">
+        <div className="product-card-header"> «Мультикарта ВТБ24» с опцией «Сбережения»</div>
+        <div className="product-card-content-wrap">
+          <div className="row">
+            <div className="col-md-8">
+              <div className="row">
+                <div className="col-md-6">
+                  <p>Доход по вкладу</p>
+                </div>
+                <div className="col-md-6">
+                  <b className="income">{this.props.data.resultSum}</b>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-md-6">
+                  <p>Сумма в конце срока</p>
+                </div>
+                <div className="col-md-6">
+                  <b className="sum">{this.props.data.profitSum}</b>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-md-6">
+                  <p>Ставка, %</p>
+                </div>
+                <div className="col-md-6">
+                  <b>10</b>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-md-6">
+                  <p>Кэшбек, %</p>
+                </div>
+                <div className="col-md-6">
+                  <b>5</b>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-md-6">
+                  <p>Баллы "Коллекция"</p>
+                </div>
+                <div className="col-md-6">
+                  <b>50</b>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-4">
+              Тут лояльность и диаграмма
+            </div>
+          </div>
         </div>
-        <a href="https://www.vtb24.ru/cards/debit/request/#/1601/00/01/01/03" className="product-card--submit">Заказать Мультикарту</a>
       </div>
+
     );
   }
 }
