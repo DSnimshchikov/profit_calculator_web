@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import cssmodules from 'react-css-modules';
 import Doughnut from 'react-chartjs-2';
 import styles from './product.cssmodule.less';
+import ProductCardRow from './ProductCardRow';
 
 
 class Product extends React.Component {
@@ -18,24 +19,10 @@ class Product extends React.Component {
     const products = this.props.data.products;
     return products.map(p => p.product.name).join(' + ');
   }
-
-  renderCashBackIfNecessarry(products) {
-    const cahsBackOption = this.searchCashBackOption(products);
-    if (cahsBackOption !== undefined) {
-      return (<div className="row">
-        <div className="col-md-6">
-          <p>Кэшбек, %</p>
-        </div>
-        <div className="col-md-6">
-          <b>{cahsBackOption.rate1}</b>
-        </div>
-      </div>);
-    }
-    return '';
-  }
-
   render() {
-
+    const productGroup = this.props.data;
+    const products = productGroup.products;
+    const cahsBackOption = this.searchCashBackOption(products);
     const data = {
       labels: [
         'Разница с лучшим',
@@ -64,47 +51,20 @@ class Product extends React.Component {
     };
 
 
-    const productGroup = this.props.data;
-    const products = productGroup.products;
+
     return (
       <div className={styles.card}>
         <div className={styles['card-header']}>{this.buildCardName(products)}</div>
         <div className={styles['card-content-wrap']}>
           <div className="row">
             <div className="col-md-8">
-              <div className="row">
-                <div className="col-md-6">
-                  <p>Доход по вкладу</p>
-                </div>
-                <div className="col-md-6">
-                  <b className={styles.income}>{productGroup.resultSum}</b>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-md-6">
-                  <p>Сумма в конце срока</p>
-                </div>
-                <div className="col-md-6">
-                  <b className={styles.sum}>{productGroup.profitSum}</b>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-md-6">
-                  <p>Ставка, %</p>
-                </div>
-                <div className="col-md-6">
-                  <b>{productGroup.maxRate}</b>
-                </div>
-              </div>
-              {this.renderCashBackIfNecessarry(products)}
-              <div className="row">
-                <div className="col-md-6">
-                  <p>{'Баллы "Коллекция"'}</p>
-                </div>
-                <div className="col-md-6">
-                  <b>50</b>
-                </div>
-              </div>
+              <ProductCardRow rowName={'Доход по вкладу'} rowValue={productGroup.resultSum} rowType={'INCOME'}/>
+              <ProductCardRow rowName={'Сумма в конце срока'} rowValue={productGroup.profitSum} rowType={'SUM'}/>
+              <ProductCardRow rowName={'Ставка, %'} rowValue={productGroup.maxRate} rowType={'OTHER'}/>
+              {cahsBackOption !== undefined &&
+                <ProductCardRow rowName={'Кэшбек, %'} rowValue={cahsBackOption.rate1} rowType={'OTHER'}/>
+              }
+              <ProductCardRow rowName={'Баллы "Коллекция"'} rowValue={50} rowType={'OTHER'}/>
             </div>
             <div className="col-md-4">
               <Doughnut data={data} options={chartOptions} width={110} height={180}/>
