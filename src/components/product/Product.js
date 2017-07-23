@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cssmodules from 'react-css-modules';
-import CirclePie from 'react-simple-charts';
+import Doughnut from 'react-chartjs-2';
 import styles from './product.cssmodule.less';
 
 
 class Product extends React.Component {
+
 
   searchCashBackOption() {
     const products = this.props.data.products;
@@ -34,6 +35,35 @@ class Product extends React.Component {
   }
 
   render() {
+
+    const data = {
+      labels: [
+        'Разница с лучшим %',
+        'Доход'
+      ],
+      datasets: [{
+        data: [3000, 9000],
+        backgroundColor: [
+          '#BBBBBB',
+          '#36A2EB'
+        ],
+        hoverBackgroundColor: [
+          '#BBBBBB',
+          '#36A2EB'
+        ]
+      }]
+    };
+
+    const chartOptions = {
+      legend:
+      {
+        display: false,
+        position: 'bottom',
+        fullWidth: false
+      }
+    };
+
+
     const productGroup = this.props.data;
     const products = productGroup.products;
     return (
@@ -77,7 +107,7 @@ class Product extends React.Component {
               </div>
             </div>
             <div className="col-md-4">
-              Тут лояльность и диаграмма
+              <Doughnut data={data} options={chartOptions} width={110} height={180}/>
             </div>
           </div>
         </div>

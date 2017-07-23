@@ -1745,22 +1745,23 @@ a {
 
 .product-card {
   float: left;
-  width: 420px;
+  width: 378px;
   padding: 10px;
-  margin: 20px;
+  margin: 10px;
   background: #fff;
   box-sizing: border-box;
   box-shadow: 0 20px 75px 0 rgba(196,208,227,.75);
   border-radius: 20px;
 }
 .product-card-header{
-  font-size: 22px;
+  font-size: 20px;
   color: #3b4256;
   letter-spacing: -.2px;
   padding-bottom: 20px;
   border-bottom: 2px solid #e7eef4;
   margin-bottom: 25px;
   text-align: center;
+  vertical-align: middle;
 }
 
 .product-card-content-wrap {
@@ -1773,7 +1774,7 @@ a {
 }
 
 .product-card-content-wrap p{
-  font-size: 16px;
+  font-size: 14px;
 }
 
 b.income {
