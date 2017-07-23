@@ -1,8 +1,8 @@
 import React from 'react';
-import { Router, Route } from 'react-router'
+import { Router, Route } from 'react-router';
+import {connect} from 'react-redux';
 import Filter from './Filter';
 import ProductList from './product/ProductList';
-import {connect} from 'react-redux';
 import './app.css';
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 

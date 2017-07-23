@@ -9,7 +9,8 @@ class Product extends React.Component {
 
   searchCashBackOption() {
     const products = this.props.data.products;
-    return products.filter(p => p.product.type === 'CARD').map(p => p.product.cardOptions).find(c => c.option === 'CASH_BACK');
+    const arrayOfCardOptions = products.filter(p => p.product.type === 'CARD').map(p => p.product.cardOptions);
+    return [].concat.apply([], arrayOfCardOptions).find(co => co.option === 'CASH_BACK');
   }
 
   buildCardName() {
