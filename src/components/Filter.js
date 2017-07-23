@@ -3,6 +3,7 @@ import cssmodules from 'react-css-modules';
 import styles from './filter.cssmodule.less';
 import ReactDOM from 'react-dom';
 import HorizontalSlider from './HorizontalSlider'
+let fetchProducts = require('../actions/filter-action');
 
 class Filter extends React.Component {
 
@@ -22,24 +23,19 @@ class Filter extends React.Component {
       refillSum: 0
     };
     this.handleChange = this.handleChange.bind(this);
-    this.onChangePeriod = this.onChangePeriod.bind(this);
     this.onChangeInput = this.onChangeInput.bind(this);
   }
 
-
   componentDidMount() {
-    fetch('http://localhost:8080/products', {
-      method: 'get',
-      headers: {
-        "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
-      },
-    })
-      .then(function (data) {
-        console.log('Request succeeded with JSON response', data);
-      })
-      .catch(function (error) {
-        console.log('Request failed', error);
-      });
+    const { dispatch, selectedSubreddit } = this.props
+    dispatch(fetchProducts(selectedSubreddit))
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.selectedSubreddit !== prevProps.selectedSubreddit) {
+      const { dispatch, selectedSubreddit } = this.props
+      dispatch(fetchProducts(selectedSubreddit))
+    }
   }
 
   handleChange(event) {
@@ -52,12 +48,6 @@ class Filter extends React.Component {
     var expensesAuto = ReactDOM.findDOMNode(this.refs.expensesAuto).value;
     var expensesOther = ReactDOM.findDOMNode(this.refs.expensesOther).value;
 
-    this.componentDidMount();
-  }
-
-  onChangePeriod(event) {
-    this.setState({period: event.target.value});
-    this.componentDidMount();
   }
 
   onChangeInput(event) {
@@ -79,6 +69,7 @@ class Filter extends React.Component {
   }
 
   render() {
+    //todo implement HorizontalSlider
     const left317 = {
       left: 317 + 'px'
     }, left100 = {
@@ -86,17 +77,7 @@ class Filter extends React.Component {
     }, left235 = {
       left: 235 + 'px'
     };
-    var sum = this.state.sum,
-      period = this.state.period,
-      decrease = this.state.decrease,
-      refill = this.state.refill,
-      payrollProject = this.state.payrollProject,
-      expensesAuto = this.state.expensesAuto,
-      expensesEntertainment = this.state.expensesEntertainment,
-      expensesTrip = this.state.expensesTrip,
-      expensesOther = this.state.expensesOther,
-      refillSum = this.state.refillSum
-      ;
+    const { sum, period, decrease, refill, payrollProject, expensesAuto, expensesEntertainment, expensesTrip, expensesOther, refillSum  } = this.state;
     return (
       <div className="b-deposits-calculator--content g-grid-20">
         <h2 className="b-deposits-calculator--title"> Подбор продукта для клиента ВТБ24</h2>

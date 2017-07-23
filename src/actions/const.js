@@ -1,4 +1,4 @@
-/* eslint-disable import/prefer-default-export */
-/* Populated by react-webpack-redux:action */
+export const FETCH_PRODUCT_LOADING = 'FETCH_PRODUCT_LOADING';
+export const FETCH_PRODUCT_SUCESS = 'FETCH_PRODUCT_SUCESS';
+export const FETCH_PRODUCT_ERROR = 'FETCH_PRODUCT_ERROR';
 export const FILTER = 'FILTER';
-export const CHOOSE_BEST_SOLUTION = 'CHOOSE_BEST_SOLUTION';

@@ -5,9 +5,9 @@ Allows to import actions like so:
 
 import {action1, action2} from '../actions/'
 */
-/* Populated by react-webpack-redux:action */
 import chooseBestSolution from '../actions/chooseBestSolution.js';
-import filter from '../actions/ru/tn/actions/filter.js';
+import filter from './filter-action.js';
+
 const actions = {
   filter,
   chooseBestSolution

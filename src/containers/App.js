@@ -15,7 +15,7 @@ import {
   chooseBestSolution
 } from '../actions/';
 import Main from '../components/App';
-/* Populated by react-webpack-redux:reducer */
+
 class App extends Component {
   render() {
     const {actions, filterReducer, items} = this.props;
@@ -37,7 +37,6 @@ App.propTypes = {
 };
 function mapStateToProps(state) {
   // eslint-disable-line no-unused-vars
-  /* Populated by react-webpack-redux:reducer */
   const props = {
     filterReducer: state.filterReducer,
     items: state.items
@@ -45,7 +44,6 @@ function mapStateToProps(state) {
   return props;
 }
 function mapDispatchToProps(dispatch) {
-  /* Populated by react-webpack-redux:action */
   const actions = {
     filter,
     chooseBestSolution

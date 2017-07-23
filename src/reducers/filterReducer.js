@@ -3,7 +3,7 @@
  * If you change the type from object to something else, do not forget to update
  * src/container/App.js accordingly.
  */
-import {} from '../actions/const';
+import {FETCH_PRODUCT_LOADING} from "../actions/const";
 
 const initialState = {};
 
@@ -12,12 +12,10 @@ function reducer(state = initialState, action) {
   // const nextState = Object.assign({}, state);
 
   switch (action.type) {
-    /*
-    case YOUR_ACTION: {
+    case FETCH_PRODUCT_LOADING: {
       // Modify next state depending on the action and return it
-      return nextState;
+      return action.fetchProducts();
     }
-    */
     default: {
       /* Return original state if no actions were consumed. */
       return state;
