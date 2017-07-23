@@ -10,33 +10,36 @@ class Product extends React.Component {
 
 
   searchCashBackOption() {
-    const products = this.props.data.products;
+    const products = this.props.data.productGroup.products;
     const arrayOfCardOptions = products.filter(p => p.product.type === 'CARD').map(p => p.product.cardOptions);
     return [].concat.apply([], arrayOfCardOptions).find(co => co.option === 'CASH_BACK');
   }
 
   buildCardName() {
-    const products = this.props.data.products;
+    const products = this.props.data.productGroup.products;
     return products.map(p => p.product.name).join(' + ');
   }
   render() {
-    const productGroup = this.props.data;
+    const productGroup = this.props.data.productGroup;
     const products = productGroup.products;
     const cahsBackOption = this.searchCashBackOption(products);
-    const data = {
+
+    const colorCurrentSum = '#36A2EB';
+    const colorDiffSum = '#BBBBBB';
+    const chartData = {
       labels: [
-        'Разница с лучшим',
-        'Текущее предложение'
+        'Текущее предложение',
+        'Разница с лучшим'
       ],
       datasets: [{
-        data: [3000, 9000],
+        data: [this.props.data.bestProfitSum, this.props.data.bestProfitSum - productGroup.profitSum],
         backgroundColor: [
-          '#BBBBBB',
-          '#36A2EB'
+          colorCurrentSum,
+          colorDiffSum
         ],
         hoverBackgroundColor: [
-          '#BBBBBB',
-          '#36A2EB'
+          colorCurrentSum,
+          colorDiffSum
         ]
       }]
     };
@@ -50,24 +53,24 @@ class Product extends React.Component {
       }
     };
 
-
-
     return (
       <div className={styles.card}>
         <div className={styles['card-header']}>{this.buildCardName(products)}</div>
         <div className={styles['card-content-wrap']}>
           <div className="row">
-            <div className="col-md-8">
-              <ProductCardRow rowName={'Доход по вкладу'} rowValue={productGroup.resultSum} rowType={'INCOME'}/>
-              <ProductCardRow rowName={'Сумма в конце срока'} rowValue={productGroup.profitSum} rowType={'SUM'}/>
+            <div className="col-md-7">
+              <ProductCardRow rowName={'Доход по вкладу'} rowValue={productGroup.profitSum} rowType={'INCOME'}/>
+              <ProductCardRow rowName={'Сумма в конце срока'} rowValue={productGroup.resultSum} rowType={'SUM'}/>
               <ProductCardRow rowName={'Ставка, %'} rowValue={productGroup.maxRate} rowType={'OTHER'}/>
               {cahsBackOption !== undefined &&
                 <ProductCardRow rowName={'Кэшбек, %'} rowValue={cahsBackOption.rate1} rowType={'OTHER'}/>
               }
               <ProductCardRow rowName={'Баллы "Коллекция"'} rowValue={50} rowType={'OTHER'}/>
             </div>
-            <div className="col-md-4">
-              <Doughnut data={data} options={chartOptions} width={110} height={180}/>
+            <div className="col-md-5 col-centered">
+              <div className={styles['pie-chart-container']}>
+                <Doughnut data={chartData} options={chartOptions}/>
+              </div>
             </div>
           </div>
         </div>

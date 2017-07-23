@@ -10,10 +10,10 @@ class ProductCardRow extends React.Component {
   render() {
     return (
       <div className="row">
-        <div className="col-md-6">
+        <div className="col-md-7">
           <p>{this.props.rowName}</p>
         </div>
-        <div className="col-md-6">
+        <div className="col-md-5 text-right">
 
           {this.props.rowType === 'INCOME' &&
           <b className={styles.income}>{this.props.rowValue}</b>
@@ -36,7 +36,7 @@ class ProductCardRow extends React.Component {
 ProductCardRow.displayName = 'ProductCardRow';
 ProductCardRow.propTypes = {
   rowName: PropTypes.string,
-  rowValue: PropTypes.string,
+  rowValue: PropTypes.number,
   rowType: PropTypes.string
 };
 ProductCardRow.defaultProps = {};

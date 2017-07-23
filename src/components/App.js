@@ -127,9 +127,9 @@ const productList = [
       }
     ],
     optionalProducts: null,
-    resultSum: 250000,
-    profitSum: 15900,
-    maxRate: 10
+    resultSum: 220000,
+    profitSum: 12900,
+    maxRate: 9
   }
 ];
 
