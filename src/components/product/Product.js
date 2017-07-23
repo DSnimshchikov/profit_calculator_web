@@ -38,8 +38,8 @@ class Product extends React.Component {
 
     const data = {
       labels: [
-        'Разница с лучшим %',
-        'Доход'
+        'Разница с лучшим',
+        'Текущее предложение'
       ],
       datasets: [{
         data: [3000, 9000],
@@ -67,9 +67,9 @@ class Product extends React.Component {
     const productGroup = this.props.data;
     const products = productGroup.products;
     return (
-      <div className="product-card ">
-        <div className="product-card-header">{this.buildCardName(products)}</div>
-        <div className="product-card-content-wrap">
+      <div className={styles.card}>
+        <div className={styles['card-header']}>{this.buildCardName(products)}</div>
+        <div className={styles['card-content-wrap']}>
           <div className="row">
             <div className="col-md-8">
               <div className="row">
@@ -77,7 +77,7 @@ class Product extends React.Component {
                   <p>Доход по вкладу</p>
                 </div>
                 <div className="col-md-6">
-                  <b className="income">{productGroup.resultSum}</b>
+                  <b className={styles.income}>{productGroup.resultSum}</b>
                 </div>
               </div>
               <div className="row">
@@ -85,7 +85,7 @@ class Product extends React.Component {
                   <p>Сумма в конце срока</p>
                 </div>
                 <div className="col-md-6">
-                  <b className="sum">{productGroup.profitSum}</b>
+                  <b className={styles.sum}>{productGroup.profitSum}</b>
                 </div>
               </div>
               <div className="row">
