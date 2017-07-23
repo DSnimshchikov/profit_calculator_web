@@ -4,7 +4,6 @@ import styles from './product-list.cssmodule.less';
 import Product from './Product';
 
 class ProductList extends React.Component {
-
   render() {
     return (
       <div className="product-list-component container-fluid">
