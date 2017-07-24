@@ -71,6 +71,9 @@ class Product extends React.Component {
               <div className={styles['pie-chart-container']}>
                 <Doughnut data={chartData} options={chartOptions}/>
               </div>
+              <div>
+                <a className={`${styles['card-btn']} btn btn-success`}>Программа лояльности</a>
+              </div>
             </div>
           </div>
         </div>
