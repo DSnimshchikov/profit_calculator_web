@@ -1,28 +1,16 @@
-/* Define your initial state here.
- *
- * If you change the type from object to something else, do not forget to update
- * src/container/App.js accordingly.
- */
-import {} from '../actions/const';
+import {ADD_DEPOSIT_SETTING} from '../actions/const';
 
-const initialState = {};
-
-function reducer(state = initialState, action) {
-  /* Keep the reducer clean - do not mutate the original state. */
-  // const nextState = Object.assign({}, state);
-
+const todos = (state = [], action) => {
   switch (action.type) {
-    /*
-    case YOUR_ACTION: {
-      // Modify next state depending on the action and return it
-      return nextState;
-    }
-    */
-    default: {
-      /* Return original state if no actions were consumed. */
-      return state;
-    }
+    case ADD_DEPOSIT_SETTING:
+      return state.map(todo =>
+        (todo.id === action.id)
+          ? {...todo, completed: !todo.completed}
+          : todo
+      )
+    default:
+      return state
   }
 }
 
-module.exports = reducer;
+export default todos
