@@ -1,4 +1,4 @@
-var reducer = require('../../src/reducers/filterReducer');
+var reducer = require('../../src/reducers/FilterReducer');
 
 describe('filterReducer', () => {
 

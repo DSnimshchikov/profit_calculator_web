@@ -10,7 +10,7 @@
 /* Populated by react-webpack-redux:reducer */
 import { combineReducers } from 'redux';
 import items from '../reducers/items.js';
-import filterReducer from './filterReducer.js';
+import filterReducer from './FilterReducer.js';
 const reducers = {
   filterReducer,
   items

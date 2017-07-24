@@ -4,7 +4,8 @@ import { FILTER_PRODUCT, FETCH_PRODUCT_LOADING, FETCH_PRODUCT_SUCESS, FETCH_PROD
 export const filterProducts = (parameter) => ({
   type: FILTER_PRODUCT,
   parameter
-})
+});
+
 export  function fetchProductSuccess(parameter) {
   return { type: FETCH_PRODUCT_SUCESS, parameter };
 }
@@ -19,6 +20,6 @@ function action(parameter) {
 export const setVisibilityFilter = (filter) => ({
   type: 'SET_VISIBILITY_FILTER',
   filter
-})
+});
 
-module.exports = {filterProducts, fetchProductSuccess}
+module.exports = {filterProducts, fetchProductSuccess};
