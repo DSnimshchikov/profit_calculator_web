@@ -11,8 +11,8 @@ body {
   width: 40%;
   display: block;
   overflow: auto;
-  margin: 50px auto;
-  padding: 10px;
+  /*margin: 50px 50px;*/
+  padding: 0 20px ;
   background: #fff;
   /*border: 1px solid #000;*/
   border-radius: 2px;

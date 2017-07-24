@@ -50,7 +50,7 @@ class WebpackBaseConfig {
             test: /\.js?$/,
             include: this.srcPathAbsolute,
             loader: 'babel-loader',
-            query: { presets: ['es2015'] }
+            query: { presets: ['es2015', 'es2016'] }
           },
           {
             test: /^.((?!cssmodule).)*\.css$/,

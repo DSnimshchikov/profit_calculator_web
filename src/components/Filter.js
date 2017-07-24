@@ -1,9 +1,12 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import cssmodules from 'react-css-modules';
 import styles from './filter.cssmodule.less';
 import ReactDOM from 'react-dom';
+import ProductFilter from '../containers/ProductFilter'
+import {filterProducts} from '../actions'
+import fetch from 'isomorphic-fetch'
 import HorizontalSlider from './HorizontalSlider'
-let fetchProducts = require('../actions/filter-action');
 
 class Filter extends React.Component {
 
@@ -26,15 +29,17 @@ class Filter extends React.Component {
     this.onChangeInput = this.onChangeInput.bind(this);
   }
 
-  componentDidMount() {
-    const { dispatch, selectedSubreddit } = this.props
-    dispatch(fetchProducts(selectedSubreddit))
-  }
-
   componentDidUpdate(prevProps) {
-    if (this.props.selectedSubreddit !== prevProps.selectedSubreddit) {
-      const { dispatch, selectedSubreddit } = this.props
-      dispatch(fetchProducts(selectedSubreddit))
+    const {dispatch, selectedSubreddit} = this.props;
+    debugger;
+    if (this.props.productList !== prevProps.productList) {
+      return fetch('http://localhost:8080/products?initSum=100000&daysCount=181&monthRefillSum=10000&monthWithdrawalSum=100', {method: 'get'})
+        .then(response => response.json())
+        .then(json => console.log(json))
+        .then(json => this.setState({'productList': json}))
+        .catch(function (error) {
+          console.log('Request failed', error);
+        });
     }
   }
 
@@ -54,9 +59,9 @@ class Filter extends React.Component {
     var value = event.target.value;
     var fieldName = event.target.name;
     if (value == "false") {
-      this.setState({[''+fieldName]: true});
+      this.setState({['' + fieldName]: true});
     } else {
-      this.setState({[''+fieldName]: false});
+      this.setState({['' + fieldName]: false});
     }
   }
 
@@ -77,18 +82,16 @@ class Filter extends React.Component {
     }, left235 = {
       left: 235 + 'px'
     };
-    const { sum, period, decrease, refill, payrollProject, expensesAuto, expensesEntertainment, expensesTrip, expensesOther, refillSum  } = this.state;
+    const {sum, period, decrease, refill, payrollProject, expensesAuto, expensesEntertainment, expensesTrip, expensesOther, refillSum} = this.state;
     return (
       <div className="b-deposits-calculator--content g-grid-20">
-        <h2 className="b-deposits-calculator--title"> Подбор продукта для клиента ВТБ24</h2>
-
         <div className="b-deposits-calculator--field">
           <label className="b-deposits-calculator--label">Сумма к накоплению</label>
           <div className="e-range b-deposits-calculator--deposit">
             <div className="e-range--field">
               <input type="text" id="Credit" name="sum"
                      className="e-range--field--entity"
-                     ref='sum' defaultValue={sum}
+                     ref='sum' value={sum} onChange={this.handleChange}
                      data-range-field="true"/>
               {/*<HorizontalSlider/>*/}
               <span
@@ -119,7 +122,7 @@ class Filter extends React.Component {
             <div className="e-range--field">
               <input type="text" className="e-range--field--entity" data-range-field="true"
                      id="Credit" name="period"
-                     ref='period' value={period} />
+                     ref='period' value={period} onChange={this.onChangePeriod}/>
               <span className="e-range--field--measure e-range--field--measure---default " data-range-measure="true">
                   <span className="e-range--field--measure--value" data-range-measure-value="true">дней</span></span>
               <span className="e-range--field--handler" data-range-handler="true"></span>
@@ -163,11 +166,11 @@ class Filter extends React.Component {
         </div>
         {refill &&
         <div className="b-deposits-calculator--field">
-          <label className="b-deposits-calculator--label">Cумма к внесению</label>
+          <label className="b-deposits-calculator--label">Ежемесячное пополнение</label>
           <div className="e-range b-deposits-calculator--term">
             <div className="e-range--field">
-              <input type="text" name="period" value={refillSum} ref='refillSum'
-                     className="e-range--field--entity" />
+              <input type="text" name="refillSum" value={refillSum} ref='refillSum' onChange={this.onChangePeriod}
+                     className="e-range--field--entity"/>
               <span className="e-range--field--handler" data-range-handler="true"></span>
               <span className="e-range--field--filling" data-range-filling="true"></span>
               <span className="e-range--field--scale" data-range-scale="true"></span>
@@ -202,7 +205,8 @@ class Filter extends React.Component {
               <input type="text" id="Credit" name="expensesTrip"
                      className="e-range--field--entity"
                      ref="expensesTrip"
-                     data-range-field="true" />
+                     onChange={this.handleChange}
+                     data-range-field="true"/>
               <span className="e-range--field--measure e-range--field--measure---default " data-range-measure="true">
                   <span className="e-range--field--measure--value" data-range-measure-value="true">Путешествие</span>
               </span>
@@ -211,7 +215,8 @@ class Filter extends React.Component {
               <input type="text" id="Credit" name="expensesEntertainment"
                      className="e-range--field--entity e-range--field"
                      ref="expensesEntertainment"
-                     data-range-field="true" />
+                     onChange={this.handleChange}
+                     data-range-field="true"/>
               <span className="e-range--field--measure e-range--field--measure---default " data-range-measure="true">
                   <span className="e-range--field--measure--value" data-range-measure-value="true">Развлечение</span>
               </span>
@@ -220,7 +225,8 @@ class Filter extends React.Component {
               <input type="text" id="Credit" name="expensesAuto"
                      className="e-range--field--entity e-range--field"
                      ref="expensesAuto"
-                     data-range-field="true" />
+                     onChange={this.handleChange}
+                     data-range-field="true"/>
               <span className="e-range--field--measure e-range--field--measure---default " data-range-measure="true">
                   <span className="e-range--field--measure--value" data-range-measure-value="true">Авто</span>
               </span>
@@ -229,7 +235,8 @@ class Filter extends React.Component {
               <input type="text" id="Credit" name="expensesOther"
                      className="e-range--field--entity e-range--field"
                      ref='expensesOther'
-                     data-range-field="true" />
+                     onChange={this.handleChange}
+                     data-range-field="true"/>
               <span className="e-range--field--measure e-range--field--measure---default " data-range-measure="true">
                   <span className="e-range--field--measure--value" data-range-measure-value="true">Прочее</span>
               </span>
@@ -242,16 +249,23 @@ class Filter extends React.Component {
             <p>* Вся информация носит справочный характер и не является публичной офертой </p>
           </div>
         </div>
-        <button className='add__btn' onClick={this.handleChange}>
-          ПОДОБРАТЬ ВАРИАНТЫ
-        </button >
       </div>
     );
   }
 }
 
+const mapStateToProps = state => ({
+  loginText: 'Login',
+  registerText: 'Register'
+});
+
+const mapDispatchToProps = {
+  onFilterClick: filterProducts
+}
+
+
 Filter.displayName = 'Filter';
 Filter.propTypes = {};
 Filter.defaultProps = {};
 
-export default cssmodules(Filter, styles);
+export default connect(mapStateToProps, mapDispatchToProps)(Filter);

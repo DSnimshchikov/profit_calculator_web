@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Route } from 'react-router';
+import {Router, Route} from 'react-router';
 import {connect} from 'react-redux';
 import Filter from './Filter';
 import ProductList from './product/ProductList';
@@ -134,13 +134,26 @@ const productList = [
 ];
 
 class App extends React.Component {
-  render() {
+
+  constructor(props) {
+    super(props);
+    // this.setState({'productList': productList});
+    console.log("set productList in main app ")
+  }
+
+    render() {
     return (
-      <div>
-        <div className="index">
+      <div className="container-fluid">
+        <div className="row">
+          <h2 className="b-deposits-calculator--title col-md-4 col-md-offset-4 centered">
+            Подбор продукта для клиента ВТБ24</h2>
+        </div>
+        <div className="index col-md-4">
           <Filter/>
         </div>
-        <ProductList data={productList}/>
+        <div className="col-md-8">
+          <ProductList/>
+        </div>
       </div>
     );
   }

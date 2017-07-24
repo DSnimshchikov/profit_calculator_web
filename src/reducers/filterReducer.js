@@ -1,9 +1,5 @@
-/* Define your initial state here.
- *
- * If you change the type from object to something else, do not forget to update
- * src/container/App.js accordingly.
- */
-import {FETCH_PRODUCT_LOADING} from "../actions/const";
+import {FILTER_PRODUCT} from "../actions/const";
+import {fetchProductSuccess} from "../actions/";
 
 const initialState = {};
 
@@ -12,14 +8,27 @@ function reducer(state = initialState, action) {
   // const nextState = Object.assign({}, state);
 
   switch (action.type) {
-    case FETCH_PRODUCT_LOADING: {
-      // Modify next state depending on the action and return it
-      return action.fetchProducts();
+    case FILTER_PRODUCT: {
+      debugger;
+      return fetchProducts(action.parameter);
     }
     default: {
-      /* Return original state if no actions were consumed. */
       return state;
     }
+  }
+}
+
+
+function fetchProducts(param) {
+  return dispatch => {
+    dispatch(filterProducts(param));
+
+    return fetch('http://localhost:8080/products', { method: 'get' })
+      .then(response => response.json())
+      .then(json => dispatch(fetchProductSuccess(subreddit, json)))
+      .catch(function (error) {
+        console.log('Request failed', error);
+      });
   }
 }
 
