@@ -64,7 +64,8 @@ const productList = [
         archiveDate: null,
         weight: 2,
         status: 'ACTIVE',
-        type: 'SAVING_ACCOUNT',
+        type: 'DEPOSIT',
+        depositType: 'COMFORT',
         linkedProduct: null,
         rates: null,
         refillOption: null
@@ -111,7 +112,8 @@ const productList = [
         archiveDate: null,
         weight: 2,
         status: 'ACTIVE',
-        type: 'SAVING_ACCOUNT',
+        type: 'DEPOSIT',
+        depositType: 'PROFITABLE',
         linkedProduct: null,
         rates: null,
         refillOption: null
