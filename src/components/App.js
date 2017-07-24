@@ -152,7 +152,7 @@ class App extends React.Component {
           <Filter/>
         </div>
         <div className="col-md-8">
-          <ProductList/>
+          <ProductList data={productList}/>
         </div>
       </div>
     );
