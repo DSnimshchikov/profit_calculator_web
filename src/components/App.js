@@ -10,126 +10,120 @@ const productList = [
   {
     products: [
       {
-        product: {
-          id: null,
-          name: 'Накопительный счет',
-          createDate: null,
-          updateDate: null,
-          archiveDate: null,
-          weight: 2,
-          status: 'ACTIVE',
-          type: 'SAVING_ACCOUNT',
-          rate1: null,
-          rate2: null,
-          rate3: null,
-          rate4: null
-        },
-        notes: [
-          'Очень выгодный продукт'
-        ]
+        id: null,
+        name: 'Накопительный счет',
+        createDate: null,
+        updateDate: null,
+        archiveDate: null,
+        weight: 2,
+        status: 'ACTIVE',
+        type: 'SAVING_ACCOUNT',
+        linkedProduct: null,
+        rates: null,
+        refillOption: null
       },
       {
-        product: {
+        id: null,
+        name: 'Карточный продукт',
+        createDate: null,
+        updateDate: null,
+        archiveDate: null,
+        weight: 2,
+        status: null,
+        type: 'CARD',
+        linkedProduct: null,
+        cardType: 'MIR',
+        cardCategory: 'DEBIT',
+        cardOption: {
           id: null,
-          name: 'Карточный продукт',
-          createDate: null,
-          updateDate: null,
-          archiveDate: null,
-          weight: 2,
-          status: null,
-          type: 'CARD',
-          cardType: 'MIR',
-          cardCategory: 'DEBIT',
-          cardOptions: [
-            {
-              id: null,
-              cardId: null,
-              option: 'CASH_BACK',
-              rate1: 1,
-              rate2: 2,
-              rate3: 3
-            },
-            {
-              id: null,
-              cardId: null,
-              option: null,
-              rate1: null,
-              rate2: null,
-              rate3: null
-            }
-          ]
-        },
-        notes: [
-          'Очень выгодная карта'
-        ]
+          option: 'TRAVEL',
+          name: null,
+          rate1: 2,
+          rate2: 4,
+          rate3: 10,
+          rate: 500
+        }
       }
     ],
     optionalProducts: null,
+    notes: [
+      'Очень выгодный продукт'
+    ],
     resultSum: 250000,
     profitSum: 15900,
     maxRate: 10
   },
+
   {
     products: [
       {
-        product: {
-          id: null,
-          name: 'Накопительный счет',
-          createDate: null,
-          updateDate: null,
-          archiveDate: null,
-          weight: 2,
-          status: 'ACTIVE',
-          type: 'SAVING_ACCOUNT',
-          rate1: null,
-          rate2: null,
-          rate3: null,
-          rate4: null
-        },
-        notes: [
-          'Очень выгодный продукт'
-        ]
+        id: null,
+        name: 'Вклад',
+        createDate: null,
+        updateDate: null,
+        archiveDate: null,
+        weight: 2,
+        status: 'ACTIVE',
+        type: 'SAVING_ACCOUNT',
+        linkedProduct: null,
+        rates: null,
+        refillOption: null
       },
       {
-        product: {
+        id: null,
+        name: 'Карточный продукт',
+        createDate: null,
+        updateDate: null,
+        archiveDate: null,
+        weight: 2,
+        status: null,
+        type: 'CARD',
+        linkedProduct: null,
+        cardType: 'MIR',
+        cardCategory: 'DEBIT',
+        cardOption: {
           id: null,
-          name: 'Карточный продукт',
-          createDate: null,
-          updateDate: null,
-          archiveDate: null,
-          weight: 2,
-          status: null,
-          type: 'CARD',
-          cardType: 'MIR',
-          cardCategory: 'DEBIT',
-          cardOptions: [
-            {
-              id: null,
-              cardId: null,
-              option: 'CASH_BACK',
-              rate1: 1,
-              rate2: 2,
-              rate3: 3
-            },
-            {
-              id: null,
-              cardId: null,
-              option: null,
-              rate1: null,
-              rate2: null,
-              rate3: null
-            }
-          ]
-        },
-        notes: [
-          'Очень выгодная карта'
-        ]
+          option: 'CASH_BACK',
+          name: null,
+          rate1: 2,
+          rate2: 4,
+          rate3: 10,
+          rate: 5
+        }
       }
     ],
     optionalProducts: null,
-    resultSum: 220000,
-    profitSum: 12900,
+    notes: [
+      'Очень выгодный продукт'
+    ],
+    resultSum: 240000,
+    profitSum: 14900,
     maxRate: 9
+  },
+
+  {
+    products: [
+      {
+        id: null,
+        name: 'Вклад',
+        createDate: null,
+        updateDate: null,
+        archiveDate: null,
+        weight: 2,
+        status: 'ACTIVE',
+        type: 'SAVING_ACCOUNT',
+        linkedProduct: null,
+        rates: null,
+        refillOption: null
+      }
+    ],
+    optionalProducts: null,
+    notes: [
+      'Очень выгодный продукт'
+    ],
+    resultSum: 232000,
+    profitSum: 12900,
+    maxRate: 7
   }
 ];
 
@@ -138,10 +132,10 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     // this.setState({'productList': productList});
-    console.log("set productList in main app ")
+    console.log('set productList in main app ');
   }
 
-    render() {
+  render() {
     return (
       <div className="container-fluid">
         <div className="row">

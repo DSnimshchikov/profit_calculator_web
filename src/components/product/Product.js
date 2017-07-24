@@ -8,21 +8,43 @@ import ProductCardRow from './ProductCardRow';
 
 class Product extends React.Component {
 
-
-  searchCashBackOption() {
-    const products = this.props.data.productGroup.products;
-    const arrayOfCardOptions = products.filter(p => p.product.type === 'CARD').map(p => p.product.cardOptions);
-    return [].concat.apply([], arrayOfCardOptions).find(co => co.option === 'CASH_BACK');
+  static getCardOptionName(cardOption) {
+    if (cardOption !== null) {
+      if (cardOption.option === 'CASH_BACK') {
+        return 'Кэшбэк %';
+      } else if (cardOption.option === 'COLLECTION') {
+        return 'Баллы "Коллекция"';
+      } else if (cardOption.option === 'AUTO') {
+        return 'Категория Авто';
+      } else if (cardOption.option === 'CAFE') {
+        return 'Категория Кафе';
+      } else if (cardOption.option === 'TRAVEL') {
+        return 'Категория Путешествия';
+      } else if (cardOption.option === 'SAVING') {
+        return 'Опция Сберегатель';
+      }
+    }
+    return '';
   }
 
-  buildCardName() {
-    const products = this.props.data.productGroup.products;
-    return products.map(p => p.product.name).join(' + ');
+  static getCardOption(products) {
+    const arrayOfCardOptions = products.filter(p => p.type === 'CARD').map(p => p.cardOption);
+    if (arrayOfCardOptions !== undefined && arrayOfCardOptions.length > 0) {
+      return arrayOfCardOptions[0];
+    }
+    return null;
   }
+
+  static buildCardName(products, cardOption) {
+    return products.map(p => p.name).join(' + ');
+  }
+
+
   render() {
     const productGroup = this.props.data.productGroup;
     const products = productGroup.products;
-    const cahsBackOption = this.searchCashBackOption(products);
+    const cardOption = Product.getCardOption(products);
+    const cardOptionName = Product.getCardOptionName(cardOption);
 
     const colorCurrentSum = '#36A2EB';
     const colorDiffSum = '#BBBBBB';
@@ -55,17 +77,16 @@ class Product extends React.Component {
 
     return (
       <div className={styles.card}>
-        <div className={styles['card-header']}>{this.buildCardName(products)}</div>
+        <div className={styles['card-header']}>{Product.buildCardName(products, cardOption)}</div>
         <div className={styles['card-content-wrap']}>
           <div className="row">
             <div className="col-md-7">
               <ProductCardRow rowName={'Доход по вкладу'} rowValue={productGroup.profitSum} rowType={'INCOME'}/>
               <ProductCardRow rowName={'Сумма в конце срока'} rowValue={productGroup.resultSum} rowType={'SUM'}/>
               <ProductCardRow rowName={'Ставка, %'} rowValue={productGroup.maxRate} rowType={'OTHER'}/>
-              {cahsBackOption !== undefined &&
-                <ProductCardRow rowName={'Кэшбек, %'} rowValue={cahsBackOption.rate1} rowType={'OTHER'}/>
+              {cardOption !== null &&
+                <ProductCardRow rowName={cardOptionName} rowValue={cardOption.rate} rowType={'OTHER'}/>
               }
-              <ProductCardRow rowName={'Баллы "Коллекция"'} rowValue={50} rowType={'OTHER'}/>
             </div>
             <div className="col-md-5 col-centered">
               <div className={styles['pie-chart-container']}>
