@@ -1,10 +1,11 @@
 import React from 'react';
 import {Router, Route} from 'react-router';
 import {connect} from 'react-redux';
-import Filter from './Filter';
-import ProductList from './product/ProductList';
+import FilterContainer from './Filter';
+import ProductListContainer from './product/ProductList';
 import './app.css';
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import filterProducts from '../actions';
 
 const productList = [
   {
@@ -145,10 +146,10 @@ class App extends React.Component {
             Подбор продукта для клиента ВТБ24</h2>
         </div>
         <div className="index col-md-4">
-          <Filter/>
+          <FilterContainer onFilter={filterProducts}/>
         </div>
         <div className="col-md-8">
-          <ProductList data={productList}/>
+          <ProductListContainer data={productList}/>
         </div>
       </div>
     );
@@ -156,8 +157,9 @@ class App extends React.Component {
 }
 
 function mapStateToProps(state) {
+  debugger;
   return {
-    user: state.user
+    productListData: productList //state.get('productList')
   };
 }
 

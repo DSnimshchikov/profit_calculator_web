@@ -6,6 +6,15 @@ import App from './containers/App';
 import configureStore from './stores';
 
 const store = configureStore();
+store.dispatch({
+  type: 'FILTER_PRODUCT',
+  parameter: {
+    filter: {
+      sum: 180000,
+      period: 181
+    }
+  }
+});
 
 ReactDOM.render(
   <AppContainer>
