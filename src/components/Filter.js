@@ -29,10 +29,8 @@ class Filter extends React.Component {
     this.onChangeInput = this.onChangeInput.bind(this);
   }
 
-  componentDidMount(prevProps) {
-    debugger;
+  componentWillMount() {
     // filterProducts('test');
-    // if (this.props.sum !== prevProps.sum) {
       return fetch('http://localhost:8080/products?initSum=100000&daysCount=181&monthRefillSum=10000&monthWithdrawalSum=100', {method: 'get'})
         .then(response => response.json())
         .then(json => console.log(json))
@@ -40,18 +38,17 @@ class Filter extends React.Component {
         .catch(function (error) {
           console.log('Request failed', error);
         });
-    // }
   }
 
   handleChange(event) {
     this.setState({['' + event.target.name]: event.target.value});
     var sum = ReactDOM.findDOMNode(this.refs.sum).value;
-    var period = ReactDOM.findDOMNode(this.refs.period).value;
-    var refillSum = ReactDOM.findDOMNode(this.refs.refillSum).value;
-    var expensesTrip = ReactDOM.findDOMNode(this.refs.expensesTrip).value;
-    var expensesEntertainment = ReactDOM.findDOMNode(this.refs.expensesEntertainment).value;
-    var expensesAuto = ReactDOM.findDOMNode(this.refs.expensesAuto).value;
-    var expensesOther = ReactDOM.findDOMNode(this.refs.expensesOther).value;
+    // var period = ReactDOM.findDOMNode(this.refs.period).value;
+    // var refillSum = ReactDOM.findDOMNode(this.refs.refillSum).value;
+    // var expensesTrip = ReactDOM.findDOMNode(this.refs.expensesTrip).value;
+    // var expensesEntertainment = ReactDOM.findDOMNode(this.refs.expensesEntertainment).value;
+    // var expensesAuto = ReactDOM.findDOMNode(this.refs.expensesAuto).value;
+    // var expensesOther = ReactDOM.findDOMNode(this.refs.expensesOther).value;
 
   }
 

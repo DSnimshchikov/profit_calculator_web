@@ -12,31 +12,6 @@ const productList = [
     products: [
       {
         id: null,
-        name: 'Накопительный счет',
-        createDate: null,
-        updateDate: null,
-        archiveDate: null,
-        weight: 2,
-        status: 'ACTIVE',
-        type: 'SAVING_ACCOUNT',
-        linkedProduct: null,
-        rates: null,
-        refillOption: null
-      }
-    ],
-    optionalProducts: null,
-    notes: [
-      'Очень выгодный продукт'
-    ],
-    resultSum: 250000,
-    profitSum: 15900,
-    maxRate: 10
-  },
-
-  {
-    products: [
-      {
-        id: null,
         name: 'Вклад',
         createDate: null,
         updateDate: null,
@@ -79,32 +54,6 @@ const productList = [
     resultSum: 240000,
     profitSum: 14900,
     maxRate: 9
-  },
-
-  {
-    products: [
-      {
-        id: null,
-        name: 'Вклад',
-        createDate: null,
-        updateDate: null,
-        archiveDate: null,
-        weight: 2,
-        status: 'ACTIVE',
-        type: 'DEPOSIT',
-        depositType: 'PROFITABLE',
-        linkedProduct: null,
-        rates: null,
-        refillOption: null
-      }
-    ],
-    optionalProducts: null,
-    notes: [
-      'Очень выгодный продукт'
-    ],
-    resultSum: 232000,
-    profitSum: 12900,
-    maxRate: 7
   }
 ];
 
@@ -135,8 +84,9 @@ class App extends React.Component {
 }
 
 function mapStateToProps(state) {
+  debugger;
   return {
-    // productListData: productList //state.get('productList')
+    productListData: state.filterReducer
   };
 }
 
