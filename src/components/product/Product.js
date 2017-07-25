@@ -71,6 +71,10 @@ class Product extends React.Component {
     return resultName;
   }
 
+  onButtonClick (event) {
+    alert('sdfsd');
+  }
+
   render() {
     const productGroup = this.props.data.productGroup;
     const products = productGroup.products;
@@ -124,7 +128,7 @@ class Product extends React.Component {
                 <Doughnut data={chartData} options={chartOptions}/>
               </div>
               {card !== undefined && <div>
-                <a className={`${styles['card-btn']} btn btn-success`}>Программа лояльности</a>
+                <a className={`${styles['card-btn']} btn btn-success`} href="static/loyality.pdf" target="_blank">Программа лояльности</a>
               </div>}
             </div>
           </div>
