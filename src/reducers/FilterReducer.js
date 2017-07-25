@@ -3,31 +3,6 @@ import {fetchProductSuccess} from "../actions/";
 
 const initialState = {
   productList: [
-    {
-      products: [
-        {
-          id: null,
-          name: 'Вклад',
-          createDate: null,
-          updateDate: null,
-          archiveDate: null,
-          weight: 2,
-          status: 'ACTIVE',
-          type: 'DEPOSIT',
-          depositType: 'PROFITABLE',
-          linkedProduct: null,
-          rates: null,
-          refillOption: null
-        }
-      ],
-      optionalProducts: null,
-      notes: [
-        'Очень выгодный продукт'
-      ],
-      resultSum: 232000,
-      profitSum: 12900,
-      maxRate: 7
-    }
   ]
 };
 
@@ -36,7 +11,6 @@ function setState(state, newState) {
 }
 
 function FilterReducer(state = initialState, action) {
-  debugger;
   switch (action.type) {
     case FILTER_PRODUCT: {
       console.log("reduce action FILTER_PRODUCT");
