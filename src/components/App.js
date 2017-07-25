@@ -22,28 +22,6 @@ const productList = [
         linkedProduct: null,
         rates: null,
         refillOption: null
-      },
-      {
-        id: null,
-        name: 'Карточный продукт',
-        createDate: null,
-        updateDate: null,
-        archiveDate: null,
-        weight: 2,
-        status: null,
-        type: 'CARD',
-        linkedProduct: null,
-        cardType: 'MIR',
-        cardCategory: 'DEBIT',
-        cardOption: {
-          id: null,
-          option: 'TRAVEL',
-          name: null,
-          rate1: 2,
-          rate2: 4,
-          rate3: 10,
-          rate: 500
-        }
       }
     ],
     optionalProducts: null,

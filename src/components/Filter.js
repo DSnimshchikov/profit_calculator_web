@@ -32,7 +32,7 @@ class Filter extends React.Component {
   componentDidMount(prevProps) {
     debugger;
     // filterProducts('test');
-    if (this.props.sum !== prevProps.sum) {
+    // if (this.props.sum !== prevProps.sum) {
       return fetch('http://localhost:8080/products?initSum=100000&daysCount=181&monthRefillSum=10000&monthWithdrawalSum=100', {method: 'get'})
         .then(response => response.json())
         .then(json => console.log(json))
@@ -40,7 +40,7 @@ class Filter extends React.Component {
         .catch(function (error) {
           console.log('Request failed', error);
         });
-    }
+    // }
   }
 
   handleChange(event) {
