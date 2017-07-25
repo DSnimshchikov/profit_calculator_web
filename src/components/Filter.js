@@ -31,18 +31,12 @@ class Filter extends React.Component {
 
   componentWillMount() {
     // filterProducts('test');
-      return fetch('http://localhost:8080/products?initSum=100000&daysCount=181&monthRefillSum=10000&monthWithdrawalSum=100', {method: 'get'})
-        .then(response => response.json())
-        .then(json => console.log(json))
-        .then(json => this.setState({'productList': json}))
-        .catch(function (error) {
-          console.log('Request failed', error);
-        });
   }
 
   handleChange(event) {
     this.setState({['' + event.target.name]: event.target.value});
     var sum = ReactDOM.findDOMNode(this.refs.sum).value;
+    filterProducts(sum);
     // var period = ReactDOM.findDOMNode(this.refs.period).value;
     // var refillSum = ReactDOM.findDOMNode(this.refs.refillSum).value;
     // var expensesTrip = ReactDOM.findDOMNode(this.refs.expensesTrip).value;

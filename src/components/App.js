@@ -61,11 +61,11 @@ class App extends React.Component {
 
   constructor(props) {
     super(props);
-    // this.setState({'productList': productList});
     console.log('set productList in main app ');
   }
 
   render() {
+    debugger;
     return (
       <div className="container-fluid">
         <div className="row">
@@ -76,7 +76,7 @@ class App extends React.Component {
           <FilterContainer />
         </div>
         <div className="col-md-8">
-          <ProductListContainer data={productList}/>
+          <ProductListContainer data={this.props.productListData}/>
         </div>
       </div>
     );
@@ -86,7 +86,7 @@ class App extends React.Component {
 function mapStateToProps(state) {
   debugger;
   return {
-    productListData: state.filterReducer
+    productListData: state.filterReducer.productList?state.filterReducer.productList:[]
   };
 }
 
