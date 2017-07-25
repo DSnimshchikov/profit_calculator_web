@@ -1,4 +1,5 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import cssmodules from 'react-css-modules';
 import styles from './product-list.cssmodule.less';
 import Product from './Product';
@@ -22,4 +23,12 @@ ProductList.displayName = 'ProductList';
 ProductList.propTypes = {};
 ProductList.defaultProps = {};
 
-export default cssmodules(ProductList, styles);
+const mapStateToProps = state => ({
+  //связываем внутренний св-ва с данными из state redux
+  loginText: 'te'
+});
+function mapDispatchToProps(dispatch) {
+  return {};
+}
+
+export const ProductListContainer = connect(mapStateToProps, mapDispatchToProps)(cssmodules(ProductList, styles));

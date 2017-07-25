@@ -23,12 +23,12 @@ App.propTypes = {
   actions: PropTypes.shape({
     chooseBestSolution: PropTypes.func.isRequired
   }),
-  filterReducer: PropTypes.shape({})
+  globalState: PropTypes.shape({})
 };
 function mapStateToProps(state) {
   // eslint-disable-line no-unused-vars
   const props = {
-    filterReducer: state.filterReducer
+    globalState: state.globalState
   };
   return props;
 }

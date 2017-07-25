@@ -3,8 +3,8 @@ import {connect} from 'react-redux';
 import cssmodules from 'react-css-modules';
 import styles from './filter.cssmodule.less';
 import ReactDOM from 'react-dom';
-import ProductFilter from '../containers/ProductFilter'
 import {filterProducts} from '../actions'
+import { bindActionCreators } from 'redux';
 import fetch from 'isomorphic-fetch'
 import HorizontalSlider from './HorizontalSlider'
 
@@ -19,39 +19,30 @@ class Filter extends React.Component {
       decrease: false,
       refill: "true",
       payrollProject: false,
-      expensesAuto: 0,
-      expensesEntertainment: 0,
-      expensesTrip: 0,
-      expensesOther: 0,
-      refillSum: 0
+      expensesAuto: 10000,
+      expensesEntertainment: 10000,
+      expensesTrip: 10000,
+      expensesOther: 10000,
+      refillSum: 10000
     };
     this.handleChange = this.handleChange.bind(this);
     this.onChangeInput = this.onChangeInput.bind(this);
   }
 
-  componentDidUpdate(prevProps) {
-    const {dispatch, selectedSubreddit} = this.props;
-    debugger;
-    if (this.props.productList !== prevProps.productList) {
-      return fetch('http://localhost:8080/products?initSum=100000&daysCount=181&monthRefillSum=10000&monthWithdrawalSum=100', {method: 'get'})
-        .then(response => response.json())
-        .then(json => console.log(json))
-        .then(json => this.setState({'productList': json}))
-        .catch(function (error) {
-          console.log('Request failed', error);
-        });
-    }
+  componentWillMount() {
+    // filterProducts('test');
   }
 
   handleChange(event) {
-    this.setState({sum: event.target.value});
+    this.setState({['' + event.target.name]: event.target.value});
     var sum = ReactDOM.findDOMNode(this.refs.sum).value;
-    var period = ReactDOM.findDOMNode(this.refs.period).value;
-    var refillSum = ReactDOM.findDOMNode(this.refs.refillSum).value;
-    var expensesTrip = ReactDOM.findDOMNode(this.refs.expensesTrip).value;
-    var expensesEntertainment = ReactDOM.findDOMNode(this.refs.expensesEntertainment).value;
-    var expensesAuto = ReactDOM.findDOMNode(this.refs.expensesAuto).value;
-    var expensesOther = ReactDOM.findDOMNode(this.refs.expensesOther).value;
+    filterProducts(sum);
+    // var period = ReactDOM.findDOMNode(this.refs.period).value;
+    // var refillSum = ReactDOM.findDOMNode(this.refs.refillSum).value;
+    // var expensesTrip = ReactDOM.findDOMNode(this.refs.expensesTrip).value;
+    // var expensesEntertainment = ReactDOM.findDOMNode(this.refs.expensesEntertainment).value;
+    // var expensesAuto = ReactDOM.findDOMNode(this.refs.expensesAuto).value;
+    // var expensesOther = ReactDOM.findDOMNode(this.refs.expensesOther).value;
 
   }
 
@@ -204,7 +195,7 @@ class Filter extends React.Component {
             <div className="e-range--field top-distance">
               <input type="text" id="Credit" name="expensesTrip"
                      className="e-range--field--entity"
-                     ref="expensesTrip"
+                     ref="expensesTrip" value={expensesTrip}
                      onChange={this.handleChange}
                      data-range-field="true"/>
               <span className="e-range--field--measure e-range--field--measure---default " data-range-measure="true">
@@ -214,7 +205,7 @@ class Filter extends React.Component {
             <div className="e-range--field top-distance">
               <input type="text" id="Credit" name="expensesEntertainment"
                      className="e-range--field--entity e-range--field"
-                     ref="expensesEntertainment"
+                     ref="expensesEntertainment" value={expensesEntertainment}
                      onChange={this.handleChange}
                      data-range-field="true"/>
               <span className="e-range--field--measure e-range--field--measure---default " data-range-measure="true">
@@ -224,7 +215,7 @@ class Filter extends React.Component {
             <div className="e-range--field top-distance">
               <input type="text" id="Credit" name="expensesAuto"
                      className="e-range--field--entity e-range--field"
-                     ref="expensesAuto"
+                     ref="expensesAuto" value={expensesAuto}
                      onChange={this.handleChange}
                      data-range-field="true"/>
               <span className="e-range--field--measure e-range--field--measure---default " data-range-measure="true">
@@ -234,7 +225,7 @@ class Filter extends React.Component {
             <div className="e-range--field top-distance">
               <input type="text" id="Credit" name="expensesOther"
                      className="e-range--field--entity e-range--field"
-                     ref='expensesOther'
+                     ref='expensesOther' value={expensesOther}
                      onChange={this.handleChange}
                      data-range-field="true"/>
               <span className="e-range--field--measure e-range--field--measure---default " data-range-measure="true">
@@ -255,12 +246,13 @@ class Filter extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  loginText: 'Login',
-  registerText: 'Register'
+  //связываем внутренний св-ва с данными из state redux
+  loginText: 'Login'
 });
 
-const mapDispatchToProps = {
-  onFilterClick: filterProducts
+function mapDispatchToProps(dispatch) {
+  const actionMap = { actions: bindActionCreators(filterProducts, dispatch) };
+  return actionMap;
 }
 
 
@@ -268,4 +260,4 @@ Filter.displayName = 'Filter';
 Filter.propTypes = {};
 Filter.defaultProps = {};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Filter);
+export const FilterContainer = connect(mapStateToProps, mapDispatchToProps)(cssmodules(Filter, styles));

@@ -1,16 +1,37 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { AppContainer } from 'react-hot-loader';
-import { Provider } from 'react-redux';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import {AppContainer} from 'react-hot-loader';
+import {Provider} from 'react-redux';
 import App from './containers/App';
+import Settings from './components/settings/Settings';
 import configureStore from './stores';
 
 const store = configureStore();
+store.dispatch({
+  type: 'FILTER_PRODUCT',
+  parameter: {
+    filter: {
+      sum: 180000,
+      period: 181
+    }
+  }
+});
+
+const routing = (
+  <Router>
+    <Switch>
+      <Route exact path='/' component={App}/>
+      <Route exact path='/settings' component={Settings}/>
+      {/*<Route exact path='/settings:id' component={Settings}/>*/}
+    </Switch>
+  </Router>
+);
 
 ReactDOM.render(
   <AppContainer>
     <Provider store={store}>
-      <App />
+      {routing}
     </Provider>
   </AppContainer>,
   document.getElementById('app')
@@ -23,7 +44,7 @@ if (module.hot) {
     ReactDOM.render(
       <AppContainer>
         <Provider store={store}>
-          <NextApp />
+          {routing}
         </Provider>
       </AppContainer>,
       document.getElementById('app')
