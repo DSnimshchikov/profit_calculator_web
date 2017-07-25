@@ -1,8 +1,8 @@
 import React from 'react';
 import {Router, Route} from 'react-router';
 import {connect} from 'react-redux';
-import FilterContainer from './Filter';
-import ProductListContainer from './product/ProductList';
+import {FilterContainer} from './Filter';
+import {ProductListContainer} from './product/ProductList';
 import './app.css';
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import filterProducts from '../actions';
@@ -146,7 +146,7 @@ class App extends React.Component {
             Подбор продукта для клиента ВТБ24</h2>
         </div>
         <div className="index col-md-4">
-          <FilterContainer onFilter={filterProducts}/>
+          <FilterContainer />
         </div>
         <div className="col-md-8">
           <ProductListContainer data={productList}/>
@@ -157,9 +157,8 @@ class App extends React.Component {
 }
 
 function mapStateToProps(state) {
-  debugger;
   return {
-    productListData: productList //state.get('productList')
+    // productListData: productList //state.get('productList')
   };
 }
 
