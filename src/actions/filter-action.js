@@ -30,7 +30,7 @@ export function loadProducts(filter) {
 }
 
 function fetchProducts(param, dispatch) {
-  fetch('http://localhost:8080/products', {
+  fetch('http://localhost:8080/api/v1/products', {
     method: 'post',
     headers: {
       'Accept': 'application/json',

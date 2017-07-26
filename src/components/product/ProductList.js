@@ -23,7 +23,7 @@ class ProductList extends React.Component {
 ProductList.displayName = 'ProductList';
 ProductList
   .propTypes = {
-    data: PropTypes.object // eslint-disable-line react/forbid-prop-types
+    data: PropTypes.array // eslint-disable-line react/forbid-prop-types
   };
 ProductList.defaultProps = {};
 

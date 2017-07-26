@@ -11,8 +11,10 @@
 import { combineReducers } from 'redux';
 import items from '../reducers/items.js';
 import filterReducer from './FilterReducer.js';
+import settingReducer from './SettingReducer.js';
 const reducers = {
   filterReducer,
+  settingReducer,
   items
 };
 const combined = combineReducers(reducers);
