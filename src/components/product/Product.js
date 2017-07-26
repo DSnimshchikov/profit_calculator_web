@@ -17,7 +17,7 @@ class Product extends React.Component {
       } else if (cardOption.option === 'AUTO') {
         return 'Категория Авто';
       } else if (cardOption.option === 'CAFE') {
-        return 'Категория Кафе';
+        return 'Категория Развлечения';
       } else if (cardOption.option === 'TRAVEL') {
         return 'Категория Путешествия';
       } else if (cardOption.option === 'SAVING') {
