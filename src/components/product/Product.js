@@ -71,10 +71,6 @@ class Product extends React.Component {
     return resultName;
   }
 
-  onButtonClick (event) {
-    alert('sdfsd');
-  }
-
   render() {
     const productGroup = this.props.data.productGroup;
     const products = productGroup.products;
