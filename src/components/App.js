@@ -1,7 +1,7 @@
 import React from 'react';
 import {Router, Route} from 'react-router';
 import {connect} from 'react-redux';
-import {FilterContainer} from './Filter';
+import {FilterContainer} from './filter/Filter';
 import {ProductListContainer} from './product/ProductList';
 import './app.css';
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';

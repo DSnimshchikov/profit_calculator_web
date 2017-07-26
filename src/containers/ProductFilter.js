@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {filterProducts} from '../actions'
-import {Filter} from '../components/Filter'
+import {Filter} from '../components/filter/Filter'
 
 const getVisibleTodos = (todos, filter) => {
   switch (filter) {
