@@ -31,11 +31,12 @@ export function loadProducts(filter) {
 
 function fetchProducts(param, dispatch) {
   fetch('http://localhost:8080/products', {
-    method: 'get',
+    method: 'post',
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
-    }
+    },
+      body: JSON.stringify(param)
   })
     .then(response => response.json())
     .then(json => dispatch(fetchProductSuccess(json)))
@@ -44,14 +45,6 @@ function fetchProducts(param, dispatch) {
       dispatch(fetchProductError(error));
     });
 
-  // return fetch('http://localhost:8080/products', {
-  //   method: 'post',
-  //   headers: {
-  //     'Accept': 'application/json',
-  //     'Content-Type': 'application/json'
-  //   },
-  //   body: JSON.stringify({ param })
-  // })
 }
 
 module.exports = {filterProducts, fetchProductSuccess, loadProducts};
