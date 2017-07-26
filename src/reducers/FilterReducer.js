@@ -1,34 +1,32 @@
-import {FILTER_PRODUCT} from "../actions/const";
-import {fetchProductSuccess} from "../actions/";
+import * as  ActionType from "../actions/const";
 
-const initialState = {};
+const initialState = {
+  productList: []
+};
+
+function setState(state, newState) {
+  return Object.assign({}, state, newState); //init new state with newState
+}
 
 function FilterReducer(state = initialState, action) {
-  /* Keep the reducer clean - do not mutate the original state. */
-  // const nextState = Object.assign({}, state);
-
   switch (action.type) {
-    case FILTER_PRODUCT: {
-      console.log("reduce action FILTER_PRODUCT");
-      return fetchProducts(action.parameter);
+    case ActionType.FILTER_PRODUCT: {
+      console.log("reduce action FILTER_PRODUCT " + action.payload);
+      return fetchProducts(action.payload);
+    }
+    case ActionType.FETCH_PRODUCT_REQUEST : {
+      return {...state, filter: action.payload, fetching: true};
+    }
+    case ActionType.FETCH_PRODUCT_SUCESS: {
+      return {...state, productList: action.payload, fetching: false};
+    }
+    case ActionType.FETCH_PRODUCT_ERROR: {
+      console.log("load product ERROR  " + action.payload);
+      return {...state, productList: [], fetching: false};
     }
     default: {
       return state;
     }
-  }
-}
-
-
-function fetchProducts(param) {
-  return dispatch => {
-    // dispatch(filterProducts(param)); возможно надо уведомить о начале и окончании загрузки
-
-    return fetch('http://localhost:8080/products', { method: 'get' })
-      .then(response => response.json())
-      .then(json => dispatch(fetchProductSuccess(subreddit, json)))
-      .catch(function (error) {
-        console.log('Request failed', error);
-      });
   }
 }
 

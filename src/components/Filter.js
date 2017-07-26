@@ -2,10 +2,9 @@ import React from 'react';
 import {connect} from 'react-redux';
 import cssmodules from 'react-css-modules';
 import styles from './filter.cssmodule.less';
+import {loadProducts} from '../actions/filter-action'
 import ReactDOM from 'react-dom';
-import {filterProducts} from '../actions'
-import { bindActionCreators } from 'redux';
-import fetch from 'isomorphic-fetch'
+import {bindActionCreators} from 'redux';
 import HorizontalSlider from './HorizontalSlider'
 
 class Filter extends React.Component {
@@ -30,20 +29,29 @@ class Filter extends React.Component {
   }
 
   componentWillMount() {
-    // filterProducts('test');
+    this.props.requestProducts(this.makePayload());
+  }
+
+  makePayload() {
+    var category2Cost = {
+      TRAVEL: ReactDOM.findDOMNode(this.refs.expensesTrip) ? ReactDOM.findDOMNode(this.refs.expensesTrip).value : this.state.expensesTrip,
+      FUN: ReactDOM.findDOMNode(this.refs.expensesEntertainment) ? ReactDOM.findDOMNode(this.refs.expensesEntertainment).value : this.state.expensesEntertainment,
+      AUTO: ReactDOM.findDOMNode(this.refs.expensesAuto) ? ReactDOM.findDOMNode(this.refs.expensesAuto).value : this.state.expensesAuto,
+      OTHER: ReactDOM.findDOMNode(this.refs.expensesOther) ? ReactDOM.findDOMNode(this.refs.expensesOther).value : this.state.expensesOther
+    }
+
+    return {
+      initSum: ReactDOM.findDOMNode(this.refs.sum) ? ReactDOM.findDOMNode(this.refs.sum).value : this.state.sum,
+      daysCount: ReactDOM.findDOMNode(this.refs.period) ? ReactDOM.findDOMNode(this.refs.period).value : this.state.period,
+      monthRefillSum: ReactDOM.findDOMNode(this.refs.refillSum) ? ReactDOM.findDOMNode(this.refs.refillSum).value : this.state.refillSum,
+      categories2Costs: category2Cost
+    }
   }
 
   handleChange(event) {
+    debugger;
     this.setState({['' + event.target.name]: event.target.value});
-    var sum = ReactDOM.findDOMNode(this.refs.sum).value;
-    filterProducts(sum);
-    // var period = ReactDOM.findDOMNode(this.refs.period).value;
-    // var refillSum = ReactDOM.findDOMNode(this.refs.refillSum).value;
-    // var expensesTrip = ReactDOM.findDOMNode(this.refs.expensesTrip).value;
-    // var expensesEntertainment = ReactDOM.findDOMNode(this.refs.expensesEntertainment).value;
-    // var expensesAuto = ReactDOM.findDOMNode(this.refs.expensesAuto).value;
-    // var expensesOther = ReactDOM.findDOMNode(this.refs.expensesOther).value;
-
+    this.props.requestProducts(this.makePayload());
   }
 
   onChangeInput(event) {
@@ -113,7 +121,7 @@ class Filter extends React.Component {
             <div className="e-range--field">
               <input type="text" className="e-range--field--entity" data-range-field="true"
                      id="Credit" name="period"
-                     ref='period' value={period} onChange={this.onChangePeriod}/>
+                     ref='period' value={period} onChange={this.handleChange}/>
               <span className="e-range--field--measure e-range--field--measure---default " data-range-measure="true">
                   <span className="e-range--field--measure--value" data-range-measure-value="true">дней</span></span>
               <span className="e-range--field--handler" data-range-handler="true"></span>
@@ -160,7 +168,7 @@ class Filter extends React.Component {
           <label className="b-deposits-calculator--label">Ежемесячное пополнение</label>
           <div className="e-range b-deposits-calculator--term">
             <div className="e-range--field">
-              <input type="text" name="refillSum" value={refillSum} ref='refillSum' onChange={this.onChangePeriod}
+              <input type="text" name="refillSum" value={refillSum} ref='refillSum' onChange={this.handleChange}
                      className="e-range--field--entity"/>
               <span className="e-range--field--handler" data-range-handler="true"></span>
               <span className="e-range--field--filling" data-range-filling="true"></span>
@@ -247,14 +255,12 @@ class Filter extends React.Component {
 
 const mapStateToProps = state => ({
   //связываем внутренний св-ва с данными из state redux
-  loginText: 'Login'
 });
 
 function mapDispatchToProps(dispatch) {
-  const actionMap = { actions: bindActionCreators(filterProducts, dispatch) };
+  const actionMap = {requestProducts: bindActionCreators(loadProducts, dispatch)};
   return actionMap;
 }
-
 
 Filter.displayName = 'Filter';
 Filter.propTypes = {};
