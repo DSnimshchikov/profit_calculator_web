@@ -6,20 +6,8 @@ import Filter from '../components/filter/Filter';
 class FilterForm extends React.Component {
 
   componentDidMount() {
-    this.props.initialize({
-      initSum: 120000,
-      daysCount: 181,
-      decrease: false,
-      refill: true,
-      payrollProject: false,
-      monthRefillSum: 10000,
-      categories2Costs: {
-        TRAVEL: 10000,
-        FUN: 10000,
-        AUTO: 10000,
-        OTHER: 10000
-      }
-    });
+    this.props.initialize(defaultFilter);
+    this.props.onSubmit(defaultFilter);
   }
 
   render() {
@@ -31,6 +19,21 @@ class FilterForm extends React.Component {
     )
   }
 }
+
+const defaultFilter = {
+  initSum: 120000,
+  daysCount: 181,
+  decrease: false,
+  refill: true,
+  payrollProject: false,
+  monthRefillSum: 10000,
+  categories2Costs: {
+    TRAVEL: 10000,
+    FUN: 10000,
+    AUTO: 10000,
+    OTHER: 10000
+  }
+};
 
 const mapStateToProps = state => ({
   refill: state.form.filter ? state.form.filter.values.refill : false,

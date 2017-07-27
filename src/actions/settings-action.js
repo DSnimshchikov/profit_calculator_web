@@ -1,52 +1,47 @@
 import fetch from 'isomorphic-fetch';
-import {
-  FETCH_SETTINGS_DEPOSIT_REQUEST, FETCH_SETTINGS_DEPOSIT_SUCCESS, FETCH_SETTINGS_DEPOSIT_ERROR,
-  FETCH_SETTINGS_CARD_REQUEST, FETCH_SETTINGS_CARD_SUCCESS, FETCH_SETTINGS_CARD_ERROR,
-  FETCH_SETTINGS_SAVING_ACCOUNT_REQUEST, FETCH_SETTINGS_SAVING_ACCOUNT_SUCCESS, FETCH_SETTINGS_SAVING_ACCOUNT_ERROR,
-  HEADERS
-} from './const';
+import * as ctx from './const';
 
 function fetchSettingDepositRequest(payload) {
-  return {type: FETCH_SETTINGS_DEPOSIT_REQUEST, payload};
+  return {type: ctx.FETCH_SETTINGS_DEPOSIT_REQUEST, payload};
 }
 
 export function fetchSettingDepositSuccess(payload) {
-  return {type: FETCH_SETTINGS_DEPOSIT_SUCCESS, payload};
+  return {type: ctx.FETCH_SETTINGS_DEPOSIT_SUCCESS, payload};
 }
 
 function fetchSettingDepositError(payload) {
-  return {type: FETCH_SETTINGS_DEPOSIT_ERROR, payload};
+  return {type: ctx.FETCH_SETTINGS_DEPOSIT_ERROR, payload};
 }
 
 function fetchSettingCardRequest(payload) {
-  return {type: FETCH_SETTINGS_CARD_REQUEST, payload};
+  return {type: ctx.FETCH_SETTINGS_CARD_REQUEST, payload};
 }
 
 export function fetchSettingCardSuccess(payload) {
-  return {type: FETCH_SETTINGS_CARD_SUCCESS, payload};
+  return {type: ctx.FETCH_SETTINGS_CARD_SUCCESS, payload};
 }
 
 function fetchSettingCardError(payload) {
-  return {type: FETCH_SETTINGS_CARD_ERROR, payload};
+  return {type: ctx.FETCH_SETTINGS_CARD_ERROR, payload};
 }
 
 function fetchSettingSavingAccountRequest(payload) {
-  return {type: FETCH_SETTINGS_SAVING_ACCOUNT_REQUEST, payload};
+  return {type: ctx.FETCH_SETTINGS_SAVING_ACCOUNT_REQUEST, payload};
 }
 
 export function fetchSettingSavingAccountSuccess(payload) {
-  return {type: FETCH_SETTINGS_SAVING_ACCOUNT_SUCCESS, payload};
+  return {type: ctx.FETCH_SETTINGS_SAVING_ACCOUNT_SUCCESS, payload};
 }
 
 function fetchSettingSavingAccountError(payload) {
-  return {type: FETCH_SETTINGS_SAVING_ACCOUNT_ERROR, payload};
+  return {type: ctx.FETCH_SETTINGS_SAVING_ACCOUNT_ERROR, payload};
 }
 
 
 function fetchSettingDeposit(dispatch) {
-  fetch('http://localhost:8080/api/v1/deposits', {
-    method: 'get',
-    headers: HEADERS,
+  fetch(ctx.BASE_PATH + '/deposits', {
+    method: ctx.HTTP_METHOD_GET,
+    headers: ctx.HEADERS,
   })
     .then(response => response.json())
     .then(json => dispatch(fetchSettingDepositSuccess(json._embedded)))
@@ -57,9 +52,9 @@ function fetchSettingDeposit(dispatch) {
 }
 
 function fetchSettingCard(dispatch) {
-  fetch('http://localhost:8080/api/v1/cards', {
-    method: 'get',
-    headers: HEADERS,
+  fetch(ctx.BASE_PATH + '/cards', {
+    method: ctx.HTTP_METHOD_GET,
+    headers: ctx.HEADERS,
   })
     .then(response => response.json())
     .then(json => dispatch(fetchSettingCardSuccess(json._embedded)))
@@ -70,9 +65,9 @@ function fetchSettingCard(dispatch) {
 }
 
 function fetchSettingSavingAccount(dispatch) {
-  fetch('http://localhost:8080/api/v1/savingAccounts', {
-    method: 'get',
-    headers: HEADERS,
+  fetch(ctx.BASE_PATH + '/savingAccounts', {
+    method: ctx.HTTP_METHOD_GET,
+    headers: ctx.HEADERS,
   })
     .then(response => response.json())
     .then(json => dispatch(fetchSettingSavingAccountSuccess(json._embedded)))
