@@ -5,15 +5,12 @@
 .card {
   float: left;
   width: 378px;
-  height: 340px;
+  height: 300px;
   padding: 20px;
   margin: 10px;
   background: #fff;
   box-sizing: border-box;
   box-shadow: 0 20px 54px 0 rgba(196,208,227,.75);
-  //border-radius: 20px;
-  //border: solid 1px #bbb;
-font-family: "Open Sans", sans-serif;
 }
 .card-header{
   font-size: 18px;
@@ -23,12 +20,11 @@ font-family: "Open Sans", sans-serif;
   padding-top: 20px;
   padding-bottom: 20px;
   padding-right: 30px;
-  padding-left:15px;
+  padding-left:10px;
   border-bottom: 2px solid #e7eef4;
   margin-bottom: 25px;
   text-align: left;
   vertical-align: middle;
-  font-family: "Open Sans", sans-serif;
 }
 
 .card-content-wrap {
@@ -40,30 +36,27 @@ font-family: "Open Sans", sans-serif;
   font-size: 18px;
   font-weight: 100;
   color: #97a4b1;
-  font-family: "Open Sans", sans-serif;
+  text-align: right;
+  vertical-align: middle;
 }
 
 .card-content-wrap p{
   font-size: 14px;
   color: #97a4b1;
   line-height: 125%;
-  font-family: "Open Sans", sans-serif;
 }
 
 b.income {
   color: #80e0b0;
-  font-family: "Open Sans", sans-serif;
 }
 
 b.sum {
   color: #1a8cff;
-  font-family: "Open Sans", sans-serif;
 }
 
 .pie-chart-container {
-  height: 140px;
+  height: 80px;
   width: 140px;
-  font-family: "Open Sans", sans-serif;
 }
 
 .col-centered{
@@ -71,11 +64,19 @@ b.sum {
   margin: 0 auto;
 }
 
-.card-btn {
+.aligned-row {
+  display: flex;
+  flex-flow: row wrap;
+
+  &::before {
+    display: block;
+  }
+  vertical-align: middle;
+}
+.card-btn,.card-btn:hover, .card-btn:active, .card-btn:visited {
+  background-color: #1a8cff;
   font-size: 8px !important;
-  font-family: "Open Sans", sans-serif;
+  border-color: #1a8cff;
+  position:absolute; bottom:0;  margin-bottom:7px; left: 0;
 }
 
-.btn-success, .btn-success:hover, .btn-success:active, .btn-success:visited {
-  background-color: #1a8cff !important;
-}

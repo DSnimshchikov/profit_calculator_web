@@ -10,8 +10,8 @@ class ProductCardRow extends React.Component {
 
   render() {
     return (
-      <div className="row">
-        <div className="col-md-7">
+      <div className={`${styles['aligned-row']} row`}>
+        <div className={'col-md-7'}>
           <p>{this.props.rowName}</p>
         </div>
         <div className="col-md-5 text-right">
@@ -33,7 +33,11 @@ class ProductCardRow extends React.Component {
           }
 
           {this.props.rowType !== 'INCOME' && this.props.rowType !== 'SUM' &&
-          <b>{this.props.rowValue}</b>
+          <b>
+            <nobr>
+              <CountUp start={0} end={this.props.rowValue} duration={0.75} separator={' '} useGrouping/>
+            </nobr>
+          </b>
           }
         </div>
       </div>
