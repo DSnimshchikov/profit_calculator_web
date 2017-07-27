@@ -23,18 +23,12 @@ class App extends React.Component {
           <FilterForm onSubmit=""/>
         </div>
         <div className="col-md-8">
-          <ProductListContainer data={this.props.productListData}/>
+          <ProductListContainer/>
         </div>
       </div>
     );
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    productListData: state.filterReducer.productList
-  };
-}
-
 App.defaultProps = {};
-export default connect(mapStateToProps)(App);
+export default App;

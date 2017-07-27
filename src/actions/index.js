@@ -1,8 +1,8 @@
 import chooseBestSolution from '../actions/chooseBestSolution.js';
-import {filterProducts, fetchProductSuccess} from './filter-action.js';
+import {filterProducts, fetchProductSuccess, loadProducts} from './filter-action.js';
 
 const actions = {
-  filterProducts, fetchProductSuccess,
+  filterProducts, fetchProductSuccess, loadProducts,
   chooseBestSolution
 };
 

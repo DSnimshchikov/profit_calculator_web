@@ -10,17 +10,17 @@ class Product extends React.Component {
 
   static getCardOptionName(cardOption) {
     if (cardOption !== null) {
-      if (cardOption.option === 'CASH_BACK') {
-        return 'Кэшбэк %';
-      } else if (cardOption.option === 'COLLECTION') {
+      if (cardOption.bonusOption === 'CASH_BACK') {
+        return 'Кэшбэк ';
+      } else if (cardOption.bonusOption === 'COLLECTION') {
         return 'Баллы "Коллекция"';
-      } else if (cardOption.option === 'AUTO') {
-        return 'Категория Авто';
-      } else if (cardOption.option === 'CAFE') {
-        return 'Категория Кафе';
-      } else if (cardOption.option === 'TRAVEL') {
-        return 'Категория Путешествия';
-      } else if (cardOption.option === 'SAVING') {
+      } else if (cardOption.bonusOption === 'AUTO') {
+        return 'Кэшбэк Авто';
+      } else if (cardOption.bonusOption === 'FUN') {
+        return 'Кэшбэк Развлечения';
+      } else if (cardOption.bonusOption === 'TRAVEL') {
+        return 'Мили Путешествия';
+      } else if (cardOption.bonusOption === 'SAVING') {
         return 'Опция Сбережения';
       }
     }
@@ -40,39 +40,28 @@ class Product extends React.Component {
     const baseProduct = products.find(p => p.type !== 'CARD');
     let resultName = baseProduct.name;
     if (baseProduct.type === 'DEPOSIT') {
-
-      if (baseProduct.depositType === 'COMFORT') {
-        resultName += ' "Комфортный" ';
-      } else if (baseProduct.depositType === 'ACCUMULATIVE') {
-        resultName += ' "Накопительный" ';
-      } else if (baseProduct.depositType === 'PROFITABLE') {
-        resultName += ' "Выгодный" ';
-      }
+      resultName = `Вклад "${resultName}"`;
     }
     if (card !== null && card !== undefined) {
       resultName += ' + Мультикарта';
       const cardOption = card.cardOption;
       if (cardOption !== undefined) {
-        if (cardOption.option === ' CASH_BACK') {
+        if (cardOption.bonusOption === ' CASH_BACK') {
           resultName += ' + Кэшбэк';
-        } else if (cardOption.option === 'COLLECTION') {
+        } else if (cardOption.bonusOption === 'COLLECTION') {
           resultName += ' + Баллы "Коллекция"';
-        } else if (cardOption.option === 'AUTO') {
+        } else if (cardOption.bonusOption === 'AUTO') {
           resultName += ' с опцией Авто';
-        } else if (cardOption.option === 'CAFE') {
-          resultName += ' с опцией Кафе';
-        } else if (cardOption.option === 'TRAVEL') {
+        } else if (cardOption.bonusOption === 'FUN') {
+          resultName += ' с опцией Развлечение';
+        } else if (cardOption.bonusOption === 'TRAVEL') {
           resultName += ' с опцией Путешествия';
-        } else if (cardOption.option === 'SAVING') {
+        } else if (cardOption.bonusOption === 'SAVING') {
           resultName += ' с опцией Сбережения';
         }
       }
     }
     return resultName;
-  }
-
-  onButtonClick (event) {
-    alert('sdfsd');
   }
 
   render() {
@@ -81,7 +70,7 @@ class Product extends React.Component {
     const cardOption = Product.getCardOption(products);
     const cardOptionName = Product.getCardOptionName(cardOption);
     const card = products.find(p => p.type === 'CARD');
-    const colorCurrentSum = '#36A2EB';
+    const colorCurrentSum = '#80e0b0';
     const colorDiffSum = '#BBBBBB';
     const chartData = {
       labels: [
@@ -111,16 +100,16 @@ class Product extends React.Component {
     };
 
     return (
-      <div className={styles.card}>
+      <div className={`${styles.card} .effect2`}>
         <div className={styles['card-header']}>{Product.buildCardName(products)}</div>
         <div className={styles['card-content-wrap']}>
           <div className="row">
             <div className="col-md-7">
+              <ProductCardRow rowName={'Ставка, %'} rowValue={productGroup.maxRate} rowType={'SUM'}/>
               <ProductCardRow rowName={'Доход по вкладу'} rowValue={productGroup.profitSum} rowType={'INCOME'}/>
-              <ProductCardRow rowName={'Сумма в конце срока'} rowValue={productGroup.resultSum} rowType={'SUM'}/>
-              <ProductCardRow rowName={'Ставка, %'} rowValue={productGroup.maxRate} rowType={'OTHER'}/>
+              <ProductCardRow rowName={'Сумма в конце срока'} rowValue={productGroup.resultSum} rowType={'OTHER'}/>
               {cardOption !== null &&
-              <ProductCardRow rowName={cardOptionName} rowValue={cardOption.rate} rowType={'OTHER'}/>
+              <ProductCardRow rowName={cardOptionName} rowValue={productGroup.rate} rowType={'OTHER'}/>
               }
             </div>
             <div className="col-md-5 col-centered">
@@ -128,7 +117,7 @@ class Product extends React.Component {
                 <Doughnut data={chartData} options={chartOptions}/>
               </div>
               {card !== undefined && <div>
-                <a className={`${styles['card-btn']} btn btn-success`} href="static/loyality.pdf" target="_blank">Программа лояльности</a>
+                <a className={`${styles['card-btn']} btn btn-success`} href="static/loyality.pdf" target="_blank">ПРОГРАММА ЛОЯЛЬНОСТИ</a>
               </div>}
             </div>
           </div>
