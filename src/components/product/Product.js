@@ -40,14 +40,7 @@ class Product extends React.Component {
     const baseProduct = products.find(p => p.type !== 'CARD');
     let resultName = baseProduct.name;
     if (baseProduct.type === 'DEPOSIT') {
-
-      if (baseProduct.depositType === 'COMFORT') {
-        resultName += ' "Комфортный" ';
-      } else if (baseProduct.depositType === 'ACCUMULATIVE') {
-        resultName += ' "Накопительный" ';
-      } else if (baseProduct.depositType === 'PROFITABLE') {
-        resultName += ' "Выгодный" ';
-      }
+      resultName = `Вклад "${resultName}"`;
     }
     if (card !== null && card !== undefined) {
       resultName += ' + Мультикарта';
