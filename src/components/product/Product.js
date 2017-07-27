@@ -10,17 +10,17 @@ class Product extends React.Component {
 
   static getCardOptionName(cardOption) {
     if (cardOption !== null) {
-      if (cardOption.option === 'CASH_BACK') {
+      if (cardOption.bonusOption === 'CASH_BACK') {
         return 'Кэшбэк %';
-      } else if (cardOption.option === 'COLLECTION') {
+      } else if (cardOption.bonusOption === 'COLLECTION') {
         return 'Баллы "Коллекция"';
-      } else if (cardOption.option === 'AUTO') {
+      } else if (cardOption.bonusOption === 'AUTO') {
         return 'Категория Авто';
-      } else if (cardOption.option === 'CAFE') {
+      } else if (cardOption.bonusOption === 'CAFE') {
         return 'Категория Развлечения';
-      } else if (cardOption.option === 'TRAVEL') {
+      } else if (cardOption.bonusOption === 'TRAVEL') {
         return 'Категория Путешествия';
-      } else if (cardOption.option === 'SAVING') {
+      } else if (cardOption.bonusOption === 'SAVING') {
         return 'Опция Сбережения';
       }
     }
@@ -46,17 +46,17 @@ class Product extends React.Component {
       resultName += ' + Мультикарта';
       const cardOption = card.cardOption;
       if (cardOption !== undefined) {
-        if (cardOption.option === ' CASH_BACK') {
+        if (cardOption.bonusOption === ' CASH_BACK') {
           resultName += ' + Кэшбэк';
-        } else if (cardOption.option === 'COLLECTION') {
+        } else if (cardOption.bonusOption === 'COLLECTION') {
           resultName += ' + Баллы "Коллекция"';
-        } else if (cardOption.option === 'AUTO') {
+        } else if (cardOption.bonusOption === 'AUTO') {
           resultName += ' с опцией Авто';
-        } else if (cardOption.option === 'CAFE') {
+        } else if (cardOption.bonusOption === 'CAFE') {
           resultName += ' с опцией Кафе';
-        } else if (cardOption.option === 'TRAVEL') {
+        } else if (cardOption.bonusOption === 'TRAVEL') {
           resultName += ' с опцией Путешествия';
-        } else if (cardOption.option === 'SAVING') {
+        } else if (cardOption.bonusOption === 'SAVING') {
           resultName += ' с опцией Сбережения';
         }
       }
