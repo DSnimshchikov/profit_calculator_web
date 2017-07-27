@@ -20,7 +20,7 @@ class App extends React.Component {
             Подбор продукта для клиента ВТБ24</h2>
         </div>
         <div className="index col-md-4">
-          <FilterForm onSubmit=""/>
+          <FilterForm onSubmit={this.props.actions.loadProducts}/>
         </div>
         <div className="col-md-8">
           <ProductListContainer/>
