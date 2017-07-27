@@ -112,12 +112,12 @@ class Product extends React.Component {
               <ProductCardRow rowName={cardOptionName} rowValue={productGroup.optionProfitSum} rowType={'OTHER'}/>
               }
             </div>
-            <div className="col-md-5 col-centered">
+            <div className="col-md-5 col-centered" >
               <div className={styles['pie-chart-container']}>
                 <Doughnut data={chartData} options={chartOptions}/>
               </div>
               {card !== undefined && <div>
-                <a className={`btn btn-success ${styles['card-btn']}`} href="static/loyality.pdf" target="_blank">ПРОГРАММА ЛОЯЛЬНОСТИ</a>
+                <a className={`btn ${styles['card-btn']}`} href="static/loyality.pdf" target="_blank">ПРОГРАММА ЛОЯЛЬНОСТИ</a>
               </div>}
             </div>
           </div>
