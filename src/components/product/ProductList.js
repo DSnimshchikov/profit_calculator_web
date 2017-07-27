@@ -10,7 +10,7 @@ class ProductList extends React.Component {
     return (
       <div className="product-list-component container-fluid">
         {this.props.data && this.props.data.length && this.props.data.map((productGroup, index) => {
-          const data = {productGroup, bestProfitSum: this.props.data[0].profitSum};
+          const data = {productGroup, bestProfitSum: Math.max(...this.props.data.map(o => o.profitSum))};
           return (<div key={index}>
             <Product data={data}/>
           </div>);

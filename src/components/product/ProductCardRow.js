@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cssmodules from 'react-css-modules';
+import CountUp from 'react-countup';
 import styles from './product.cssmodule.less';
 
 
@@ -16,11 +17,15 @@ class ProductCardRow extends React.Component {
         <div className="col-md-5 text-right">
 
           {this.props.rowType === 'INCOME' &&
-          <b className={styles.income}>{this.props.rowValue}</b>
-          }
+            <b className={styles.income}>
+              <CountUp start={0} end={this.props.rowValue} duration={0.75}/>
+            </b>
+            }
 
           {this.props.rowType === 'SUM' &&
-          <b className={styles.sum}>{this.props.rowValue}</b>
+          <b className={styles.sum}>
+            <CountUp start={0} end={this.props.rowValue} duration={0.75}/>
+          </b>
           }
 
           {this.props.rowType !== 'INCOME' && this.props.rowType !== 'SUM' &&
