@@ -7,6 +7,11 @@ import styles from './product.cssmodule.less';
 
 class ProductCardRow extends React.Component {
 
+  renderValue() {
+    return (<nobr>
+      <CountUp start={0} end={this.props.rowValue} duration={0.75} separator={' '} useGrouping/>
+    </nobr>);
+  }
 
   render() {
     return (
@@ -18,25 +23,19 @@ class ProductCardRow extends React.Component {
 
           {this.props.rowType === 'INCOME' &&
           <b className={styles.income}>
-            <nobr>
-              <CountUp start={0} end={this.props.rowValue} duration={0.75} separator={' '} useGrouping/>
-            </nobr>
+            {this.renderValue()}
           </b>
           }
 
           {this.props.rowType === 'SUM' &&
           <b className={styles.sum}>
-            <nobr>
-              <CountUp start={0} end={this.props.rowValue} duration={0.75} separator={' '} useGrouping/>
-            </nobr>
+            {this.renderValue()}
           </b>
           }
 
           {this.props.rowType !== 'INCOME' && this.props.rowType !== 'SUM' &&
           <b>
-            <nobr>
-              <CountUp start={0} end={this.props.rowValue} duration={0.75} separator={' '} useGrouping/>
-            </nobr>
+            {this.renderValue()}
           </b>
           }
         </div>
@@ -44,6 +43,8 @@ class ProductCardRow extends React.Component {
     )
       ;
   }
+
+
 }
 
 ProductCardRow.displayName = 'ProductCardRow';
