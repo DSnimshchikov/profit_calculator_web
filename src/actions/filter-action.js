@@ -30,7 +30,7 @@ export function loadProducts(filter) {
 }
 
 function fetchProducts(param, dispatch) {
-  if (param.daysCount > 91) {
+  if (param.daysCount > 91 && param.daysCount < 1831) {
     fetch('http://localhost:8080/api/v1/products', {
       method: 'post',
       headers: {
