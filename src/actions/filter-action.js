@@ -1,26 +1,21 @@
 import fetch from 'isomorphic-fetch'
-import {FILTER_PRODUCT, FETCH_PRODUCT_REQUEST, FETCH_PRODUCT_SUCESS, FETCH_PRODUCT_ERROR} from './const';
+import * as ctx from './const';
 
 export const filterProducts = (payload) => ({
-  type: FILTER_PRODUCT,
+  type: ctx.FILTER_PRODUCT,
   payload
 });
 
 export function fetchProductSuccess(payload) {
-  return {type: FETCH_PRODUCT_SUCESS, payload};
+  return {type: ctx.FETCH_PRODUCT_SUCESS, payload};
 }
 function fetchProductError(payload) {
-  return {type: FETCH_PRODUCT_ERROR, payload};
+  return {type: ctx.FETCH_PRODUCT_ERROR, payload};
 }
 
 function fetchProductRequest(payload) {
-  return {type: FETCH_PRODUCT_REQUEST, payload};
+  return {type: ctx.FETCH_PRODUCT_REQUEST, payload};
 }
-
-export const setVisibilityFilter = (filter) => ({
-  type: 'SET_VISIBILITY_FILTER',
-  filter
-});
 
 export function loadProducts(filter) {
   return (dispatch) => {
@@ -30,13 +25,10 @@ export function loadProducts(filter) {
 }
 
 function fetchProducts(param, dispatch) {
-  if (param.daysCount > 91 && param.daysCount < 1831) {
-    fetch('http://localhost:8080/api/v1/products', {
-      method: 'post',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
+  if (param.daysCount > 91 && param.daysCount < 1831) { //todo normalize redux-form
+    fetch(ctx.BASE_PATH + '/products', {
+      method: ctx.HTTP_METHOD_POST,
+      headers: ctx.HEADERS,
       body: JSON.stringify(param)
     })
       .then(response => response.json())

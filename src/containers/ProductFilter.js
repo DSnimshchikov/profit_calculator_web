@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {filterProducts} from '../actions'
-import {Filter} from '../components/Filter'
+import {Filter} from '../components/filter/Filter'
 
 const getVisibleTodos = (todos, filter) => {
   switch (filter) {
@@ -16,10 +16,7 @@ const getVisibleTodos = (todos, filter) => {
   }
 }
 
-const mapStateToProps = state => ({
-  loginText: 'Login',
-  registerText: 'Register'
-});
+const mapStateToProps = state => ({})
 
 const ProductFilter = ({todos, actions}) => (
   <div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {FilterContainer} from './Filter';
+import FilterForm from '../containers/FilterForm';
 import {ProductListContainer} from './product/ProductList';
 import './app.css';
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
@@ -20,7 +20,7 @@ class App extends React.Component {
             Подбор продукта для клиента ВТБ24</h2>
         </div>
         <div className="index col-md-4">
-          <FilterContainer />
+          <FilterForm onSubmit={this.props.actions.loadProducts}/>
         </div>
         <div className="col-md-8">
           <ProductListContainer/>

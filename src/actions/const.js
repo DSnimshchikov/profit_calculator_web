@@ -17,6 +17,9 @@ export const FETCH_SETTINGS_SAVING_ACCOUNT_REQUEST = 'FETCH_SETTINGS_SAVING_ACCO
 export const FETCH_SETTINGS_SAVING_ACCOUNT_SUCCESS = 'FETCH_SETTINGS_SAVING_ACCOUNT_SUCCESS';
 export const FETCH_SETTINGS_SAVING_ACCOUNT_ERROR = 'FETCH_SETTINGS_SAVING_ACCOUNT_ERROR';
 
+export const BASE_PATH = 'http://localhost:8080/api/v1'
+export const HTTP_METHOD_POST = 'post'
+export const HTTP_METHOD_GET = 'get'
 export const HEADERS = {
   Accept: 'application/json',
   'Content-Type': 'application/json'
