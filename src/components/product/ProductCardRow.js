@@ -17,14 +17,18 @@ class ProductCardRow extends React.Component {
         <div className="col-md-5 text-right">
 
           {this.props.rowType === 'INCOME' &&
-            <b className={styles.income}>
-              <CountUp start={0} end={this.props.rowValue} duration={0.75}/>
-            </b>
-            }
+          <b className={styles.income}>
+            <nobr>
+              <CountUp start={0} end={this.props.rowValue} duration={0.75} separator={' '} useGrouping/>
+            </nobr>
+          </b>
+          }
 
           {this.props.rowType === 'SUM' &&
           <b className={styles.sum}>
-            <CountUp start={0} end={this.props.rowValue} duration={0.75}/>
+            <nobr>
+              <CountUp start={0} end={this.props.rowValue} duration={0.75} separator={' '} useGrouping/>
+            </nobr>
           </b>
           }
 
