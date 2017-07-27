@@ -1,20 +1,20 @@
 import fetch from 'isomorphic-fetch'
-import { FILTER_PRODUCT, FETCH_PRODUCT_LOADING, FETCH_PRODUCT_SUCESS, FETCH_PRODUCT_ERROR } from './const';
+import {FILTER_PRODUCT, FETCH_PRODUCT_REQUEST, FETCH_PRODUCT_SUCESS, FETCH_PRODUCT_ERROR} from './const';
 
-export const filterProducts = (parameter) => ({
+export const filterProducts = (payload) => ({
   type: FILTER_PRODUCT,
-  parameter
+  payload
 });
 
-export  function fetchProductSuccess(parameter) {
-  return { type: FETCH_PRODUCT_SUCESS, parameter };
+export function fetchProductSuccess(payload) {
+  return {type: FETCH_PRODUCT_SUCESS, payload};
 }
-function fetchProductError(parameter) {
-  return { type: FETCH_PRODUCT_ERROR, parameter };
+function fetchProductError(payload) {
+  return {type: FETCH_PRODUCT_ERROR, payload};
 }
 
-function action(parameter) {
-  return { type: FETCH_PRODUCT_LOADING, parameter };
+function fetchProductRequest(payload) {
+  return {type: FETCH_PRODUCT_REQUEST, payload};
 }
 
 export const setVisibilityFilter = (filter) => ({
@@ -22,4 +22,29 @@ export const setVisibilityFilter = (filter) => ({
   filter
 });
 
-module.exports = {filterProducts, fetchProductSuccess};
+export function loadProducts(filter) {
+  return (dispatch) => {
+    dispatch(fetchProductRequest(filter))
+    fetchProducts(filter, dispatch)
+  }
+}
+
+function fetchProducts(param, dispatch) {
+  fetch('http://localhost:8080/api/v1/products', {
+    method: 'post',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+      body: JSON.stringify(param)
+  })
+    .then(response => response.json())
+    .then(json => dispatch(fetchProductSuccess(json)))
+    .catch(function (error) {
+      console.log('Request failed', error);
+      dispatch(fetchProductError(error));
+    });
+
+}
+
+module.exports = {filterProducts, fetchProductSuccess, loadProducts};

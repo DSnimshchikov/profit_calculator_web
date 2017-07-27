@@ -1,16 +1,17 @@
 import React from 'react';
 import cssmodules from 'react-css-modules';
 import styles from './filter.cssmodule.less';
+import {Field} from 'redux-form'
 
-class FilterRefillSumField extends React.Component {
-  render() {
-    return (
+const FilterRefillSumField = (props) =>
+  <Field name={props.name} type="number" component={renderField} />;
+
+const renderField = ({input, label, type, meta: {touched, error, warning}}) =>
       <div className="b-deposits-calculator--field">
         <label className="b-deposits-calculator--label">Ежемесячное пополнение</label>
         <div className="e-range b-deposits-calculator--term">
           <div className="e-range--field">
-            <input type="text" name="refillSum" value={this.props.refillSum} ref='refillSum' onChange={this.props.handleChange}
-                   className="e-range--field--entity"/>
+            <input {...input} type={type} className="e-range--field--entity" data-range-field="true"/>
             <span className="e-range--field--handler" data-range-handler="true"></span>
             <span className="e-range--field--filling" data-range-filling="true"></span>
             <span className="e-range--field--scale" data-range-scale="true"></span>
@@ -28,9 +29,5 @@ class FilterRefillSumField extends React.Component {
           </ul>
         </div>
       </div>
-
-    );
-  }
-}
 
 export default cssmodules(FilterRefillSumField, styles);

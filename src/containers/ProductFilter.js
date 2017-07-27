@@ -16,10 +16,7 @@ const getVisibleTodos = (todos, filter) => {
   }
 }
 
-const mapStateToProps = state => ({
-  loginText: 'Login',
-  registerText: 'Register'
-});
+const mapStateToProps = state => ({})
 
 const ProductFilter = ({todos, actions}) => (
   <div>

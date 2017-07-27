@@ -12,13 +12,12 @@ body {
   display: block;
   overflow: auto;
   /*margin: 50px 50px;*/
-  padding: 0 20px ;
+  padding: 0 20px;
   background: #fff;
   /*border: 1px solid #000;*/
   border-radius: 2px;
   box-sizing: border-box;
 }
-
 
 ul, menu, dir {
   display: block;
@@ -51,6 +50,7 @@ ul, menu, dir {
   border-width: 1px 0;
   background: #666;
 }
+
 /*selector mode to component*/
 input.cmn-toggle-round + label {
   padding: 2px;
@@ -59,6 +59,7 @@ input.cmn-toggle-round + label {
   background-color: #dddddd;
   border-radius: 30px;
 }
+
 input.cmn-toggle-round + label:before,
 input.cmn-toggle-round + label:after {
   display: block;
@@ -68,12 +69,14 @@ input.cmn-toggle-round + label:after {
   bottom: 1px;
   content: "";
 }
+
 input.cmn-toggle-round + label:before {
   right: 1px;
   background-color: #f1f1f1;
   border-radius: 60px;
   transition: background 0.4s;
 }
+
 input.cmn-toggle-round + label:after {
   width: 30px;
   background-color: #fff;
@@ -81,17 +84,21 @@ input.cmn-toggle-round + label:after {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   transition: margin 0.4s;
 }
+
 input.cmn-toggle-round:checked + label:before {
   background-color: #2196F3;
 }
+
 input.cmn-toggle-round:checked + label:after {
   margin-left: 32px;
 }
+
 .cmn-toggle {
   position: absolute;
   margin-left: -9999px;
   visibility: hidden;
 }
+
 .cmn-toggle + label {
   display: block;
   position: relative;
@@ -99,7 +106,21 @@ input.cmn-toggle-round:checked + label:after {
   outline: none;
   user-select: none;
 }
-/**/
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+.hidden {
+  display: none;
+}
 
 body, input, textarea, select, button {
   font-family: 'Open Sans', sans-serif
@@ -163,7 +184,7 @@ a {
 .e-range--field--measure {
   position: absolute;
   top: 50%;
-  right: 24px;
+  right: 5px;
   height: 30px;
   font-size: 16px;
   font-weight: 400;
@@ -1182,7 +1203,7 @@ a {
 }
 
 .b-deposits-calculator--content {
-  padding-right: 160px
+  padding-right: 10px
 }
 
 .b-deposits-calculator--title {

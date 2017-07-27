@@ -1,22 +1,20 @@
 import React from 'react';
 import cssmodules from 'react-css-modules';
 import styles from './filter.cssmodule.less';
+import {Field} from 'redux-form'
 
-class FilterSumSimpleField extends React.Component {
-  render() {
-    return (
-      <div className="e-range--field top-distance">
-        <input type="text" id="Credit" name="expensesTrip"
-               className="e-range--field--entity"
-               ref="expensesTrip" value={this.props.value}
-               onChange={this.props.onChange}
-               data-range-field="true"/>
-        <span className="e-range--field--measure e-range--field--measure---default " data-range-measure="true">
-                  <span className="e-range--field--measure--value" data-range-measure-value="true">{this.props.caption}</span>
-              </span>
-      </div>
-    );
-  }
-}
+const FilterSumSimpleField = (props) =>
+  <Field name={props.name} type="number" component={renderField} label={props.label}/>;
+
+const renderField = ({input, label, type, meta: {touched, error, warning}}) =>
+  <div className="e-range--field top-distance">
+    <input {...input} type={type} className="e-range--field--entity" data-range-field="true" id="Credit"/>
+    <span data-range-measure="true"
+          className="e-range--field--measure e-range--field--measure---default ">
+      <span className="e-range--field--measure--value"
+            data-range-measure-value="true">{label}
+      </span>
+    </span>
+  </div>
 
 export default cssmodules(FilterSumSimpleField, styles);

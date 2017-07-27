@@ -19,9 +19,6 @@ class ProductList extends React.Component {
     );
   }
 }
-ProductList.displayName = 'ProductList';
-ProductList.propTypes = {};
-ProductList.defaultProps = {};
 
 const mapStateToProps = state => ({
   //связываем внутренний св-ва с данными из state redux
