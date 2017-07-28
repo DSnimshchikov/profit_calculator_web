@@ -22,6 +22,8 @@ class Product extends React.Component {
         return 'Мили Путешествия';
       } else if (cardOption.bonusOption === 'SAVING') {
         return 'Опция Сбережения';
+      } else if (cardOption.bonusOption === 'RZD') {
+        return 'Баллы РЖД';
       }
     }
     return '';
@@ -58,6 +60,8 @@ class Product extends React.Component {
           resultName += ' с опцией Путешествия';
         } else if (cardOption.bonusOption === 'SAVING') {
           resultName += ' с опцией Сбережения';
+        } else if (cardOption.bonusOption === 'RZD') {
+          resultName += ' с опцией РЖД';
         }
       }
     }
