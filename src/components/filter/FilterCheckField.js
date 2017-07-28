@@ -11,7 +11,7 @@ const renderField = ({ input, label, type, meta: {touched, error, warning} }) =>
     <label className="b-deposits-calculator--label">{label}</label>
     <div className="switch">
       <input {...input} type={type} id={`cmn-toggle-${input.name}`}
-             className="cmn-toggle cmn-toggle-round" data-range-field="true"/>
+             className="cmn-toggle cmn-toggle-round" />
       <label htmlFor={`cmn-toggle-${input.name}`}></label>
     </div>
   </div>

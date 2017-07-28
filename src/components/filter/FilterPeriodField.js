@@ -2,6 +2,9 @@ import React from 'react'
 import cssmodules from 'react-css-modules'
 import styles from './filter.cssmodule.less'
 import {Field} from 'redux-form'
+import '../../styles/horizontalSlider.css'
+import Slider from 'react-rangeslider'
+import {PERIOD_DAYS_STEP, PERIOD_DAYS_MIN, PERIOD_DAYS_MAX} from '../../actions/const'
 
 const FilterPeriodField = (props) => <Field name={props.name} type="number" component={renderField} label={props.label}/>;
 
@@ -13,9 +16,8 @@ const renderField = ({input, label, type, meta: {touched, error, warning}}) =>
       <input {...input} type={type} className="e-range--field--entity" data-range-field="true"/>
       <span className="e-range--field--measure e-range--field--measure---default " data-range-measure="true">
                   <span className="e-range--field--measure--value" data-range-measure-value="true">дней</span></span>
-      <span className="e-range--field--handler" data-range-handler="true"></span>
-      <span className="e-range--field--filling" data-range-filling="true"></span>
-      <span className="e-range--field--scale" data-range-scale="true"></span>
+      <Slider min={PERIOD_DAYS_MIN} max={PERIOD_DAYS_MAX} step={PERIOD_DAYS_STEP}
+              name="ds" value={input.value} onChange={input.onChange}/>
     </div>
     <ul className="e-range--markings" data-range-markings="true">
       <li className="e-range--markings--clause" data-range-markings-clause="true"

@@ -25,7 +25,7 @@ export function loadProducts(filter) {
 }
 
 function fetchProducts(param, dispatch) {
-  if (param.daysCount > 91 && param.daysCount < 1831) { //todo normalize redux-form
+  if (param.daysCount > ctx.PERIOD_DAYS_MIN && param.daysCount < ctx.PERIOD_DAYS_MAX) { //todo normalize redux-form
     fetch(ctx.BASE_PATH + '/products', {
       method: ctx.HTTP_METHOD_POST,
       headers: ctx.HEADERS,
