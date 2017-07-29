@@ -23,62 +23,63 @@ const renderField = ({ input, label, type, meta: { touched, error } }) =>
     </div>
   </div>;
 
-const renderDeposits = ({ fields, meta: { error, submitFailed } }) =>
-  <div >
-    {fields.map((deposit, index) =>
+const renderCard = ({ fields, meta: { error, submitFailed } }) =>
+  <div>
+    {fields.map((card, index) =>
       <div className={styles.card}>
         <Field
-          name={`${deposit}.name`}
+          name={`${card}.name`}
           type="text"
           component={renderHead}
           label="Название"
         />
         <Field
-          name={`${deposit}.weight`}
+          name={`${card}.weight`}
           type="text"
           component={renderField}
           label="Вес"
         />
 
         <Field
-          name={`${deposit}.weight`}
+          name={`${card}.weight`}
           type="text"
           component={renderField}
           label="Вес"
         />
       </div>
     )}
-  </div>
+  </div>;
 
 
-let DepositsSettingsForm = (props) => {
+let CardSettingsForm = (props) => {
   const {array, handleSubmit, pristine, reset, submitting} = props;
 
   return (
-    <form onSubmit={handleSubmit}>
-      <FieldArray name="deposits" component={renderDeposits}/>
-      <div>
+    <form onSubmit={handleSubmit} >
+      <div className="row">
+      <FieldArray name="cards" component={renderCard}/>
+      </div>
+      <div className="row">
         <button type="submit" disabled={submitting} className="btn btn-success">
           Сохранить
         </button>
-
       </div>
     </form>
   );
 };
 
 
-DepositsSettingsForm = reduxForm({
-  form: 'depositsSettingsForm' // a unique identifier for this form
+CardSettingsForm = reduxForm({
+  form: 'cardsSettingsForm' // a unique identifier for this form
 
-})(DepositsSettingsForm);
+})(CardSettingsForm);
 
 
 // You have to connect() to any reducers that you wish to connect to yourself
-DepositsSettingsForm = connect(
+CardSettingsForm = connect(
   state => ({
-    initialValues: state.settingReducer.settings.deposits // pull initial values from account reducer
+    initialValues: state.settingReducer.settings.cards // pull initial values from account reducer
   }),
-)(DepositsSettingsForm);
+)(CardSettingsForm);
 
-export default DepositsSettingsForm;
+export default CardSettingsForm;
