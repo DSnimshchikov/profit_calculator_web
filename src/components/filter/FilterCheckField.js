@@ -14,6 +14,7 @@ const renderField = ({handleSubmit, input, label, type, meta: {touched, error, w
       <input {...input} type={type} id={`cmn-toggle-${input.name}`}
              className="cmn-toggle cmn-toggle-round"
              onChange={event => {
+               input.onChange;
                handleSubmit(values => {
                  this.props.onSubmit(Object.assign({}, values, {[input.name]: event.target.value}))()
                })
