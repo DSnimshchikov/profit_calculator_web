@@ -11,10 +11,10 @@ class FilterForm extends React.Component {
   }
 
   render() {
-    const {handleSubmit} = this.props;
+    const {handleSubmit, forceSubmit} = this.props;
     return (
       <form onSubmit={ handleSubmit } onChange={() => setTimeout(handleSubmit, 100)}>
-        <Filter refill={this.props.refill} decrease={this.props.decrease} handleSubmit={handleSubmit}/>
+        <Filter refill={this.props.refill} decrease={this.props.decrease} handleSubmit={handleSubmit} forceSubmit={forceSubmit}/>
       </form>
     )
   }
@@ -28,21 +28,26 @@ const defaultFilter = {
   payrollProject: false,
   monthRefillSum: 10000,
   categories2Costs: {
-    TRAVEL: 100,
-    FUN: 100,
-    AUTO: 100,
-    OTHER: 100
+    TRAVEL: {first: true, second: 100},
+    FUN: {first: true, second: 100},
+    AUTO: {first: false, second: 100},
+    OTHER: {first: false, second: 100}
   }
 };
 
-const selector = formValueSelector('filter')
+const FORM_NAME = 'filter';
+const selector = formValueSelector({FORM_NAME})
 const mapStateToProps = state => ({
   refill: state.form.filter ? state.form.filter.values.refill : false,
   decrease: state.form.filter ? state.form.filter.values.decrease : false,
 })
 
+const mapDispatchToProps = (dispatch) => ({
+  forceSubmit: dispatch(submit({FORM_NAME}))
+})
+
 FilterForm = reduxForm({
-  form: 'filter'
+  form: {FORM_NAME}
 })(FilterForm)
 
 export default connect(mapStateToProps)(FilterForm);
