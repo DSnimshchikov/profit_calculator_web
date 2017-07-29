@@ -56,7 +56,7 @@ let SavingAccountSettingsForm = (props) => {
   const {array, handleSubmit, pristine, reset, submitting} = props;
 
   return (
-    <div className="container-fluid">
+    <div className={`${styles['card-container']} container-fluid form-group`}>
 
     <form onSubmit={handleSubmit}>
       <div className="row">

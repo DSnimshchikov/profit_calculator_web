@@ -14,7 +14,7 @@ const renderRates = ({fields, meta: {error, submitFailed}}) =>
             name={`${rate}.fromPeriod`}
             type="text"
             component={renderField}
-            label="Период С"
+            label="Период C"
           />
         </div>
         <div className="col-md-6">
@@ -22,7 +22,7 @@ const renderRates = ({fields, meta: {error, submitFailed}}) =>
             name={`${rate}.rate`}
             type="text"
             component={renderField}
-            label="Ставка"
+            label="Ставка "
           />
         </div>
       </div>
@@ -55,7 +55,7 @@ let DepositsSettingsForm = (props) => {
   const {array, handleSubmit, pristine, reset, submitting} = props;
 
   return (
-    <div className="container-fluid">
+    <div className={`${styles['card-container']} container-fluid form-group`}>
       <form onSubmit={handleSubmit}>
         <div className="row">
         <FieldArray name="deposits" component={renderDeposits}/>
