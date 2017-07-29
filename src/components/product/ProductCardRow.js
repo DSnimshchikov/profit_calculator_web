@@ -21,19 +21,19 @@ class ProductCardRow extends React.Component {
         </div>
         <div className="col-md-5 text-right">
 
-          {this.props.rowType === 'INCOME' &&
-          <b className={styles.income}>
+          {this.props.rowType === 'PROFIT' &&
+          <b className={styles.profit}>
             {this.renderValue()}
           </b>
           }
 
-          {this.props.rowType === 'SUM' &&
-          <b className={styles.sum}>
-            {this.renderValue()}
+          {this.props.rowType === 'RATE' &&
+          <b className={styles.rate}>
+            {this.props.rowValue}
           </b>
           }
 
-          {this.props.rowType !== 'INCOME' && this.props.rowType !== 'SUM' &&
+          {this.props.rowType !== 'PROFIT' && this.props.rowType !== 'RATE' &&
           <b>
             {this.renderValue()}
           </b>

@@ -109,8 +109,8 @@ class Product extends React.Component {
         <div className={styles['card-content-wrap']}>
           <div className={`${styles['aligned-row']} row`}>
             <div className="col-md-7">
-              <ProductCardRow rowName={'Ставка, %'} rowValue={productGroup.maxRate} rowType={'SUM'}/>
-              <ProductCardRow rowName={'Доход по вкладу'} rowValue={productGroup.profitSum} rowType={'INCOME'}/>
+              <ProductCardRow rowName={'Ставка, %'} rowValue={productGroup.maxRate} rowType={'RATE'}/>
+              <ProductCardRow rowName={'Доход по вкладу'} rowValue={productGroup.profitSum} rowType={'PROFIT'}/>
               <ProductCardRow rowName={'Сумма в конце срока'} rowValue={productGroup.resultSum} rowType={'OTHER'}/>
               {cardOption !== null &&
               <ProductCardRow rowName={cardOptionName} rowValue={productGroup.optionProfitSum} rowType={'OTHER'}/>
