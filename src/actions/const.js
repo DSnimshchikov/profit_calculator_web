@@ -25,7 +25,7 @@ export const DEPOSIT_SUM_MIN = 200000;
 export const DEPOSIT_SUM_MAX = 30000000;
 export const DEPOSIT_SUM_STEP = 5000;
 export const DEPOSIT_REFILL_SUM_MIN = 0;
-export const DEPOSIT_REFILL_SUM_MAX = 5000000;
+export const DEPOSIT_REFILL_SUM_MAX = 1000000;
 export const DEPOSIT_REFILL_SUM_STEP = 5000;
 
 export const BASE_PATH = 'http://localhost:8080/api/v1'

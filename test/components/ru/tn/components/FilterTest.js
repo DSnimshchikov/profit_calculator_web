@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Filter from 'Filter.js';
+import Filter from './filter/Filter.js';
 
 describe('<Filter />', function () {
 
