@@ -24,13 +24,17 @@ export function loadProducts(filter) {
   }
 }
 
+var postRequest = function (url, param) {
+  return fetch(ctx.BASE_PATH + url, {
+    method: ctx.HTTP_METHOD_POST,
+    headers: ctx.HEADERS,
+    body: JSON.stringify(param)
+  });
+};
+
 function fetchProducts(param, dispatch) {
-  if (param.daysCount > ctx.PERIOD_DAYS_MIN && param.daysCount < ctx.PERIOD_DAYS_MAX) { //todo normalize redux-form
-    fetch(ctx.BASE_PATH + '/products', {
-      method: ctx.HTTP_METHOD_POST,
-      headers: ctx.HEADERS,
-      body: JSON.stringify(param)
-    })
+  if (param.daysCount > ctx.PERIOD_DAYS_MIN && param.daysCount < ctx.PERIOD_DAYS_MAX) {
+    postRequest('/products', param)
       .then(response => response.json())
       .then(json => dispatch(fetchProductSuccess(json)))
       .catch(function (error) {

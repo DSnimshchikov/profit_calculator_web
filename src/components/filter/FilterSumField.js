@@ -6,9 +6,10 @@ import '../../styles/horizontalSlider.css'
 import Slider from 'react-rangeslider'
 import {DEPOSIT_SUM_MIN, DEPOSIT_SUM_MAX, DEPOSIT_SUM_STEP} from '../../actions/const'
 
-const FilterSumField  = (props) => <Field name={props.name} type="number" component={renderField} label={props.label}/>;
+const FilterSumField  = (props) =>
+  <Field name={props.name} type="number" component={renderField} label={props.label} forceSubmit={props.forceSubmit}/>;
 
-const renderField = ({input, label, type, meta: {touched, error, warning}}) =>
+const renderField = ({forceSubmit, input, label, type, meta: {touched, error, warning}}) =>
   <div className="b-deposits-calculator--field">
     <label className="b-deposits-calculator--label">{label} </label>
     <div className="e-range b-deposits-calculator--deposit">
@@ -18,7 +19,8 @@ const renderField = ({input, label, type, meta: {touched, error, warning}}) =>
                 <span className="e-range--field--measure--value" data-range-measure-value="true">Р</span>
         </span>
         <Slider min={DEPOSIT_SUM_MIN} max={DEPOSIT_SUM_MAX} step={DEPOSIT_SUM_STEP}
-                name={input.name} value={input.value} onChange={input.onChange}/>
+                name={input.name} value={input.value} onChange={input.onChange}
+                onChangeComplete={event => {forceSubmit()}}/>
       </div>
       <ul className="e-range--markings" data-range-markings="true">
         <li className="e-range--markings--clause" data-range-markings-clause="true"

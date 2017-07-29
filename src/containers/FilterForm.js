@@ -36,18 +36,18 @@ const defaultFilter = {
 };
 
 const FORM_NAME = 'filter';
-const selector = formValueSelector({FORM_NAME})
+const selector = formValueSelector(FORM_NAME)
 const mapStateToProps = state => ({
   refill: state.form.filter ? state.form.filter.values.refill : false,
   decrease: state.form.filter ? state.form.filter.values.decrease : false,
 })
-
-const mapDispatchToProps = (dispatch) => ({
-  forceSubmit: dispatch(submit({FORM_NAME}))
-})
+function mapDispatchToProps(dispatch) {
+  const actionMap = { forceSubmit: () => dispatch(submit('filter')) };
+  return actionMap;
+}
 
 FilterForm = reduxForm({
-  form: {FORM_NAME}
+  form: FORM_NAME
 })(FilterForm)
 
-export default connect(mapStateToProps)(FilterForm);
+export default connect(mapStateToProps, mapDispatchToProps)(FilterForm);

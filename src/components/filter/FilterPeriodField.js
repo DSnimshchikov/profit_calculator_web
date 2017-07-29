@@ -6,10 +6,10 @@ import '../../styles/horizontalSlider.css'
 import Slider from 'react-rangeslider'
 import {PERIOD_DAYS_STEP, PERIOD_DAYS_MIN, PERIOD_DAYS_MAX} from '../../actions/const'
 
-const FilterPeriodField = (props) => <Field name={props.name} type="number" component={renderField}
-                                            label={props.label} />;
+const FilterPeriodField = (props) =>
+  <Field name={props.name} type="number" component={renderField} label={props.label} forceSubmit={props.forceSubmit}/>;
 //normalize={normalizePeriodField}
-const renderField = ({input, label, type, meta: {touched, error, warning}}) =>
+const renderField = ({forceSubmit, input, label, type, meta: {touched, error, warning}}) =>
   <div className="b-deposits-calculator--field">
     <label className="b-deposits-calculator--label">{label}</label>
     <div className="e-range b-deposits-calculator--term">
@@ -18,7 +18,8 @@ const renderField = ({input, label, type, meta: {touched, error, warning}}) =>
         <span className="e-range--field--measure e-range--field--measure---default " data-range-measure="true">
                   <span className="e-range--field--measure--value" data-range-measure-value="true">дней</span></span>
         <Slider min={PERIOD_DAYS_MIN} max={PERIOD_DAYS_MAX} step={PERIOD_DAYS_STEP}
-                name={input.name} value={input.value} onChange={input.onChange} onChangeComplete={input.onChange}/>
+                name={input.name} value={input.value} onChange={input.onChange}
+                onChangeComplete={event => {forceSubmit()}}/>
       </div>
       <ul className="e-range--markings" data-range-markings="true">
         <li className="e-range--markings--clause" data-range-markings-clause="true"
