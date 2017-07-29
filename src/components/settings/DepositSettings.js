@@ -3,6 +3,7 @@ import {Field, FieldArray, reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
 import styles from './setting.cssmodule.less';
 import {renderField, renderHead} from './settingsCommonComponents';
+import {required, number, minValue1, minValue91, maxValue1831} from './validate';
 
 const renderRates = ({fields, meta: {error, submitFailed}}) =>
   <div>
@@ -12,17 +13,19 @@ const renderRates = ({fields, meta: {error, submitFailed}}) =>
         <div className="col-md-6">
           <Field
             name={`${rate}.fromPeriod`}
-            type="text"
+            type="number"
             component={renderField}
             label="Период C"
+            validate={[number, required, minValue91, maxValue1831]}
           />
         </div>
         <div className="col-md-6">
           <Field
             name={`${rate}.rate`}
-            type="text"
+            type="number"
             component={renderField}
             label="Ставка "
+            validate={[required, number]}
           />
         </div>
       </div>
@@ -41,9 +44,10 @@ const renderDeposits = ({fields, meta: {error, submitFailed}}) =>
         />
         <Field
           name={`${deposit}.weight`}
-          type="text"
+          type="number"
           component={renderField}
           label="Вес"
+          validate={[required, number, minValue1]}
         />
         <FieldArray name={`${deposit}.rates`} component={renderRates}/>
       </div>
@@ -62,7 +66,7 @@ let DepositsSettingsForm = (props) => {
         </div>
         <div className="row">
           <div className="col-md-12">
-            <button type="submit" disabled={submitting} className="btn btn-success btn-block">
+            <button type="submit" disabled={pristine || submitting} className="btn btn-success btn-block">
               Сохранить
             </button>
           </div>

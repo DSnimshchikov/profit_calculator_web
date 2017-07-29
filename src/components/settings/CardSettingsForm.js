@@ -3,6 +3,7 @@ import {Field, FieldArray, reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
 import styles from './setting.cssmodule.less';
 import {renderField} from './settingsCommonComponents';
+import {required, number, minValue1, minValue91, maxValue1831} from './validate';
 
 function getCardType(cardType) {
 
@@ -31,15 +32,16 @@ const renderCard = ({fields, meta: {error, submitFailed}}) =>
       <div className={styles.card} key={`cards_${index}`}>
         <Field
           name={`${card}.cardCategory`}
-          type="text"
+          type="number"
           component={renderHead}
           label="Мультикарта"
         />
         <Field
           name={`${card}.weight`}
-          type="text"
+          type="number"
           component={renderField}
           label="Вес"
+          validate={[required, number,minValue1]}
         />
       </div>
     )}

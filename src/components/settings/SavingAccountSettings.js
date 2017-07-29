@@ -3,6 +3,7 @@ import {Field, FieldArray, reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
 import styles from './setting.cssmodule.less';
 import {renderField, renderHead} from './settingsCommonComponents';
+import {required, number, minValue1, minValue91, maxValue1831} from './validate';
 
 
 const renderRates = ({fields, meta: {error, submitFailed}}) =>
@@ -13,17 +14,19 @@ const renderRates = ({fields, meta: {error, submitFailed}}) =>
         <div className="col-md-6">
           <Field
             name={`${rate}.fromPeriod`}
-            type="text"
+            type="number"
             component={renderField}
             label="Период С"
+            validate={[number, required, minValue1]}
           />
         </div>
         <div className="col-md-6">
           <Field
             name={`${rate}.rate`}
-            type="text"
+            type="number"
             component={renderField}
             label="Ставка"
+            validate={[number, required]}
           />
         </div>
       </div>
@@ -42,9 +45,10 @@ const renderSavingAccount = ({fields, meta: {error, submitFailed}}) =>
         />
         <Field
           name={`${savingAccount}.weight`}
-          type="text"
+          type="number"
           component={renderField}
           label="Вес"
+          validate={[number, required, minValue1]}
         />
         <FieldArray name={`${savingAccount}.rates`} component={renderRates}/>
       </div>
