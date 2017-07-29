@@ -39,12 +39,12 @@ function fetchSettingSavingAccountError(payload) {
 
 
 function fetchSettingDeposit(dispatch) {
-  fetch(ctx.BASE_PATH + '/deposits', {
+  fetch(`${ctx.BASE_PATH}/deposits`, {
     method: ctx.HTTP_METHOD_GET,
     headers: ctx.HEADERS,
   })
     .then(response => response.json())
-    .then(json => dispatch(fetchSettingDepositSuccess(json._embedded)))
+    .then(json => dispatch(fetchSettingDepositSuccess(json)))
     .catch((error) => {
       console.log('Request failed', error);
       dispatch(fetchSettingDepositError(error));
@@ -52,12 +52,12 @@ function fetchSettingDeposit(dispatch) {
 }
 
 function fetchSettingCard(dispatch) {
-  fetch(ctx.BASE_PATH + '/cards', {
+  fetch(`${ctx.BASE_PATH}/cards`, {
     method: ctx.HTTP_METHOD_GET,
     headers: ctx.HEADERS,
   })
     .then(response => response.json())
-    .then(json => dispatch(fetchSettingCardSuccess(json._embedded)))
+    .then(json => dispatch(fetchSettingCardSuccess(json)))
     .catch((error) => {
       console.log('Request failed', error);
       dispatch(fetchSettingCardError(error));
@@ -65,12 +65,14 @@ function fetchSettingCard(dispatch) {
 }
 
 function fetchSettingSavingAccount(dispatch) {
-  fetch(ctx.BASE_PATH + '/savingAccounts', {
+  fetch(`${ctx.BASE_PATH}/savingAccounts`, {
     method: ctx.HTTP_METHOD_GET,
     headers: ctx.HEADERS,
   })
     .then(response => response.json())
-    .then(json => dispatch(fetchSettingSavingAccountSuccess(json._embedded)))
+    .then((json) => {
+      dispatch(fetchSettingSavingAccountSuccess(json));
+    })
     .catch((error) => {
       console.log('Request failed', error);
       dispatch(fetchSettingSavingAccountError(error));

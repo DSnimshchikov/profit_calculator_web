@@ -2,36 +2,38 @@ import React from 'react';
 import {Field, FieldArray, reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
 import styles from './setting.cssmodule.less';
+import {renderField, renderHead} from './settingsCommonComponents';
 
 
-const renderHead = ({input, label, type, meta: {touched, error}}) =>
+const renderRates = ({fields, meta: {error, submitFailed}}) =>
   <div>
-    <h2>
-      {input.value}
-    </h2>
+    <h3>Ставки</h3>
+    {fields.map((rate, index) =>
+      <div key={`rate_${index}`} className="row">
+        <div className="col-md-6">
+          <Field
+            name={`${rate}.fromPeriod`}
+            type="text"
+            component={renderField}
+            label="Период С"
+          />
+        </div>
+        <div className="col-md-6">
+          <Field
+            name={`${rate}.rate`}
+            type="text"
+            component={renderField}
+            label="Ставка"
+          />
+        </div>
+      </div>
+    )}
   </div>;
-
-
-const renderField = ({input, label, type, meta: {touched, error}}) =>
-  <div>
-
-    <div className="row">
-      <div className="col-md-6">
-        <label>
-          {label}
-        </label>
-      </div>
-      <div className="col-md-6">
-        <input {...input} type={type} placeholder={label}/>
-      </div>
-    </div>
-  </div>
-;
 
 const renderSavingAccount = ({fields, meta: {error, submitFailed}}) =>
   <div>
     {fields.map((savingAccount, index) =>
-      <div className={styles.card}>
+      <div className={styles.card} key="{`savingAccount_${index}`}">
         <Field
           name={`${savingAccount}.name`}
           type="text"
@@ -44,6 +46,7 @@ const renderSavingAccount = ({fields, meta: {error, submitFailed}}) =>
           component={renderField}
           label="Вес"
         />
+        <FieldArray name={`${savingAccount}.rates`} component={renderRates}/>
       </div>
     )}
   </div>;
@@ -53,16 +56,22 @@ let SavingAccountSettingsForm = (props) => {
   const {array, handleSubmit, pristine, reset, submitting} = props;
 
   return (
+    <div className="container-fluid">
+
     <form onSubmit={handleSubmit}>
       <div className="row">
-      <FieldArray name="savingAccounts" component={renderSavingAccount}/>
+        <FieldArray name="savingAccounts" component={renderSavingAccount}/>
       </div>
-      <div className="row">
-        <button type="submit" disabled={submitting} className="btn btn-success">
-          Сохранить
-        </button>
+      <div className="row bottom-right">
+        <div className="col-md-offset-6 col-md-6">
+          <button type="submit" disabled={submitting} className="btn btn-success">
+            Сохранить
+          </button>
+        </div>
+
       </div>
     </form>
+    </div>
   );
 };
 
@@ -76,7 +85,7 @@ SavingAccountSettingsForm = reduxForm({
 // You have to connect() to any reducers that you wish to connect to yourself
 SavingAccountSettingsForm = connect(
   state => ({
-    initialValues: state.settingReducer.settings.savingAccounts // pull initial values from account reducer
+    initialValues: {savingAccounts: state.settingReducer.settings.savingAccounts} // pull initial values from account reducer
   }),
 )(SavingAccountSettingsForm);
 

@@ -76,9 +76,9 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state) {
 
   return {
-    deposits: state.settingReducer.settings.deposits.deposits,
-    cards: state.settingReducer.settings.cards.cards,
-    savingAccounts: state.settingReducer.settings.savingAccounts.savingAccounts
+    deposits: state.settingReducer.settings.deposits,
+    cards: state.settingReducer.settings.cards,
+    savingAccounts: state.settingReducer.settings.savingAccounts
   };
 }
 
