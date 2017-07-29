@@ -58,13 +58,13 @@ let DepositsSettingsForm = (props) => {
     <div className={`${styles['card-container']} container-fluid form-group`}>
       <form onSubmit={handleSubmit}>
         <div className="row">
-        <FieldArray name="deposits" component={renderDeposits}/>
+          <FieldArray name="deposits" component={renderDeposits}/>
         </div>
-        <div className="row bottom-right">
-          <div className="col-md-offset-6 col-md-6">
-          <button type="submit" disabled={submitting} className="btn btn-success">
-            Сохранить
-          </button>
+        <div className="row">
+          <div className="col-md-12">
+            <button type="submit" disabled={submitting} className="btn btn-success btn-block">
+              Сохранить
+            </button>
           </div>
         </div>
       </form>

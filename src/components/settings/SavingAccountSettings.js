@@ -62,9 +62,9 @@ let SavingAccountSettingsForm = (props) => {
       <div className="row">
         <FieldArray name="savingAccounts" component={renderSavingAccount}/>
       </div>
-      <div className="row bottom-right">
-        <div className="col-md-offset-6 col-md-6">
-          <button type="submit" disabled={submitting} className="btn btn-success">
+      <div className="row">
+        <div className="col-md-12">
+          <button type="submit" disabled={submitting} className="btn btn-success btn-block">
             Сохранить
           </button>
         </div>

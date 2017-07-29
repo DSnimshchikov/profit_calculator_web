@@ -37,6 +37,26 @@ function fetchSettingSavingAccountError(payload) {
   return {type: ctx.FETCH_SETTINGS_SAVING_ACCOUNT_ERROR, payload};
 }
 
+function saveDepositsAction(payload) {
+  return {type: ctx.SAVE_DEPOSITS, payload};
+}
+
+function saveDepositsSuccess(payload) {
+  return {type: ctx.SAVE_DEPOSITS_SUCCESS, payload};
+}
+
+function saveDepositsError(payload) {
+  return {type: ctx.SAVE_DEPOSITS_ERROR, payload};
+}
+
+function saveCardsAction(payload) {
+  return {type: ctx.SAVE_CARDS, payload};
+}
+
+function saveSavingAccountsAction(payload) {
+  return {type: ctx.SAVE_SAVING_ACCOUNTS, payload};
+}
+
 
 function fetchSettingDeposit(dispatch) {
   fetch(`${ctx.BASE_PATH}/deposits`, {
@@ -92,4 +112,27 @@ export function loadSettings() {
   };
 }
 
-module.exports = {fetchSettingDepositSuccess, loadSettings};
+function storeDeposits(deposits, dispatch) {
+  fetch(`${ctx.BASE_PATH}/deposits`, {
+    method: ctx.HTTP_METHOD_POST,
+    headers: ctx.HEADERS,
+    body: JSON.stringify(deposits.deposits)
+  })
+    .then((json) => {
+      dispatch(fetchSettingSavingAccountSuccess(json));
+    })
+    .catch((error) => {
+      console.log('Request failed', error);
+      dispatch(fetchSettingSavingAccountError(error));
+    });
+}
+
+export function saveDeposits(deposits) {
+  alert("Save Deposists")
+  return (dispatch) => {
+    dispatch(saveDepositsAction(deposits))
+    storeDeposits(deposits, dispatch);
+  }
+}
+
+module.exports = {fetchSettingDepositSuccess, loadSettings,saveDeposits};

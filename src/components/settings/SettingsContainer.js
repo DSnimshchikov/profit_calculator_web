@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import PropTypes from 'prop-types';
 import { Values } from 'redux-form-website-template';
-import {loadSettings} from '../../actions/settings-action';
+import {loadSettings, saveDeposits} from '../../actions/settings-action';
 import DepositsSettingsForm from './DepositSettings';
 import SavingAccountSettingsForm from './SavingAccountSettings';
 import CardSettingsForm from './CardSettingsForm';
@@ -21,7 +21,11 @@ class SettingsContainer extends React.Component {
     this.props.requestSetting();
   }
 
-  showResults(values) {
+  saveCards(values){
+    alert(values);
+  }
+
+  saveSavingAccounts(values){
     alert(values);
   }
 
@@ -31,28 +35,22 @@ class SettingsContainer extends React.Component {
         <div className="row">
           <h2>Настройки вкладов</h2>
           { this.props.deposits && this.props.deposits.length &&
-          < DepositsSettingsForm onSubmit={this.showResults} />
+          < DepositsSettingsForm onSubmit={this.props.saveDeposits} />
           }
         </div>
 
         <div className="row">
           <h2>Настройки карт</h2>
           { this.props.cards && this.props.cards.length &&
-          <CardSettingsForm onSubmit={this.showResults}/>
+          <CardSettingsForm onSubmit={this.saveCards}/>
           }
         </div>
 
         <div className="row">
           <h2>Настройки накопительных счетов</h2>
           { this.props.savingAccounts && this.props.savingAccounts.length &&
-          < SavingAccountSettingsForm onSubmit={this.showResults}/>
+          < SavingAccountSettingsForm onSubmit={this.saveSavingAccounts}/>
           }
-        </div>
-
-        <div className="row">
-          <Values form="depositsSettingsForm" />
-          <Values form="savingAccountsSettingsForm" />
-          <Values form="cardsSettingsForm" />
         </div>
 
       </div>
@@ -69,8 +67,7 @@ SettingsContainer
   };
 
 function mapDispatchToProps(dispatch) {
-  const actionMap = {requestSetting: bindActionCreators(loadSettings, dispatch)};
-  return actionMap;
+  return {requestSetting: bindActionCreators(loadSettings, dispatch), saveDeposits: bindActionCreators(saveDeposits, dispatch)};
 }
 
 function mapStateToProps(state) {
