@@ -7,8 +7,8 @@ import Slider from 'react-rangeslider'
 import {PERIOD_DAYS_STEP, PERIOD_DAYS_MIN, PERIOD_DAYS_MAX} from '../../actions/const'
 
 const FilterPeriodField = (props) => <Field name={props.name} type="number" component={renderField}
-                                            label={props.label} normalize={normalizePeriodField}/>;
-
+                                            label={props.label} />;
+//normalize={normalizePeriodField}
 const renderField = ({input, label, type, meta: {touched, error, warning}}) =>
   <div className="b-deposits-calculator--field">
     <label className="b-deposits-calculator--label">{label}</label>
@@ -18,7 +18,7 @@ const renderField = ({input, label, type, meta: {touched, error, warning}}) =>
         <span className="e-range--field--measure e-range--field--measure---default " data-range-measure="true">
                   <span className="e-range--field--measure--value" data-range-measure-value="true">дней</span></span>
         <Slider min={PERIOD_DAYS_MIN} max={PERIOD_DAYS_MAX} step={PERIOD_DAYS_STEP}
-                name="ds" value={input.value} onChange={input.onChange}/>
+                name={input.name} value={input.value} onChange={input.onChange} onChangeComplete={input.onChange}/>
       </div>
       <ul className="e-range--markings" data-range-markings="true">
         <li className="e-range--markings--clause" data-range-markings-clause="true"

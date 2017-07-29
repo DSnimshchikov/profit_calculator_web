@@ -25,7 +25,7 @@ const Filter = (props) =>
         }
         <div className="row">
           <div className="col-md-4">
-            <FilterCheckField name="decrease" label="Списание"/>
+            <FilterCheckField name="decrease" label="Списание" handleSubmit={props.handleSubmit}/>
         </div>
 
         {props.decrease &&

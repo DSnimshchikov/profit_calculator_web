@@ -9,7 +9,6 @@ class App extends React.Component {
 
   constructor(props) {
     super(props);
-    console.log('set productList in main app ');
   }
 
   render() {
