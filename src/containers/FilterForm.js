@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux';
-import {Field, reduxForm, initialize, submit} from 'redux-form';
+import {Field, reduxForm, initialize, formValueSelector, submit} from 'redux-form';
 import Filter from '../components/filter/Filter';
 
 class FilterForm extends React.Component {
@@ -14,7 +14,7 @@ class FilterForm extends React.Component {
     const {handleSubmit} = this.props;
     return (
       <form onSubmit={ handleSubmit } onChange={handleSubmit}>
-        <Filter refill={this.props.refill} decrease={this.props.decrease}/>
+        <Filter refill={this.props.refill} decrease={this.props.decrease} handleSubmit={handleSubmit}/>
       </form>
     )
   }
