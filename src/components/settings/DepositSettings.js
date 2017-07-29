@@ -1,54 +1,89 @@
-import React from "react";
-import PropTypes from 'prop-types'
+import React from 'react';
+import {Field, FieldArray, reduxForm} from 'redux-form';
+import {connect} from 'react-redux';
+import styles from './setting.cssmodule.less';
+import {renderField, renderHead} from './settingsCommonComponents';
 
-class DepositSettings extends React.Component {
-  render() {
-    const { handleChange, onChangeInput, sum, refill, payrollProject } = this.props;
-    return (
-      <div className="row">
-        <div className="b-deposits-calculator--content g-grid-20">
-          <div className="b-deposits-calculator--field">
-            <label className="b-deposits-calculator--label">Сумма к накоплению</label>
-            <input type="text" id="Credit" name="sum"
-                   className="e-range--field--entity"
-                   value={sum} onChange={handleChange}
-                   data-range-field="true"/>
-          </div>
+const renderRates = ({fields, meta: {error, submitFailed}}) =>
+  <div>
+    <h3>Ставки</h3>
+    {fields.map((rate, index) =>
+      <div key={`rate_${index}`} className="row">
+        <div className="col-md-6">
+          <Field
+            name={`${rate}.fromPeriod`}
+            type="text"
+            component={renderField}
+            label="Период C"
+          />
         </div>
-
-        <div className="row">
-          <div className="col-md-6">
-            <label className="b-deposits-calculator--label">Пополнение</label>
-            <div className="switch">
-              <input id="cmn-toggle-1" className="cmn-toggle cmn-toggle-round" type="checkbox"
-                     name="refill" defaultChecked={refill} value={refill} onChange={onChangeInput}/>
-              <label htmlFor="cmn-toggle-1"></label>
-            </div>
-          </div>
-          <div className="col-md-6">
-            <label className="b-deposits-calculator--label">ЗП</label>
-            <div className="switch">
-              <input id="cmn-toggle-2" className="cmn-toggle cmn-toggle-round" type="checkbox" name="payrollProject"
-                     value={payrollProject}
-                     onChange={onChangeInput}/>
-              <label htmlFor="cmn-toggle-2"></label>
-            </div>
-          </div>
+        <div className="col-md-6">
+          <Field
+            name={`${rate}.rate`}
+            type="text"
+            component={renderField}
+            label="Ставка "
+          />
         </div>
       </div>
-    )
-  }
-}
+    )}
+  </div>;
 
-DepositSettings.displayName = 'DepositSettings';
-DepositSettings.defaultProps = {};
-DepositSettings.propTypes = {
-  handleChange: PropTypes.func.isRequired,
-  onChangeInput: PropTypes.func.isRequired,
-  sum: PropTypes.number.isRequired,
-  refill: PropTypes.string.isRequired,
-  payrollProject: PropTypes.bool.isRequired
+const renderDeposits = ({fields, meta: {error, submitFailed}}) =>
+  <div>
+    {fields.map((deposit, index) =>
+      <div className={styles.card} key={`deposit_${index}`}>
+        <Field
+          name={`${deposit}.name`}
+          type="text"
+          component={renderHead}
+          label="Название"
+        />
+        <Field
+          name={`${deposit}.weight`}
+          type="text"
+          component={renderField}
+          label="Вес"
+        />
+        <FieldArray name={`${deposit}.rates`} component={renderRates}/>
+      </div>
+    )}
+  </div>;
 
+
+let DepositsSettingsForm = (props) => {
+  const {array, handleSubmit, pristine, reset, submitting} = props;
+
+  return (
+    <div className={`${styles['card-container']} container-fluid form-group`}>
+      <form onSubmit={handleSubmit}>
+        <div className="row">
+          <FieldArray name="deposits" component={renderDeposits}/>
+        </div>
+        <div className="row">
+          <div className="col-md-12">
+            <button type="submit" disabled={submitting} className="btn btn-success btn-block">
+              Сохранить
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  );
 };
 
-export default DepositSettings;
+
+DepositsSettingsForm = reduxForm({
+  form: 'depositsSettingsForm' // a unique identifier for this form
+
+})(DepositsSettingsForm);
+
+
+// You have to connect() to any reducers that you wish to connect to yourself
+DepositsSettingsForm = connect(
+  state => ({
+    initialValues: {deposits: state.settingReducer.settings.deposits} // pull initial values from account reducer
+  }),
+)(DepositsSettingsForm);
+
+export default DepositsSettingsForm;

@@ -48,7 +48,7 @@ class Product extends React.Component {
       resultName += ' + Мультикарта';
       const cardOption = card.cardOption;
       if (cardOption !== undefined) {
-        if (cardOption.bonusOption === ' CASH_BACK') {
+        if (cardOption.bonusOption === 'CASH_BACK') {
           resultName += ' + Кэшбэк';
         } else if (cardOption.bonusOption === 'COLLECTION') {
           resultName += ' + Баллы "Коллекция"';

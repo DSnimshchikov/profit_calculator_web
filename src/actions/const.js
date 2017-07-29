@@ -17,6 +17,18 @@ export const FETCH_SETTINGS_SAVING_ACCOUNT_REQUEST = 'FETCH_SETTINGS_SAVING_ACCO
 export const FETCH_SETTINGS_SAVING_ACCOUNT_SUCCESS = 'FETCH_SETTINGS_SAVING_ACCOUNT_SUCCESS';
 export const FETCH_SETTINGS_SAVING_ACCOUNT_ERROR = 'FETCH_SETTINGS_SAVING_ACCOUNT_ERROR';
 
+export const SAVE_DEPOSITS = 'SAVE_DEPOSITS';
+export const SAVE_DEPOSITS_SUCCESS = 'SAVE_DEPOSITS_SUCCESS';
+export const SAVE_DEPOSITS_ERROR = 'SAVE_DEPOSITS_ERROR';
+
+export const SAVE_CARDS = 'SAVE_CARDS';
+export const SAVE_CARDS_SUCCESS = 'SAVE_CARDS_SUCCES';
+export const SAVE_CARDS_ERROR = 'SAVE_CARDS_ERROR';
+
+export const SAVE_SAVING_ACCOUNTS = 'SAVE_SAVING_ACCOUNTS';
+export const SAVE_SAVING_ACCOUNTS_SUCCESS = 'SAVE_SAVING_ACCOUNTS_SUCCESS';
+export const SAVE_SAVING_ACCOUNTS_ERROR = 'SAVE_SAVING_ACCOUNTS_ERROR';
+
 export const SLIDER_CHANGE_VALUE = 'SLIDER_CHANGE_VALUE';
 export const PERIOD_DAYS_MIN = 91;
 export const PERIOD_DAYS_MAX = 1831;
@@ -28,9 +40,9 @@ export const DEPOSIT_REFILL_SUM_MIN = 0;
 export const DEPOSIT_REFILL_SUM_MAX = 1000000;
 export const DEPOSIT_REFILL_SUM_STEP = 5000;
 
-export const BASE_PATH = 'http://localhost:8080/api/v1'
-export const HTTP_METHOD_POST = 'post'
-export const HTTP_METHOD_GET = 'get'
+export const BASE_PATH = 'http://localhost:8080/api/v1';
+export const HTTP_METHOD_POST = 'post';
+export const HTTP_METHOD_GET = 'get';
 export const HEADERS = {
   Accept: 'application/json',
   'Content-Type': 'application/json'

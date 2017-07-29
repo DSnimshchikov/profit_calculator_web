@@ -18,23 +18,29 @@ function SettingReducer(state = initialState, action) {
     case ActionType.FETCH_SETTINGS_DEPOSIT_SUCCESS: {
       const settings = Object.assign({}, state.settings);
       settings.deposits = action.payload;
-      return {...state, settings: settings, fetching: false};
+      return {...state, settings, fetching: false};
     }
     case ActionType.FETCH_SETTINGS_CARD_SUCCESS: {
       const settings = Object.assign({}, state.settings);
       settings.cards = action.payload;
-      return {...state, settings: settings, fetching: false};
+      return {...state, settings, fetching: false};
     }
     case ActionType.FETCH_SETTINGS_SAVING_ACCOUNT_SUCCESS: {
       const settings = Object.assign({}, state.settings);
       settings.savingAccounts = action.payload;
-      return {...state, settings: settings, fetching: false};
+      return {...state, settings, fetching: false};
     }
     case ActionType.FETCH_SETTINGS_DEPOSIT_ERROR:
     case ActionType.FETCH_SETTINGS_CARD_ERROR:
     case ActionType.FETCH_SETTINGS_SAVING_ACCOUNT_ERROR: {
       console.log(`load settings ERROR  ${action.payload}`);
-      return {...state, settings: {}, fetching: false};
+      return {...state,
+        settings: {
+          deposits: [],
+          cards: [],
+          savingAccounts: []
+        },
+        fetching: false};
     }
     default: {
       return state;
