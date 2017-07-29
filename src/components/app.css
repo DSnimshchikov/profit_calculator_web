@@ -51,7 +51,9 @@ ul, menu, dir {
   background: #fff;
   display: block;
 }
-
+.category {
+  margin: 20px 0;
+}
 .notice {
   margin: 20px auto;
   padding: 15px 0;

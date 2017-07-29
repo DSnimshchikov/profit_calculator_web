@@ -8,40 +8,94 @@ import FilterCheckField from './FilterCheckField';
 import FilterSumSimpleField from './FilterSumSimpleField';
 
 const Filter = (props) =>
-      <div className="b-deposits-calculator--content g-grid-20">
-        <FilterSumField name="initSum" label="Сумма к накоплению" forceSubmit={props.forceSubmit}/>
-        <FilterPeriodField name="daysCount" label="Срок накопления" forceSubmit={props.forceSubmit}/>
+  <div className="b-deposits-calculator--content g-grid-20">
+    <FilterSumField name="initSum" label="Сумма к накоплению" forceSubmit={props.forceSubmit}/>
+    <FilterPeriodField name="daysCount" label="Срок накопления" forceSubmit={props.forceSubmit}/>
 
-        <div className="row hidden" >
+    <div className="row hidden">
+      <div className="col-md-4">
+        <FilterCheckField name="refill" label="Пополнение"/>
+      </div>
+      <div className="col-md-8">
+        <FilterCheckField name="payrollProject" label="ЗП"/>
+      </div>
+    </div>
+    {props.refill &&
+    <FilterRefillSumField name="monthRefillSum" forceSubmit={props.forceSubmit}/>
+    }
+    <div className="row">
+      <div className="col-md-4">
+        <FilterCheckField name="decrease" label="Категории" handleSubmit={props.handleSubmit}/>
+      </div>
+      <div className="col-md-8">
+        <FilterCheckField name="creditCard" label="Кредитная карта" handleSubmit={props.handleSubmit}/>
+      </div>
+    </div>
+
+    {props.decrease &&
+      <div className="category">
+        <div className="row category">
           <div className="col-md-4">
-            <FilterCheckField name="refill" label="Пополнение"/>
+            <label>Наименование</label>
           </div>
-          <div className="col-md-8">
-            <FilterCheckField name="payrollProject" label="ЗП"/>
+          <div className="col-md-4">
+            <label>Заинтересован</label>
+          </div>
+          <div className="col-md-4">
+            <label>Сумма списаний</label>
           </div>
         </div>
-        {props.refill &&
-        <FilterRefillSumField name="monthRefillSum" forceSubmit={props.forceSubmit}/>
-        }
         <div className="row">
           <div className="col-md-4">
-            <FilterCheckField name="decrease" label="Списание" handleSubmit={props.handleSubmit}/>
-        </div>
-
-        {props.decrease &&
-          <div className="col-md-8">
-            <FilterSumSimpleField name="categories2Costs.TRAVEL.secondValue" label="Путешествие"/>
-            <FilterSumSimpleField name="categories2Costs.FUN.secondValue" label="Развлечение"/>
-            <FilterSumSimpleField name="categories2Costs.AUTO.secondValue" label="Авто"/>
-            <FilterSumSimpleField name="categories2Costs.OTHER.secondValue" label="Прочее"/>
+            <label>Путешествие</label>
           </div>
-        }
+          <div className="col-md-4">
+            <FilterCheckField name="categories2Costs.TRAVEL.first" handleSubmit={props.handleSubmit}/>
+          </div>
+          <div className="col-md-4">
+            <FilterSumSimpleField name="categories2Costs.TRAVEL.second" />
+          </div>
         </div>
-        <div className="b-disclaimer">
-          <div className="b-disclaimer--inner">
-            <p>* Вся информация носит справочный характер и не является публичной офертой </p>
+        <div className="row">
+          <div className="col-md-4">
+            <label>Развлечение</label>
+          </div>
+          <div className="col-md-4">
+            <FilterCheckField name="categories2Costs.FUN.first" handleSubmit={props.handleSubmit}/>
+          </div>
+          <div className="col-md-4">
+            <FilterSumSimpleField name="categories2Costs.FUN.second"/>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-md-4">
+            <label>Авто</label>
+          </div>
+          <div className="col-md-4">
+            <FilterCheckField name="categories2Costs.AUTO.first" handleSubmit={props.handleSubmit}/>
+          </div>
+          <div className="col-md-4">
+            <FilterSumSimpleField name="categories2Costs.AUTO.second" />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-md-4">
+            <label>Прочее</label>
+          </div>
+          <div className="col-md-4">
+            <FilterCheckField name="categories2Costs.OTHER.first" handleSubmit={props.handleSubmit}/>
+          </div>
+          <div className="col-md-4">
+            <FilterSumSimpleField name="categories2Costs.OTHER.second"/>
           </div>
         </div>
       </div>
+    }
+    <div className="b-disclaimer">
+      <div className="b-disclaimer--inner">
+        <p>* Вся информация носит справочный характер и не является публичной офертой </p>
+      </div>
+    </div>
+  </div>
 
 export default cssmodules(Filter, styles);

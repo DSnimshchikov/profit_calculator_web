@@ -9,12 +9,14 @@ const FilterSumSimpleField = (props) =>
 const renderField = ({input, label, type, meta: {touched, error, warning}}) =>
   <div className="e-range--field top-distance">
     <input {...input} type={type} className="e-range--field--entity" data-range-field="true" id="Credit"/>
-    <span data-range-measure="true"
-          className="e-range--field--measure e-range--field--measure---default ">
-      <span className="e-range--field--measure--value"
-            data-range-measure-value="true">{label}
+    {label &&
+      <span data-range-measure="true"
+            className="e-range--field--measure e-range--field--measure---default ">
+        <span className="e-range--field--measure--value"
+              data-range-measure-value="true">{label}
+        </span>
       </span>
-    </span>
+    }
   </div>
 
 export default cssmodules(FilterSumSimpleField, styles);
