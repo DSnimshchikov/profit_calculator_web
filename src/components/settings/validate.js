@@ -1,6 +1,6 @@
 export const required = value => (value ? undefined : 'Обязательно')
 export const number = value =>
-  (value && isNaN(Number(value)) ? 'Должно быть числом' : undefined)
+  (value && (isNaN(Number(value)) || Number(value) < 0) ? 'Должно быть положительным числом' : undefined)
 
 
 const minValue = min => value =>

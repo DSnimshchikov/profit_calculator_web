@@ -28,7 +28,7 @@ Settings.propTypes = {
   clearInfos: PropTypes.func,
   clearErrors: PropTypes.func,
   infos: PropTypes.array, // eslint-disable-line react/forbid-prop-types
-  errors: PropTypes.func,
+  errors: PropTypes.array,// eslint-disable-line react/forbid-prop-types
 }
 Settings.defaultProps = {}
 function mapDispatchToProps(dispatch) {
