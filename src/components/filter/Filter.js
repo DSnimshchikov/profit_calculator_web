@@ -6,18 +6,19 @@ import FilterPeriodField from './FilterPeriodField';
 import FilterRefillSumField from './FilterRefillSumField';
 import FilterCheckField from './FilterCheckField';
 import FilterSumSimpleField from './FilterSumSimpleField';
+import {Field} from 'redux-form'
 
 const Filter = (props) =>
   <div className="b-deposits-calculator--content g-grid-20">
     <FilterSumField name="initSum" label="Сумма к накоплению" forceSubmit={props.forceSubmit}/>
     <FilterPeriodField name="daysCount" label="Срок накопления" forceSubmit={props.forceSubmit}/>
 
-    <div className="row hidden">
+    <div className="row">
       <div className="col-md-4">
         <FilterCheckField name="refill" label="Пополнение"/>
       </div>
       <div className="col-md-8">
-        <FilterCheckField name="payrollProject" label="ЗП"/>
+        <FilterCheckField name="payrollProject" label="ЗП" handleSubmit={props.handleSubmit}/>
       </div>
     </div>
     {props.refill &&
@@ -91,11 +92,25 @@ const Filter = (props) =>
         </div>
       </div>
     }
+    {props.clientId &&
+      <div>
+        <Field name="transactions" className="e-range--field--entity" component="textarea"
+               normalize={normalizePeriodField} format={formatter}/>
+      </div>
+    }
     <div className="b-disclaimer">
       <div className="b-disclaimer--inner">
         <p>* Вся информация носит справочный характер и не является публичной офертой </p>
       </div>
     </div>
   </div>
+
+const normalizePeriodField = (value, previousValue) => {
+  if (!value) return value;
+  return JSON.parse(value);
+}
+const formatter = (value, name) => {
+ return JSON.stringify(value);
+}
 
 export default cssmodules(Filter, styles);

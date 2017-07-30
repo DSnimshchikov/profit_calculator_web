@@ -6,7 +6,7 @@ import Filter from '../components/filter/Filter';
 class FilterForm extends React.Component {
 
   componentDidMount() {
-    if (this.props.clientId==='1') {
+    if (this.props.clientId === '1') {
       this.props.initialize(filterKnownClient);
       this.props.onSubmit(filterKnownClient);
     } else {
@@ -20,7 +20,7 @@ class FilterForm extends React.Component {
     return (
       <form onSubmit={ handleSubmit } onChange={() => setTimeout(handleSubmit, 100)}>
         <Filter refill={this.props.refill} decrease={this.props.decrease} handleSubmit={handleSubmit}
-                forceSubmit={forceSubmit}/>
+                forceSubmit={forceSubmit} clientId={this.props.clientId}/>
       </form>
     )
   }
@@ -74,81 +74,81 @@ const filterKnownClient = {
     },
     transactions: [
       {
-        date: '',
-        category2Cost: [
-          {category: 'TRAVEL', sum: 443},
-          {category: 'FUN', sum: 1123},
-          {category: 'AUTO', sum: 1123},
-          {category: 'OTHER', sum: 1123}
-        ]
-      },{
-        date: '',
-        category2Cost: [
-          {category: 'TRAVEL', sum: 443},
-          {category: 'FUN', sum: 1123},
-          {category: 'AUTO', sum: 1123},
-          {category: 'OTHER', sum: 1123}
-        ]
-      },{
-        date: '',
-        category2Cost: [
-          {category: 'TRAVEL', sum: 443},
-          {category: 'FUN', sum: 1123},
-          {category: 'AUTO', sum: 1123},
-          {category: 'OTHER', sum: 1123}
-        ]
-      },{
-        date: '',
-        category2Cost: [
-          {category: 'TRAVEL', sum: 443},
-          {category: 'FUN', sum: 1123},
-          {category: 'AUTO', sum: 1123},
-          {category: 'OTHER', sum: 1123}
-        ]
-      },{
-        date: '',
-        category2Cost: [
-          {category: 'TRAVEL', sum: 443},
-          {category: 'FUN', sum: 1123},
-          {category: 'AUTO', sum: 1123},
-          {category: 'OTHER', sum: 1123}
-        ]
-      },{
-        date: '',
-        category2Cost: [
-          {category: 'TRAVEL', sum: 443},
-          {category: 'FUN', sum: 1123},
-          {category: 'AUTO', sum: 1123},
-          {category: 'OTHER', sum: 1123}
-        ]
-      },{
-        date: '',
-        category2Cost: [
-          {category: 'TRAVEL', sum: 443},
-          {category: 'FUN', sum: 1123},
-          {category: 'AUTO', sum: 1123},
-          {category: 'OTHER', sum: 1123}
-        ]
-      },{
-        date: '',
-        category2Cost: [
-          {category: 'TRAVEL', sum: 443},
-          {category: 'FUN', sum: 1123},
-          {category: 'AUTO', sum: 1123},
-          {category: 'OTHER', sum: 1123}
-        ]
+        date: '2017-03-01',
+        category2Cost: {
+          TRAVEL: 443,
+          FUN: 1123,
+          AUTO: 1123,
+          OTHER: 1123
+        }
+      }, {
+        date: '2017-03-01',
+        category2Cost: {
+          TRAVEL: 443,
+          FUN: 1123,
+          AUTO: 1123,
+          OTHER: 1123
+        }
+      }, {
+        date: '2017-03-01',
+        category2Cost: {
+          TRAVEL: 443,
+          FUN: 1123,
+          AUTO: 1123,
+          OTHER: 1123
+        }
+      }, {
+        date: '2017-03-01',
+        category2Cost: {
+          TRAVEL: 443,
+          FUN: 1123,
+          AUTO: 1123,
+          OTHER: 1123
+        }
+      }, {
+        date: '2017-03-01',
+        category2Cost: {
+          TRAVEL: 443,
+          FUN: 1123,
+          AUTO: 1123,
+          OTHER: 1123
+        }
+      }, {
+        date: '2017-03-01',
+        category2Cost: {
+          TRAVEL: 443,
+          FUN: 1123,
+          AUTO: 1123,
+          OTHER: 1123
+        }
+      }, {
+        date: '2017-03-01',
+        category2Cost: {
+          TRAVEL: 443,
+          FUN: 1123,
+          AUTO: 1123,
+          OTHER: 1123
+        }
+      }, {
+        date: '2017-03-01',
+        category2Cost: {
+          TRAVEL: 443,
+          FUN: 1123,
+          AUTO: 1123,
+          OTHER: 1123
+        }
       },
     ],
     payroll: [
-      {date: '', sum: 123},
-      {date: '', sum: 123},
-      {date: '', sum: 123},
-      {date: '', sum: 123},
-      {date: '', sum: 123},
-      {date: '', sum: 123},
-      {date: '', sum: 123},
-      {date: '', sum: 123},
-      {date: '', sum: 123}
+      {date: '2017-03-01', sum: 123},
+      {date: '2017-03-01', sum: 123},
+      {date: '2017-03-01', sum: 123},
+      {date: '2017-03-01', sum: 123},
+      {date: '2017-03-01', sum: 123},
+      {date: '2017-03-01', sum: 123},
+      {date: '2017-03-01', sum: 123},
+      {date: '2017-03-01', sum: 123},
+      {date: '2017-03-01', sum: 123}
     ]
   }
   ;
