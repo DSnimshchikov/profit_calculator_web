@@ -6,11 +6,11 @@ import Slider from 'react-rangeslider'
 import {DEPOSIT_REFILL_SUM_MIN, DEPOSIT_REFILL_SUM_MAX, DEPOSIT_REFILL_SUM_STEP} from '../../actions/const'
 
 const FilterRefillSumField = (props) =>
-  <Field name={props.name} type="number" component={renderField} forceSubmit={props.forceSubmit}/>;
+  <Field name={props.name} type="number" component={renderField} forceSubmit={props.forceSubmit} label={props.label}/>;
 
 const renderField = ({forceSubmit, input, label, type, meta: {touched, error, warning}}) =>
   <div className="b-deposits-calculator--field">
-    <label className="b-deposits-calculator--label">Ежемесячное пополнение</label>
+    <label className="b-deposits-calculator--label">{label}</label>
     <div className="e-range b-deposits-calculator--term">
       <div className="e-range--field">
         <input {...input} type={type} className="e-range--field--entity" data-range-field="true"/>

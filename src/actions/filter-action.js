@@ -32,8 +32,12 @@ var postRequest = function (url, param) {
   });
 };
 
-function fetchProducts(param, dispatch) {
-  if (param.daysCount > ctx.PERIOD_DAYS_MIN && param.daysCount < ctx.PERIOD_DAYS_MAX) {
+function fetchProducts(paramFromAction, dispatch) {
+  var param = Object.assign({}, paramFromAction);
+  if (param.daysCount >= ctx.PERIOD_DAYS_MIN && param.daysCount <= ctx.PERIOD_DAYS_MAX) {
+    if (!param.refill) {
+      param.monthRefillSum = 0;
+    }
     postRequest('/products', param)
       .then(response => response.json())
       .then(json => dispatch(fetchProductSuccess(json)))

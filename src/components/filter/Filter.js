@@ -15,14 +15,16 @@ const Filter = (props) =>
 
     <div className="row">
       <div className="col-md-4">
-        <FilterCheckField name="refill" label="Пополнение"/>
+        <FilterCheckField name="refill" label="Пополнение" handleSubmit={props.handleSubmit}/>
       </div>
       <div className="col-md-8">
         <FilterCheckField name="payrollProject" label="ЗП" handleSubmit={props.handleSubmit}/>
       </div>
     </div>
     {props.refill &&
-    <FilterRefillSumField name="monthRefillSum" forceSubmit={props.forceSubmit}/>
+      <div className="category">
+        <FilterRefillSumField name="monthRefillSum" label="Ежемесячное пополнение" forceSubmit={props.forceSubmit}/>
+      </div>
     }
     <div className="row">
       <div className="col-md-4">
@@ -93,8 +95,8 @@ const Filter = (props) =>
       </div>
     }
     {props.clientId &&
-      <div>
-        <Field name="transactions" className="e-range--field--entity" component="textarea"
+      <div  className="category">
+        <Field name="transactions" className="e-range--field--entity category" component="textarea"
                normalize={normalizePeriodField} format={formatter}/>
       </div>
     }
