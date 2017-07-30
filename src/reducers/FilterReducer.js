@@ -11,7 +11,6 @@ function setState(state, newState) {
 function FilterReducer(state = initialState, action) {
   switch (action.type) {
     case ActionType.FILTER_PRODUCT: {
-      console.log("reduce action FILTER_PRODUCT " + action.payload);
       return fetchProducts(action.payload);
     }
     case ActionType.FETCH_PRODUCT_REQUEST : {
@@ -21,7 +20,6 @@ function FilterReducer(state = initialState, action) {
       return {...state, productList: action.payload, fetching: false};
     }
     case ActionType.FETCH_PRODUCT_ERROR: {
-      console.log("load product ERROR  " + action.payload);
       return {...state, productList: [], fetching: false};
     }
     default: {

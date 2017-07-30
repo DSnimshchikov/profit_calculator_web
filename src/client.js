@@ -13,8 +13,8 @@ const routing = (
   <Router>
     <Switch>
       <Route exact path='/' component={App}/>
+      <Route exact path='/:id' component={App}/>
       <Route exact path='/settings' component={Settings}/>
-      {/*<Route exact path='/settings:id' component={Settings}/>*/}
     </Switch>
   </Router>
 );

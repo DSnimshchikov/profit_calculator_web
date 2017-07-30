@@ -9,8 +9,8 @@ import Main from '../components/App';
 
 class App extends Component {
   render() {
-    const {actions, filterReducer} = this.props;
-    return <Main actions={actions} filterReducer={filterReducer} />;
+    const {actions, filterReducer, match} = this.props;
+    return <Main actions={actions} filterReducer={filterReducer} clientId={match.params.id}/>;
   }
 }
 App.propTypes = {

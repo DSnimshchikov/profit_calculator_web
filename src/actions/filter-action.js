@@ -38,7 +38,6 @@ function fetchProducts(param, dispatch) {
       .then(response => response.json())
       .then(json => dispatch(fetchProductSuccess(json)))
       .catch(function (error) {
-        console.log('Request failed', error);
         dispatch(fetchProductError(error));
       });
   }

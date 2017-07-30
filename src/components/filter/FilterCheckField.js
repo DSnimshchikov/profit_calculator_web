@@ -20,7 +20,6 @@ const renderField = ({handleSubmit, input, label, type, meta: {touched, error, w
                })
              }}/>
       <label htmlFor={`cmn-toggle-${input.name}`} onClick={event => {
-        console.log("mylog " + JSON.stringify(input.value))
         input.value = !input.value;
         event.target.value = input.value;
         input.onChange(event)
