@@ -63,9 +63,10 @@ const filterKnownClient = {
     initSum: 300000,
     daysCount: 361,
     decrease: false,
-    refill: true,
+    creditCard: true, //расчетное поле, считаем что для постоянных клиентов всегда да
+    refill: true,     //расчетное поле, считаем что для постоянных клиентов всегда да
     payrollProject: false,
-    monthRefillSum: 15000,
+    monthRefillSum: 15000, //расчетное поле, считаем что для постоянных клиентов всегда да
     categories2Costs: {
       TRAVEL: {first: true, second: 100},
       FUN: {first: true, second: 100},
@@ -74,7 +75,23 @@ const filterKnownClient = {
     },
     transactions: [
       {
-        date: '2017-03-01',
+        date: '2016-12-01',
+        category2Cost: {
+          TRAVEL: 443,
+          FUN: 1123,
+          AUTO: 1123,
+          OTHER: 1123
+        }
+      }, {
+        date: '2017-01-01',
+        category2Cost: {
+          TRAVEL: 443,
+          FUN: 1123,
+          AUTO: 1123,
+          OTHER: 1123
+        }
+      }, {
+        date: '2017-02-01',
         category2Cost: {
           TRAVEL: 443,
           FUN: 1123,
@@ -90,7 +107,15 @@ const filterKnownClient = {
           OTHER: 1123
         }
       }, {
-        date: '2017-03-01',
+        date: '2017-04-01',
+        category2Cost: {
+          TRAVEL: 443,
+          FUN: 11230,
+          AUTO: 7123,
+          OTHER: 31123
+        }
+      }, {
+        date: '2017-05-01',
         category2Cost: {
           TRAVEL: 443,
           FUN: 1123,
@@ -98,7 +123,7 @@ const filterKnownClient = {
           OTHER: 1123
         }
       }, {
-        date: '2017-03-01',
+        date: '2017-06-01',
         category2Cost: {
           TRAVEL: 443,
           FUN: 1123,
@@ -106,31 +131,7 @@ const filterKnownClient = {
           OTHER: 1123
         }
       }, {
-        date: '2017-03-01',
-        category2Cost: {
-          TRAVEL: 443,
-          FUN: 1123,
-          AUTO: 1123,
-          OTHER: 1123
-        }
-      }, {
-        date: '2017-03-01',
-        category2Cost: {
-          TRAVEL: 443,
-          FUN: 1123,
-          AUTO: 1123,
-          OTHER: 1123
-        }
-      }, {
-        date: '2017-03-01',
-        category2Cost: {
-          TRAVEL: 443,
-          FUN: 1123,
-          AUTO: 1123,
-          OTHER: 1123
-        }
-      }, {
-        date: '2017-03-01',
+        date: '2017-07-01',
         category2Cost: {
           TRAVEL: 443,
           FUN: 1123,
@@ -140,15 +141,15 @@ const filterKnownClient = {
       },
     ],
     payroll: [
-      {date: '2017-03-01', sum: 123},
-      {date: '2017-03-01', sum: 123},
-      {date: '2017-03-01', sum: 123},
-      {date: '2017-03-01', sum: 123},
-      {date: '2017-03-01', sum: 123},
-      {date: '2017-03-01', sum: 123},
-      {date: '2017-03-01', sum: 123},
-      {date: '2017-03-01', sum: 123},
-      {date: '2017-03-01', sum: 123}
+      {date: '2016-11-01', sum: 45000},
+      {date: '2016-12-01', sum: 45000},
+      {date: '2017-01-01', sum: 45000},
+      {date: '2017-02-01', sum: 45000},
+      {date: '2017-03-01', sum: 45000},
+      {date: '2017-04-01', sum: 45000},
+      {date: '2017-05-01', sum: 45000},
+      {date: '2017-06-01', sum: 45000},
+      {date: '2017-07-01', sum: 45000}
     ]
   }
   ;
