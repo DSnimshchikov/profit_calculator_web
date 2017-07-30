@@ -49,7 +49,7 @@ const renderCard = ({fields, meta: {error, submitFailed}}) =>
 
 
 let CardSettingsForm = (props) => {
-  const {array, handleSubmit, pristine, reset, submitting} = props;
+  const {array, handleSubmit, pristine, reset, submitting,valid} = props;
 
   return (
     <div className={`${styles['card-container']} container-fluid form-group`}>
@@ -60,7 +60,7 @@ let CardSettingsForm = (props) => {
         </div>
         <div className="row">
           <div className="col-md-12">
-            <button type="submit" disabled={submitting} className="btn btn-success btn-block">
+            <button type="submit" disabled={pristine || submitting || valid !== true} className="btn btn-success btn-block">
               Сохранить
             </button>
           </div>

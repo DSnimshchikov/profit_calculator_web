@@ -3,7 +3,7 @@ import {Field, FieldArray, reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
 import styles from './setting.cssmodule.less';
 import {renderField, renderHead} from './settingsCommonComponents';
-import {required, number, minValue1, minValue91, maxValue1831} from './validate';
+import {required, number, minValue1, validateSavingAccounts as validate} from './validate';
 
 
 const renderRates = ({fields, meta: {error, submitFailed}}) =>
@@ -57,7 +57,7 @@ const renderSavingAccount = ({fields, meta: {error, submitFailed}}) =>
 
 
 let SavingAccountSettingsForm = (props) => {
-  const {array, handleSubmit, pristine, reset, submitting} = props;
+  const {array, handleSubmit, pristine, reset, submitting, valid} = props;
 
   return (
     <div className={`${styles['card-container']} container-fluid form-group`}>
@@ -68,7 +68,7 @@ let SavingAccountSettingsForm = (props) => {
       </div>
       <div className="row">
         <div className="col-md-12">
-          <button type="submit" disabled={submitting} className="btn btn-success btn-block">
+          <button type="submit" disabled={pristine || submitting || valid !== true} className="btn btn-success btn-block">
             Сохранить
           </button>
         </div>
@@ -81,8 +81,8 @@ let SavingAccountSettingsForm = (props) => {
 
 
 SavingAccountSettingsForm = reduxForm({
-  form: 'savingAccountsSettingsForm' // a unique identifier for this form
-
+  form: 'savingAccountsSettingsForm', // a unique identifier for this form
+  validate
 })(SavingAccountSettingsForm);
 
 

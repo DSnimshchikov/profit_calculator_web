@@ -30,4 +30,3 @@ class App extends React.Component {
 }
 
 App.defaultProps = {};
-export default App;

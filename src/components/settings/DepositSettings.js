@@ -1,11 +1,11 @@
-import React from 'react';
-import {Field, FieldArray, reduxForm} from 'redux-form';
-import {connect} from 'react-redux';
-import styles from './setting.cssmodule.less';
-import {renderField, renderHead} from './settingsCommonComponents';
-import {required, number, minValue1, minValue91, maxValue1831} from './validate';
+import React from 'react'
+import {Field, FieldArray, reduxForm} from 'redux-form'
+import {connect} from 'react-redux'
+import styles from './setting.cssmodule.less'
+import {renderField, renderHead} from './settingsCommonComponents'
+import {required, number, minValue1, minValue91, maxValue1831, validateDeposits as validate} from './validate'
 
-const renderRates = ({fields, meta: {error, submitFailed}}) =>
+const renderRates = ({fields, meta: {error,touched, submitFailed}}) =>
   <div>
     <h3>Ставки</h3>
     {fields.map((rate, index) =>
@@ -28,9 +28,17 @@ const renderRates = ({fields, meta: {error, submitFailed}}) =>
             validate={[required, number]}
           />
         </div>
+        <div className="row">
+          {((error &&
+              <div className="row alert alert-danger" role="alert">
+                {error}
+              </div>)
+          )}
+        </div>
       </div>
+
     )}
-  </div>;
+  </div>
 
 const renderDeposits = ({fields, meta: {error, submitFailed}}) =>
   <div>
@@ -52,11 +60,11 @@ const renderDeposits = ({fields, meta: {error, submitFailed}}) =>
         <FieldArray name={`${deposit}.rates`} component={renderRates}/>
       </div>
     )}
-  </div>;
+  </div>
 
 
 let DepositsSettingsForm = (props) => {
-  const {array, handleSubmit, pristine, reset, submitting} = props;
+  const {array, handleSubmit, pristine, reset, submitting, valid } = props
 
   return (
     <div className={`${styles['card-container']} container-fluid form-group`}>
@@ -66,21 +74,21 @@ let DepositsSettingsForm = (props) => {
         </div>
         <div className="row">
           <div className="col-md-12">
-            <button type="submit" disabled={pristine || submitting} className="btn btn-success btn-block">
+            <button type="submit" disabled={pristine || submitting || valid !== true} className="btn btn-success btn-block">
               Сохранить
             </button>
           </div>
         </div>
       </form>
     </div>
-  );
-};
+  )
+}
 
 
 DepositsSettingsForm = reduxForm({
-  form: 'depositsSettingsForm' // a unique identifier for this form
-
-})(DepositsSettingsForm);
+  form: 'depositsSettingsForm', // a unique identifier for this form
+  validate
+})(DepositsSettingsForm)
 
 
 // You have to connect() to any reducers that you wish to connect to yourself
@@ -88,6 +96,6 @@ DepositsSettingsForm = connect(
   state => ({
     initialValues: {deposits: state.settingReducer.settings.deposits} // pull initial values from account reducer
   }),
-)(DepositsSettingsForm);
+)(DepositsSettingsForm)
 
-export default DepositsSettingsForm;
+export default DepositsSettingsForm

@@ -136,10 +136,12 @@ function storeDeposits(deposits, dispatch) {
   })
     .then((json) => {
       dispatch(saveDepositsSuccess(json));
+      dispatch( {type: ctx.ADD_INFO, payload:"Настройки вкладов успешно сохранены"});
     })
     .catch((error) => {
       console.log('Request failed', error);
       dispatch(saveDepositsError(error));
+      dispatch( {type: ctx.ADD_INFO, payload:"Произошла ошибка при сохранении настроек, попробуйте повторить позже"});
     });
 }
 
@@ -158,10 +160,12 @@ function storeCards(cards, dispatch) {
   })
     .then((json) => {
       dispatch(saveCardsSuccess(json));
+      dispatch( {type: ctx.ADD_INFO, payload:"Настройки карт успешно сохранены"});
     })
     .catch((error) => {
       console.log('Request failed', error);
       dispatch(saveCardsError(error));
+      dispatch( {type: ctx.ADD_INFO, payload:"Произошла ошибка при сохранении настроек, попробуйте повторить позже"});
     });
 }
 
@@ -180,10 +184,12 @@ function storeSavingAccounts(savingAccounts, dispatch) {
   })
     .then((json) => {
       dispatch(saveSavingAccountsSuccess(json));
+      dispatch( {type: ctx.ADD_INFO, payload:"Настройки накопительных счетов успешно сохранены"});
     })
     .catch((error) => {
       console.log('Request failed', error);
       dispatch(saveSavingAccountsError(error));
+      dispatch( {type: ctx.ADD_INFO, payload:"Произошла ошибка при сохранении настроек, попробуйте повторить позже"});
     });
 }
 
