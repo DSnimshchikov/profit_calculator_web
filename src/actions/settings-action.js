@@ -22,19 +22,19 @@ export function fetchSettingCardSuccess(payload) {
 }
 
 function fetchSettingCardError(payload) {
-  return {type: ctx.FETCH_SETTINGS_CARD_ERROR, payload};
+  return {type: ctx.FETCH_SETTINGS_CARD_ERROR, payload}
 }
 
 function fetchSettingSavingAccountRequest(payload) {
-  return {type: ctx.FETCH_SETTINGS_SAVING_ACCOUNT_REQUEST, payload};
+  return {type: ctx.FETCH_SETTINGS_SAVING_ACCOUNT_REQUEST, payload}
 }
 
 export function fetchSettingSavingAccountSuccess(payload) {
-  return {type: ctx.FETCH_SETTINGS_SAVING_ACCOUNT_SUCCESS, payload};
+  return {type: ctx.FETCH_SETTINGS_SAVING_ACCOUNT_SUCCESS, payload}
 }
 
 export function fetchSettingCardOptionSuccess(payload) {
-  return {type: ctx.FETCH_SETTINGS_CARD_OPTION_SUCCESS, payload};
+  return {type: ctx.FETCH_SETTINGS_CARD_OPTION_SUCCESS, payload}
 }
 
 function fetchSettingSavingAccountError(payload) {
@@ -54,11 +54,11 @@ function saveDepositsError(payload) {
 }
 
 function saveCardOptionsAction(payload) {
-  return {type: ctx.SAVE_CARDS, payload}
+  return {type: ctx.SAVE_CARD_OPTIONS, payload}
 }
 
 function saveCardsAction(payload) {
-  return {type: ctx.SAVE_CARDS, payload};
+  return {type: ctx.SAVE_CARDS, payload}
 }
 
 function saveCardOptionsSuccess(payload) {
@@ -218,12 +218,12 @@ function storeCardOptions(cardOptions, dispatch) {
     body: JSON.stringify(cardOptions.cardOptions)
   })
     .then((json) => {
-      dispatch(saveCardsSuccess(json))
+      dispatch(saveCardOptionsSuccess(json))
       dispatch({type: ctx.ADD_INFO, payload: 'Настройки карточных опций успешно сохранены'})
     })
     .catch((error) => {
       console.log('Request failed', error)
-      dispatch(saveCardsError(error))
+      dispatch(saveCardOptionssError(error))
       dispatch({type: ctx.ADD_ERROR, payload: 'Произошла ошибка при сохранении настроек, попробуйте повторить позже'})
     })
 }

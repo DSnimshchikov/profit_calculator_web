@@ -37,7 +37,7 @@ function SettingReducer(state = initialState, action) {
       settings.savingAccounts = action.payload;
       return {...state, settings, fetching: false};
     }
-    case ActionType.FETCH_SETTINGS_CARD_OPTION_REQUEST:
+    case ActionType.FETCH_SETTINGS_CARD_OPTION_ERROR:
     case ActionType.FETCH_SETTINGS_DEPOSIT_ERROR:
     case ActionType.FETCH_SETTINGS_CARD_ERROR:
     case ActionType.FETCH_SETTINGS_SAVING_ACCOUNT_ERROR: {
