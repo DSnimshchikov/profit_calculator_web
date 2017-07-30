@@ -61,7 +61,7 @@ const Filter = (props) =>
         </div>
         <div className="row">
           <div className="col-md-4">
-            <label>Развлечение</label>
+            <label>Развлечения</label>
           </div>
           <div className="col-md-4">
             <FilterCheckField name="categories2Costs.FUN.first" handleSubmit={props.handleSubmit}/>

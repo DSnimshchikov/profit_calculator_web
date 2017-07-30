@@ -14,6 +14,20 @@ function MessageReducer(state = initialState, action) {
       infos.push(action.payload);
       return {...state, infos};
     }
+    case ActionType.CLEAR_INFOS: {
+      const infos = [];
+      return {...state, infos};
+    }
+
+    case ActionType.ADD_ERROR: {
+      const errors = [];
+      errors.push(action.payload);
+      return {...state, errors};
+    }
+    case ActionType.CLEAR_ERRORS: {
+      const errors = [];
+      return {...state, errors};
+    }
     default: {
       return state;
     }

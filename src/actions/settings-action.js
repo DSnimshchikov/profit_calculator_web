@@ -84,6 +84,7 @@ function fetchSettingDeposit(dispatch) {
     .catch((error) => {
       console.log('Request failed', error);
       dispatch(fetchSettingDepositError(error));
+      dispatch( {type: ctx.ADD_ERROR, payload:"Произошла ошибка при загрузке настроек вкладов. Попробуйте повторить позже"});
     });
 }
 
@@ -97,6 +98,7 @@ function fetchSettingCard(dispatch) {
     .catch((error) => {
       console.log('Request failed', error);
       dispatch(fetchSettingCardError(error));
+      dispatch( {type: ctx.ADD_ERROR, payload:"Произошла ошибка при загрузке настроек карт. Попробуйте повторить позже"});
     });
 }
 
@@ -112,6 +114,7 @@ function fetchSettingSavingAccount(dispatch) {
     .catch((error) => {
       console.log('Request failed', error);
       dispatch(fetchSettingSavingAccountError(error));
+      dispatch( {type: ctx.ADD_ERROR, payload:"Произошла ошибка при загрузке настроек накопительных счетов. Попробуйте повторить позже"});
     });
 }
 
@@ -141,7 +144,7 @@ function storeDeposits(deposits, dispatch) {
     .catch((error) => {
       console.log('Request failed', error);
       dispatch(saveDepositsError(error));
-      dispatch( {type: ctx.ADD_INFO, payload:"Произошла ошибка при сохранении настроек, попробуйте повторить позже"});
+      dispatch( {type: ctx.ADD_ERROR, payload:"Произошла ошибка при сохранении настроек, попробуйте повторить позже"});
     });
 }
 
@@ -165,7 +168,7 @@ function storeCards(cards, dispatch) {
     .catch((error) => {
       console.log('Request failed', error);
       dispatch(saveCardsError(error));
-      dispatch( {type: ctx.ADD_INFO, payload:"Произошла ошибка при сохранении настроек, попробуйте повторить позже"});
+      dispatch( {type: ctx.ADD_ERROR, payload:"Произошла ошибка при сохранении настроек, попробуйте повторить позже"});
     });
 }
 
@@ -189,7 +192,7 @@ function storeSavingAccounts(savingAccounts, dispatch) {
     .catch((error) => {
       console.log('Request failed', error);
       dispatch(saveSavingAccountsError(error));
-      dispatch( {type: ctx.ADD_INFO, payload:"Произошла ошибка при сохранении настроек, попробуйте повторить позже"});
+      dispatch( {type: ctx.ADD_ERROR, payload:"Произошла ошибка при сохранении настроек, попробуйте повторить позже"});
     });
 }
 

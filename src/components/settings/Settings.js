@@ -1,33 +1,48 @@
-import React from 'react';
-import cssmodules from 'react-css-modules';
-import {connect} from 'react-redux';
+import React from 'react'
+import cssmodules from 'react-css-modules'
+import {connect} from 'react-redux'
+import {bindActionCreators} from 'redux'
+import PropTypes from 'prop-types'
 
-import SettingsContainer from './SettingsContainer';
-import styles from './setting.cssmodule.less';
+import SettingsContainer from './SettingsContainer'
+import styles from './setting.cssmodule.less'
+import {clearInfos, clearErrors} from '../../actions/messages-action'
+import {ErrorBanner, InfoBanner} from '../message/MessageComponents'
 
 
 class Settings extends React.Component {
 
-
   render() {
     return (
       <div>
-        {this.props.infos && this.props.infos.length &&
-        alert(this.props.infos)
-        }
+        <InfoBanner info={this.props.infos[0]} closeAction={this.props.clearInfos}/>
+        <ErrorBanner error={this.props.errors[0]} closeAction={this.props.clearErrors}/>
         <SettingsContainer/>
       </div>
-    );
+    )
   }
 }
 
-Settings.displayName = 'Settings';
+Settings.displayName = 'Settings'
 Settings.propTypes = {
-};
-Settings.defaultProps = {};
+  clearInfos: PropTypes.func,
+  clearErrors: PropTypes.func,
+  infos: PropTypes.array, // eslint-disable-line react/forbid-prop-types
+  errors: PropTypes.func,
+}
+Settings.defaultProps = {}
+function mapDispatchToProps(dispatch) {
+  return {
+    clearInfos: bindActionCreators(clearInfos, dispatch),
+    clearErrors: bindActionCreators(clearErrors, dispatch),
+  }
+}
 
-export default connect(
-  state => ({
+function mapStateToProps(state) {
+
+  return {
     infos: state.messageReducer.infos,
-  })
-)(cssmodules(Settings, styles))
+    errors: state.messageReducer.errors,
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(cssmodules(Settings, styles))

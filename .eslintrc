@@ -8,6 +8,7 @@
   "extends": "airbnb",
   "rules": {
     "comma-dangle": ["off"],
+    "semi": [2, "never"],
     "import/extensions": 0,
     "import/newline-after-import": 1,
     "no-unused-vars": ["warn"],
