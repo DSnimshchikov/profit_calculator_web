@@ -112,7 +112,7 @@ class Product extends React.Component {
               <ProductCardRow rowName={'Ставка, %'} rowValue={productGroup.maxRate} rowType={'RATE'}/>
               <ProductCardRow rowName={'Доход по вкладу'} rowValue={productGroup.profitSum} rowType={'PROFIT'}/>
               <ProductCardRow rowName={'Сумма в конце срока'} rowValue={productGroup.resultSum} rowType={'OTHER'}/>
-              {cardOption !== null &&
+              {cardOption !== null && productGroup.optionProfitSum != null &&
               <ProductCardRow rowName={cardOptionName} rowValue={productGroup.optionProfitSum} rowType={'OTHER'}/>
               }
             </div>
