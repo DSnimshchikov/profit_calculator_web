@@ -122,9 +122,8 @@ class Product extends React.Component {
     return (
 
       <div className={`${styles.card} .effect2`}>
-
         <div className={styles['card-header']}>
-          <OverlayTrigger placement="bottom" overlay={<Tooltip id="tooltip" trigger="click"><div dangerouslySetInnerHTML={createMarkup(this.props.data.productGroup.notes)} /></Tooltip>}>
+          <OverlayTrigger placement="bottom" overlay={<Tooltip id="tooltip"><div dangerouslySetInnerHTML={createMarkup(this.props.data.productGroup.notes)} /></Tooltip>}>
             <span>
               {Product.buildCardName(products)}
             </span>
@@ -137,7 +136,7 @@ class Product extends React.Component {
               <ProductCardRow rowName={'Доход по вкладу'} rowValue={productGroup.profitSum} rowType={'PROFIT'}/>
               <ProductCardRow rowName={'Сумма в конце срока'} rowValue={productGroup.resultSum} rowType={'OTHER'}/>
               {cardOption !== null && productGroup.optionProfitSum != null &&
-              <ProductCardRow rowName={cardOptionName} rowValue={productGroup.optionProfitSum} rowType={'OTHER'}/>
+              <ProductCardRow rowName={cardOptionName} rowValuePrefix="+" rowValue={productGroup.optionProfitSum} rowType={'OTHER'}/>
               }
             </div>
             <div className="col-md-5 col-centered">

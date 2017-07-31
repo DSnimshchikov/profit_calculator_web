@@ -9,8 +9,8 @@ class ProductCardRow extends React.Component {
 
   renderValue() {
     return (<nobr>
-      <CountUp start={0} end={this.props.rowValue} duration={0.75} separator={' '} useGrouping/>
-    </nobr>);
+      {this.props.rowValuePrefix}<CountUp start={0} end={this.props.rowValue} duration={0.75} separator={' '} useGrouping/>
+    </nobr>)
   }
 
   render() {
@@ -47,12 +47,13 @@ class ProductCardRow extends React.Component {
 
 }
 
-ProductCardRow.displayName = 'ProductCardRow';
+ProductCardRow.displayName = 'ProductCardRow'
 ProductCardRow.propTypes = {
   rowName: PropTypes.string,
   rowValue: PropTypes.number,
+  rowValuePrefix: PropTypes.string,
   rowType: PropTypes.string
-};
-ProductCardRow.defaultProps = {};
+}
+ProductCardRow.defaultProps = {}
 
-export default cssmodules(ProductCardRow, styles);
+export default cssmodules(ProductCardRow, styles)
