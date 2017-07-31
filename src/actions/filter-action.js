@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-fetch'
 import * as ctx from './const';
+import {initialize} from 'redux-form'
 
 export const filterProducts = (payload) => ({
   type: ctx.FILTER_PRODUCT,
@@ -76,6 +77,7 @@ function fetchFilter(paramFromAction, dispatch) {
       .then(json => fetchProducts(json.payload, dispatch))
       .then(json => dispatch(initialize('filter', json, false)))
       .catch(function (error) {
+        debugger;
         dispatch(fetchFilterError(error));
       });
 }
