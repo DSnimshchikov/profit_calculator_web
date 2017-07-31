@@ -20,7 +20,7 @@ const renderField = ({input, type, meta: {touched, error}}) =>
 
 const renderAccountBalances = ({fields, meta: {error, submitFailed}}) =>
   <div>
-    <div className="row">
+    <div className={`${styles['transations-head']} row`}>
       <div className="col-md-3">
         Дата
       </div>
@@ -72,13 +72,13 @@ const renderClientProducts = ({fields, meta: {error, submitFailed}}) =>
 const renderTransactions = ({fields, meta: {error, submitFailed}}) =>
   <div>
     <div className={`${styles['transations-head']} row`}>
-      <div className="col-md-4">
+      <div className="col-md-2">
         Дата
       </div>
-      <div className="col-md-2">
-        Путешетсвия
+      <div className="col-md-3">
+        Путешествия
       </div>
-      <div className="col-md-2">
+      <div className="col-md-3">
         Рестораны
       </div>
       <div className="col-md-2">
@@ -228,7 +228,7 @@ const Filter = props =>
       </div>
 
       <div className="row">
-        <h2>Продукты клиента</h2>
+        <h3>Продукты клиента</h3>
         <FieldArray name="clientProducts" component={renderClientProducts}/>
       </div>
     </div>
