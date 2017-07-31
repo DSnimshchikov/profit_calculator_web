@@ -107,6 +107,9 @@ class Product extends React.Component {
     }
 
     const chartOptions = {
+      tooltips: {
+        enabled: false
+      },
       legend: {
         display: false,
         fullWidth: false
