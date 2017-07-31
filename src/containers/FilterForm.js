@@ -87,7 +87,7 @@ const filterKnownClient = {
   clientProducts: [
     {
       idProduct: 1,
-      name: 'Вклад "Накопительный"',
+      name: 'Вклад "Комфортный"',
       accountBalances: [
         {first: '2017-01-01', second: 210000},
         {first: '2017-02-01', second: 211001},
