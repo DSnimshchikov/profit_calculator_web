@@ -39,30 +39,41 @@ class Product extends React.Component {
   }
 
   static buildCardName(products) {
-    const card = products.find(p => p.type === 'CARD')
+    const cards = products.filter(p => p.type === 'CARD')
     const baseProduct = products.find(p => p.type !== 'CARD')
     let resultName = baseProduct.name
     if (baseProduct.type === 'DEPOSIT') {
       resultName = `Вклад "${resultName}"`
     }
-    if (card !== null && card !== undefined) {
+
+    if (cards !== undefined && cards.length) {
+      const card = cards[0]
       resultName += ' + Мультикарта'
-      const cardOption = card.cardOption
-      if (cardOption !== undefined && cardOption !== null) {
-        if (cardOption.bonusOption === 'CASH_BACK') {
-          resultName += ' + Кэшбэк'
-        } else if (cardOption.bonusOption === 'COLLECTION') {
-          resultName += ' + Баллы "Коллекция"'
-        } else if (cardOption.bonusOption === 'AUTO') {
-          resultName += ' с опцией Авто'
-        } else if (cardOption.bonusOption === 'FUN') {
-          resultName += ' с опцией Развлечения'
-        } else if (cardOption.bonusOption === 'TRAVEL') {
-          resultName += ' с опцией Путешествия'
-        } else if (cardOption.bonusOption === 'SAVING') {
-          resultName += ' с опцией Сбережения'
-        } else if (cardOption.bonusOption === 'RZD') {
-          resultName += ' с опцией РЖД'
+      if (cards.length > 1) {
+        resultName += ' Кредит/Дебит'
+      } else if (card.cardCategory === 'DEBIT') {
+        resultName += ' Дебит'
+      } else {
+        resultName += ' Кредит'
+      }
+      if (card !== null && card !== undefined) {
+        const cardOption = card.cardOption
+        if (cardOption !== undefined && cardOption !== null) {
+          if (cardOption.bonusOption === 'CASH_BACK') {
+            resultName += ' + Кэшбэк'
+          } else if (cardOption.bonusOption === 'COLLECTION') {
+            resultName += ' + Баллы "Коллекция"'
+          } else if (cardOption.bonusOption === 'AUTO') {
+            resultName += ' с опцией Авто'
+          } else if (cardOption.bonusOption === 'FUN') {
+            resultName += ' с опцией Развлечения'
+          } else if (cardOption.bonusOption === 'TRAVEL') {
+            resultName += ' с опцией Путешествия'
+          } else if (cardOption.bonusOption === 'SAVING') {
+            resultName += ' с опцией Сбережения'
+          } else if (cardOption.bonusOption === 'RZD') {
+            resultName += ' с опцией РЖД'
+          }
         }
       }
     }
@@ -113,12 +124,12 @@ class Product extends React.Component {
       <div className={`${styles.card} .effect2`}>
 
         <div className={styles['card-header']}>
-          <OverlayTrigger placement="bottom" overlay={<Tooltip id="tooltip" trigger="click"><div dangerouslySetInnerHTML={createMarkup(this.props.data.productGroup.notes)}></div></Tooltip>}>
-          <span>
-          {Product.buildCardName(products)}
-          </span>
+          <OverlayTrigger placement="bottom" overlay={<Tooltip id="tooltip" trigger="click"><div dangerouslySetInnerHTML={createMarkup(this.props.data.productGroup.notes)} /></Tooltip>}>
+            <span>
+              {Product.buildCardName(products)}
+            </span>
           </OverlayTrigger>
-          </div>
+        </div>
         <div className={styles['card-content-wrap']}>
           <div className={`${styles['aligned-row']} row`}>
             <div className="col-md-7">
@@ -134,7 +145,7 @@ class Product extends React.Component {
                 <Doughnut data={chartData} options={chartOptions}/>
               </div>
               {card !== undefined && <div>
-                <a className={`btn ${styles['card-btn']}`} href="static/loyality.pdf" target="_blank">ПРОГРАММА ЛОЯЛЬНОСТИ</a>
+                <a className={`btn ${styles['card-btn']}`} href="/static/loyality.pdf" target="_blank">ПРОГРАММА ЛОЯЛЬНОСТИ</a>
               </div>}
             </div>
           </div>
@@ -149,8 +160,8 @@ Product
   .displayName = 'Product'
 Product
   .propTypes = {
-  data: PropTypes.object // eslint-disable-line react/forbid-prop-types
-}
+    data: PropTypes.object // eslint-disable-line react/forbid-prop-types
+  }
 Product
   .defaultProps = {}
 
