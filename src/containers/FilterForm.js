@@ -5,6 +5,12 @@ import Filter from '../components/filter/Filter';
 
 class FilterForm extends React.Component {
 
+  componentWillMount() {
+    if (this.props.clientId === '1') {
+      this.props.loadFilter(filterKnownClient)
+    }
+  }
+
   componentDidMount() {
     if (this.props.clientId === '1') {
       this.props.initialize(filterKnownClient);
@@ -12,6 +18,7 @@ class FilterForm extends React.Component {
     } else {
       this.props.initialize(filterDefault);
       this.props.onSubmit(filterDefault);
+      this.props.initialize(filterDefault);
     }
   }
 
@@ -26,26 +33,12 @@ class FilterForm extends React.Component {
   }
 }
 
-const filterDefault = {
-  initSum: 200000,
-  daysCount: 181,
-  decrease: false,
-  refill: true,
-  payrollProject: false,
-  monthRefillSum: 10000,
-  categories2Costs: {
-    TRAVEL: {first: true, second: 100},
-    FUN: {first: true, second: 100},
-    AUTO: {first: false, second: 100},
-    OTHER: {first: false, second: 100}
-  }
-};
-
 const FORM_NAME = 'filter';
 const selector = formValueSelector(FORM_NAME)
 const mapStateToProps = state => ({
   refill: state.form.filter ? state.form.filter.values.refill : false,
   decrease: state.form.filter ? state.form.filter.values.decrease : false,
+  initial: state.filterReducer.filter
 })
 function mapDispatchToProps(dispatch) {
   const actionMap = {forceSubmit: () => dispatch(submit('filter'))};
@@ -58,6 +51,24 @@ FilterForm = reduxForm({
 
 export default connect(mapStateToProps, mapDispatchToProps)(FilterForm);
 
+
+const filterDefault = {
+  filter: {
+    initSum: 234000
+  },
+  initSum: 200000,
+  daysCount: 181,
+  decrease: false,
+  refill: true,
+  payrollProject: false,
+  monthRefillSum: 10000,
+  categories2Costs: {
+    TRAVEL: {first: true, second: 10000},
+    FUN: {first: true, second: 10000},
+    AUTO: {first: false, second: 10000},
+    OTHER: {first: false, second: 10000}
+  }
+};
 
 const filterKnownClient = {
     initSum: 300000,
@@ -77,71 +88,70 @@ const filterKnownClient = {
       {
         date: '2016-12-01',
         category2Cost: {
-          TRAVEL: 443,
-          FUN: 1123,
-          AUTO: 1123,
-          OTHER: 1123
+          TRAVEL: 0,
+          FUN: 8000,
+          AUTO: 5000,
+          OTHER: 17000
         }
       }, {
         date: '2017-01-01',
         category2Cost: {
-          TRAVEL: 443,
-          FUN: 1123,
-          AUTO: 1123,
-          OTHER: 1123
+          TRAVEL: 0,
+          FUN: 0,
+          AUTO: 10000,
+          OTHER: 20000
         }
       }, {
         date: '2017-02-01',
         category2Cost: {
-          TRAVEL: 443,
-          FUN: 1123,
-          AUTO: 1123,
-          OTHER: 1123
+          TRAVEL: 30000,
+          FUN: 0,
+          AUTO: 0,
+          OTHER: 0
         }
       }, {
         date: '2017-03-01',
         category2Cost: {
-          TRAVEL: 443,
-          FUN: 1123,
-          AUTO: 1123,
-          OTHER: 1123
+          TRAVEL: 0,
+          FUN: 0,
+          AUTO: 10000,
+          OTHER: 20000
         }
       }, {
         date: '2017-04-01',
         category2Cost: {
-          TRAVEL: 443,
-          FUN: 11230,
-          AUTO: 7123,
-          OTHER: 31123
+          TRAVEL: 0,
+          FUN: 10000,
+          AUTO: 5000,
+          OTHER: 15000
         }
       }, {
         date: '2017-05-01',
         category2Cost: {
-          TRAVEL: 443,
-          FUN: 1123,
-          AUTO: 1123,
-          OTHER: 1123
+          TRAVEL: 10000,
+          FUN: 0,
+          AUTO: 10000,
+          OTHER: 10000
         }
       }, {
         date: '2017-06-01',
         category2Cost: {
-          TRAVEL: 443,
-          FUN: 1123,
-          AUTO: 1123,
-          OTHER: 1123
+          TRAVEL: 0,
+          FUN: 0,
+          AUTO: 0,
+          OTHER: 30000
         }
       }, {
         date: '2017-07-01',
         category2Cost: {
-          TRAVEL: 443,
-          FUN: 1123,
-          AUTO: 1123,
-          OTHER: 1123
+          TRAVEL: 0,
+          FUN: 0,
+          AUTO: 0,
+          OTHER: 30000
         }
       },
     ],
     payroll: [
-      {date: '2016-11-01', sum: 45000},
       {date: '2016-12-01', sum: 45000},
       {date: '2017-01-01', sum: 45000},
       {date: '2017-02-01', sum: 45000},

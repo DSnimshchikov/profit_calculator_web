@@ -15,7 +15,8 @@ class App extends Component {
 }
 App.propTypes = {
   actions: PropTypes.shape({
-    loadProducts: PropTypes.func.isRequired
+    loadProducts: PropTypes.func.isRequired,
+    loadFilter: PropTypes.func.isRequired
   }),
   globalState: PropTypes.shape({})
 };

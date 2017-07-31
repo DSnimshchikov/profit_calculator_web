@@ -22,6 +22,12 @@ function FilterReducer(state = initialState, action) {
     case ActionType.FETCH_PRODUCT_ERROR: {
       return {...state, productList: [], fetching: false}
     }
+    case ActionType.FETCH_FILTER_SUCESS: {
+      return {...state, filter: action.payload, fetching: false}
+    }
+    case ActionType.FETCH_FILTER_ERROR: {
+      return {...state, filter: [], fetching: false}
+    }
     default: {
       return state
     }

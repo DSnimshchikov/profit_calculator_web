@@ -10,8 +10,11 @@ import {Field} from 'redux-form'
 
 const Filter = (props) =>
   <div className="b-deposits-calculator--content g-grid-20">
-    <FilterSumField name="initSum" label="Сумма к накоплению" forceSubmit={props.forceSubmit}/>
-    <FilterPeriodField name="daysCount" label="Срок накопления" forceSubmit={props.forceSubmit}/>
+    {props.clientId &&
+        <h2>Поля предзаполены расчетыми данными клиента: Пупкин Василий</h2>
+    }
+    <FilterSumField name="initSum" label="Сумма" forceSubmit={props.forceSubmit}/>
+    <FilterPeriodField name="daysCount" label="Срок" forceSubmit={props.forceSubmit}/>
 
     <div className="row">
       <div className="col-md-4">

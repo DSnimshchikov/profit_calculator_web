@@ -19,7 +19,8 @@ class App extends React.Component {
             Подбор продукта для клиента ВТБ24</h2>
         </div>
         <div className="index col-md-4">
-          <FilterForm onSubmit={this.props.actions.loadProducts} clientId={this.props.clientId}/>
+          <FilterForm onSubmit={this.props.actions.loadProducts} loadFilter={this.props.actions.loadFilter}
+                      clientId={this.props.clientId}/>
         </div>
         <div className="col-md-8">
           <ProductListContainer/>

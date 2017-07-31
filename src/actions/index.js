@@ -1,7 +1,7 @@
-import {filterProducts, fetchProductSuccess, loadProducts} from './filter-action.js';
+import {filterProducts, fetchProductSuccess, loadProducts, loadFilter} from './filter-action.js';
 
 const actions = {
-  filterProducts, fetchProductSuccess, loadProducts
+  filterProducts, fetchProductSuccess, loadProducts, loadFilter
 };
 
 module.exports = actions;
