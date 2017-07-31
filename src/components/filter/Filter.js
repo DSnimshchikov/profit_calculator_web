@@ -82,7 +82,7 @@ const renderTransactions = ({fields, meta: {error, submitFailed}}) =>
         Рестораны
       </div>
       <div className="col-md-2">
-        Автомобиль
+        Авто
       </div>
       <div className="col-md-2">
         Прочее
