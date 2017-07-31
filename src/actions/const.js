@@ -50,7 +50,7 @@ export const CLEAR_INFOS = 'CLEAR_INFOS';
 
 export const SLIDER_CHANGE_VALUE = 'SLIDER_CHANGE_VALUE';
 export const PERIOD_DAYS_MIN = 91;
-export const PERIOD_DAYS_MAX = 1831;
+export const PERIOD_DAYS_MAX = 1830;
 export const PERIOD_DAYS_STEP = 5;
 export const DEPOSIT_SUM_MIN = 200000;
 export const DEPOSIT_SUM_MAX = 30000000;

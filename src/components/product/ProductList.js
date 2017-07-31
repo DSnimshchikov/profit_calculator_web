@@ -4,7 +4,7 @@ import cssmodules from 'react-css-modules';
 import PropTypes from 'prop-types';
 import styles from './product.cssmodule.less';
 import Product from './Product';
-// todo переделать на immutable component
+
 class ProductList extends React.Component {
   render() {
     return (

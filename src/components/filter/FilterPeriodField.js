@@ -8,7 +8,7 @@ import {PERIOD_DAYS_STEP, PERIOD_DAYS_MIN, PERIOD_DAYS_MAX} from '../../actions/
 
 const FilterPeriodField = (props) =>
   <Field name={props.name} type="number" component={renderField} label={props.label} forceSubmit={props.forceSubmit}/>;
-//normalize={normalizePeriodField}
+
 const renderField = ({forceSubmit, input, label, type, meta: {touched, error, warning}}) =>
   <div className="b-deposits-calculator--field">
     <label className="b-deposits-calculator--label">{label}</label>

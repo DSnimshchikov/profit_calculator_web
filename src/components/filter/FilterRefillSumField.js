@@ -22,14 +22,11 @@ const renderField = ({forceSubmit, input, label, type, meta: {touched, error, wa
                 onChangeComplete={event => {forceSubmit()}}/>
       </div>
       <ul className="e-range--markings" data-range-markings="true">
-        <li className="e-range--markings--clause" data-range-markings-clause="true"
-            data-range-markings-clause-value="200000">0 тыс.
+        <li className="e-range--markings--clause" data-range-markings-clause="true">0 тыс.
         </li>
-        <li className={`${styles['left-third']} e-range--markings--clause`} data-range-markings-clause="true"
-            data-range-markings-clause-value="15000000">15 млн
+        <li className={`${styles['left-third']} e-range--markings--clause`} data-range-markings-clause="true">100 тыс
         </li>
-        <li className="e-range--markings--clause" data-range-markings-clause="true"
-            data-range-markings-clause-value="30000000">1 млн
+        <li className="e-range--markings--clause" data-range-markings-clause="true">1 млн
         </li>
       </ul>
     </div>
