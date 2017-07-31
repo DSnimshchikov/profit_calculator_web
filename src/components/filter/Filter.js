@@ -1,17 +1,73 @@
-import React from 'react';
+import React from 'react'
 import {Field, FieldArray} from 'redux-form'
-import cssmodules from 'react-css-modules';
-import styles from './filter.cssmodule.less';
-import FilterSumField from './FilterSumField';
-import FilterPeriodField from './FilterPeriodField';
-import FilterRefillSumField from './FilterRefillSumField';
-import FilterCheckField from './FilterCheckField';
-import FilterSumSimpleField from './FilterSumSimpleField';
+import cssmodules from 'react-css-modules'
+import styles from './filter.cssmodule.less'
+import FilterSumField from './FilterSumField'
+import FilterPeriodField from './FilterPeriodField'
+import FilterRefillSumField from './FilterRefillSumField'
+import FilterCheckField from './FilterCheckField'
+import FilterSumSimpleField from './FilterSumSimpleField'
+
+const renderHead = ({input, type, meta: {touched, error}}) =>
+  <h4>
+    {input.value}
+  </h4>
 
 const renderField = ({input, type, meta: {touched, error}}) =>
   <span>
-      {input.value}
+    {input.value}
   </span>
+
+const renderAccountBalances = ({fields, meta: {error, submitFailed}}) =>
+  <div>
+    <div className="row">
+      <div className="col-md-3">
+        Дата
+      </div>
+      <div className="col-md-3">
+        Сумма
+      </div>
+    </div>
+    {fields.map((accountBalance, index) =>
+      <div key={`accountBalances_${index}`}>
+        <div className="row">
+          <div className="col-md-3">
+            <Field
+              name={`${accountBalance}.first`}
+              type="text"
+              component={renderField}
+            />
+          </div>
+          <div className="col-md-3">
+            <Field
+              name={`${accountBalance}.second`}
+              type="text"
+              component={renderField}
+            />
+          </div>
+        </div>
+      </div>
+    )}
+  </div>
+
+const renderClientProducts = ({fields, meta: {error, submitFailed}}) =>
+  <div>
+    {fields.map((clientProduct, index) =>
+      <div key={`clientProducts_${index}`}>
+        <div className="row">
+          <div className="col-md-12">
+            <Field
+              name={`${clientProduct}.name`}
+              type="text"
+              component={renderHead}
+            />
+          </div>
+          <FieldArray name={`${clientProduct}.accountBalances`} component={renderAccountBalances}/>
+        </div>
+      </div>
+    )}
+  </div>
+
 
 const renderTransactions = ({fields, meta: {error, submitFailed}}) =>
   <div>
@@ -73,9 +129,9 @@ const renderTransactions = ({fields, meta: {error, submitFailed}}) =>
         </div>
       </div>
     )}
-  </div>;
+  </div>
 
-const Filter = (props) =>
+const Filter = props =>
   <div className="b-deposits-calculator--content g-grid-20">
     {props.clientId &&
     <h2>Поля предзаполены расчетыми данными клиента: Пупкин Василий</h2>
@@ -165,11 +221,18 @@ const Filter = (props) =>
     </div>
     }
     {props.clientId &&
-    <div className="category row">
-      <h4>Траты клиента по категориям</h4>
-      <FieldArray name="transactions" component={renderTransactions}/>
+    <div className={`${styles['client-info-card']}`}>
+      <div className="row">
+        <h4>Траты клиента по категориям</h4>
+        <FieldArray name="transactions" component={renderTransactions}/>
+      </div>
+
+      <div className="row">
+        <h2>Продукты клиента</h2>
+        <FieldArray name="clientProducts" component={renderClientProducts}/>
+      </div>
     </div>
-    }
+      }
     <div className="b-disclaimer">
       <div className="b-disclaimer--inner">
         <p>* Вся информация носит справочный характер и не является публичной офертой </p>
@@ -178,11 +241,9 @@ const Filter = (props) =>
   </div>
 
 const normalizePeriodField = (value, previousValue) => {
-  if (!value) return value;
-  return JSON.parse(value);
+  if (!value) return value
+  return JSON.parse(value)
 }
-const formatter = (value, name) => {
-  return JSON.stringify(value);
-}
+const formatter = (value, name) => JSON.stringify(value)
 
-export default cssmodules(Filter, styles);
+export default cssmodules(Filter, styles)

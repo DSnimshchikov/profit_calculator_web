@@ -50,9 +50,9 @@ class Product extends React.Component {
       const card = cards[0]
       resultName += ' + Мультикарта'
       if (cards.length > 1) {
-        resultName += ' Кредит/Дебит'
+        resultName += ' Кредит/Дебeт'
       } else if (card.cardCategory === 'DEBIT') {
-        resultName += ' Дебит'
+        resultName += ' Дебeт'
       } else {
         resultName += ' Кредит'
       }
