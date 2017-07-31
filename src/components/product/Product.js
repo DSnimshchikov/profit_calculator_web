@@ -104,7 +104,8 @@ class Product extends React.Component {
     }
 
     function createMarkup(data) {
-      return {__html: data}
+
+      return {__html: data.join(' ')}
     }
 
     return (
