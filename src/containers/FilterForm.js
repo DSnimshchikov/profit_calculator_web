@@ -37,8 +37,7 @@ const FORM_NAME = 'filter';
 const selector = formValueSelector(FORM_NAME)
 const mapStateToProps = state => ({
   refill: state.form.filter ? state.form.filter.values.refill : false,
-  decrease: state.form.filter ? state.form.filter.values.decrease : false,
-  initial: state.filterReducer.filter
+  decrease: state.form.filter ? state.form.filter.values.decrease : false
 })
 function mapDispatchToProps(dispatch) {
   const actionMap = {forceSubmit: () => dispatch(submit('filter'))};
