@@ -18,7 +18,7 @@ class Product extends React.Component {
       } else if (cardOption.bonusOption === 'AUTO') {
         return 'Кэшбэк Авто'
       } else if (cardOption.bonusOption === 'FUN') {
-        return 'Кэшбэк Развлечения'
+        return 'Кэшбэк Рестораны'
       } else if (cardOption.bonusOption === 'TRAVEL') {
         return 'Мили Путешествия'
       } else if (cardOption.bonusOption === 'SAVING') {
@@ -70,7 +70,7 @@ class Product extends React.Component {
           } else if (cardOption.bonusOption === 'AUTO') {
             resultName += ' с опцией Авто'
           } else if (cardOption.bonusOption === 'FUN') {
-            resultName += ' с опцией Развлечения'
+            resultName += ' с опцией Рестораны'
           } else if (cardOption.bonusOption === 'TRAVEL') {
             resultName += ' с опцией Путешествия'
           } else if (cardOption.bonusOption === 'SAVING') {
@@ -128,9 +128,11 @@ class Product extends React.Component {
       return {__html: data.join(' ')}
     }
 
+    var classEffect = productGroup.offerByClientProduct ? 'effect2 box':'';
     return (
 
-      <div className={`${styles.card} .effect2`}>
+      <div className={`${styles.card} ${classEffect} `}>
+        {productGroup.offerByClientProduct}
         <div className={styles['card-header']}>
           <OverlayTrigger placement="bottom" overlay={<Tooltip id="tooltip"><div dangerouslySetInnerHTML={createMarkup(this.props.data.productGroup.notes)} /></Tooltip>}>
             <span>

@@ -79,23 +79,23 @@ const filterKnownClient = {
   payrollProject: false,
   monthRefillSum: 15000, // расчетное поле, считаем что для постоянных клиентов всегда да
   categories2Costs: {
-    TRAVEL: {first: true, second: 100},
-    FUN: {first: true, second: 100},
-    AUTO: {first: false, second: 100},
-    OTHER: {first: false, second: 100}
+    TRAVEL: {first: true, second: 10000},
+    FUN: {first: true, second: 10000},
+    AUTO: {first: false, second: 10000},
+    OTHER: {first: false, second: 10000}
   },
   clientProducts: [
     {
       idProduct: 1,
       name: 'Накопительный счет',
       accountBalances: [
-        {first: '2017-01-01', second: 2000},
-        {first: '2017-02-01', second: 2001},
-        {first: '2017-03-01', second: 2002},
-        {first: '2017-04-01', second: 2003},
-        {first: '2017-05-01', second: 2004},
-        {first: '2017-06-01', second: 2005},
-        {first: '2017-07-01', second: 2006}
+        {first: '2017-01-01', second: 210000},
+        {first: '2017-02-01', second: 211001},
+        {first: '2017-03-01', second: 212002},
+        {first: '2017-04-01', second: 213003},
+        {first: '2017-05-01', second: 214004},
+        {first: '2017-06-01', second: 215005},
+        {first: '2017-07-01', second: 216006}
       ]
     }
   ],

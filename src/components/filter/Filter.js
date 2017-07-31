@@ -79,7 +79,7 @@ const renderTransactions = ({fields, meta: {error, submitFailed}}) =>
         Путешетсвия
       </div>
       <div className="col-md-2">
-        Развлечения
+        Рестораны
       </div>
       <div className="col-md-2">
         Автомобиль
@@ -187,7 +187,7 @@ const Filter = props =>
       </div>
       <div className="row">
         <div className="col-md-4">
-          <label>Развлечения</label>
+          <label>Рестораны</label>
         </div>
         <div className="col-md-4">
           <FilterCheckField name="categories2Costs.FUN.first" handleSubmit={props.handleSubmit}/>

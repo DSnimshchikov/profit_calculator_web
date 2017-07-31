@@ -195,6 +195,40 @@ a {
   transition: .3s
 }
 
+.effect2 {
+  position: relative;
+  display: block;
+}
+.box:before {
+  position: absolute;
+  right: -10px; /*горизонтальное смещение*/
+  top: 10px; /*вертикальное смещение*/
+  border-width: 16px;
+  border-style: solid;
+  border-color: #2196F3 #2196F3 #2196F3 transparent;
+  box-shadow: 10px 7px 15px -5px #666;
+  font: normal normal 16px/1px Tahoma, Arial, sans-serif;
+  color: #fff;
+  text-indent: 15px;
+  text-shadow: 1px 1px 1px #000;
+  height: 0;
+  min-width: 60px;
+  max-width: 140px;
+}
+.box:after {
+  position: absolute;
+  content:'';
+  right: -10px; /*горизонтальное смещение*/
+  top: 40px; /*вертикальное смещение, меньше на собственную высоту*/
+  border-width: 5px;
+  border-style: solid;
+  border-color: #3A2C5A transparent transparent #3A2C5A;
+  height: 0;
+}
+.box:before {
+  content:'';
+}
+
 .e-range {
   position: relative
 }
