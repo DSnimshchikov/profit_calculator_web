@@ -94,7 +94,7 @@ class Product extends React.Component {
         'Разница с лучшим'
       ],
       datasets: [{
-        data: [this.props.data.bestProfitSum, this.props.data.bestProfitSum - productGroup.profitSum],
+        data: [productGroup.profitSum, this.props.data.bestProfitSum - productGroup.profitSum],
         backgroundColor: [
           colorCurrentSum,
           colorDiffSum
@@ -105,6 +105,8 @@ class Product extends React.Component {
         ]
       }]
     }
+
+    console.log(JSON.stringify(chartData))
 
     const chartOptions = {
       tooltips: {
