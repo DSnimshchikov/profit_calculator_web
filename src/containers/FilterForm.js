@@ -1,7 +1,7 @@
 import React from 'react'
-import {connect} from 'react-redux';
-import {Field, reduxForm, initialize, formValueSelector, submit} from 'redux-form';
-import Filter from '../components/filter/Filter';
+import {connect} from 'react-redux'
+import {Field, reduxForm, initialize, formValueSelector, submit} from 'redux-form'
+import Filter from '../components/filter/Filter'
 
 class FilterForm extends React.Component {
 
@@ -13,42 +13,43 @@ class FilterForm extends React.Component {
 
   componentDidMount() {
     if (this.props.clientId === '1') {
-      this.props.initialize(filterKnownClient);
-      this.props.onSubmit(filterKnownClient);
+      this.props.initialize(filterKnownClient)
+      this.props.onSubmit(filterKnownClient)
     } else {
-      this.props.initialize(filterDefault);
-      this.props.onSubmit(filterDefault);
-      this.props.initialize(filterDefault);
+      this.props.initialize(filterDefault)
+      this.props.onSubmit(filterDefault)
+      this.props.initialize(filterDefault)
     }
   }
 
   render() {
-    const {handleSubmit, forceSubmit} = this.props;
+    const {handleSubmit, forceSubmit} = this.props
     return (
-      <form onSubmit={ handleSubmit } onChange={() => setTimeout(handleSubmit, 100)}>
-        <Filter refill={this.props.refill} decrease={this.props.decrease} handleSubmit={handleSubmit}
-                forceSubmit={forceSubmit} clientId={this.props.clientId}/>
+      <form onSubmit={handleSubmit} onChange={() => setTimeout(handleSubmit, 100)}>
+        <Filter
+          refill={this.props.refill} decrease={this.props.decrease} handleSubmit={handleSubmit}
+          forceSubmit={forceSubmit} clientId={this.props.clientId}/>
       </form>
     )
   }
 }
 
-const FORM_NAME = 'filter';
+const FORM_NAME = 'filter'
 const selector = formValueSelector(FORM_NAME)
 const mapStateToProps = state => ({
   refill: state.form.filter ? state.form.filter.values.refill : false,
   decrease: state.form.filter ? state.form.filter.values.decrease : false
 })
 function mapDispatchToProps(dispatch) {
-  const actionMap = {forceSubmit: () => dispatch(submit('filter'))};
-  return actionMap;
+  const actionMap = {forceSubmit: () => dispatch(submit('filter'))}
+  return actionMap
 }
 
 FilterForm = reduxForm({
   form: FORM_NAME
 })(FilterForm)
 
-export default connect(mapStateToProps, mapDispatchToProps)(FilterForm);
+export default connect(mapStateToProps, mapDispatchToProps)(FilterForm)
 
 
 const filterDefault = {
@@ -67,90 +68,106 @@ const filterDefault = {
     AUTO: {first: false, second: 10000},
     OTHER: {first: false, second: 10000}
   }
-};
+}
 
 const filterKnownClient = {
-    initSum: 300000,
-    daysCount: 361,
-    decrease: false,
-    creditCard: true, //расчетное поле, считаем что для постоянных клиентов всегда да
-    refill: true,     //расчетное поле, считаем что для постоянных клиентов всегда да
-    payrollProject: false,
-    monthRefillSum: 15000, //расчетное поле, считаем что для постоянных клиентов всегда да
-    categories2Costs: {
-      TRAVEL: {first: true, second: 100},
-      FUN: {first: true, second: 100},
-      AUTO: {first: false, second: 100},
-      OTHER: {first: false, second: 100}
+  initSum: 300000,
+  daysCount: 361,
+  decrease: false,
+  creditCard: true, // расчетное поле, считаем что для постоянных клиентов всегда да
+  refill: true,     // расчетное поле, считаем что для постоянных клиентов всегда да
+  payrollProject: false,
+  monthRefillSum: 15000, // расчетное поле, считаем что для постоянных клиентов всегда да
+  categories2Costs: {
+    TRAVEL: {first: true, second: 100},
+    FUN: {first: true, second: 100},
+    AUTO: {first: false, second: 100},
+    OTHER: {first: false, second: 100}
+  },
+  clientProducts: [
+    {idProduct: 1,
+      name: 'Вклад',
+      accountBalances: {
+        '2017-01-01': 10203,
+        '2017-02-01': 204,
+        '2017-03-01': 9204,
+        '2017-04-01': 10704,
+        '2017-05-01': 1024,
+        '2017-06-01': 1204,
+        '2017-07-01': 12204,
+      }
+    }
+  ],
+
+
+  transactions: [
+    {
+      date: '2016-12-01',
+      category2Cost: {
+        TRAVEL: 0,
+        FUN: 8000,
+        AUTO: 5000,
+        OTHER: 17000
+      }
+    }, {
+      date: '2017-01-01',
+      category2Cost: {
+        TRAVEL: 0,
+        FUN: 0,
+        AUTO: 10000,
+        OTHER: 20000
+      }
+    }, {
+      date: '2017-02-01',
+      category2Cost: {
+        TRAVEL: 30000,
+        FUN: 0,
+        AUTO: 0,
+        OTHER: 0
+      }
+    }, {
+      date: '2017-03-01',
+      category2Cost: {
+        TRAVEL: 0,
+        FUN: 0,
+        AUTO: 10000,
+        OTHER: 20000
+      }
+    }, {
+      date: '2017-04-01',
+      category2Cost: {
+        TRAVEL: 0,
+        FUN: 10000,
+        AUTO: 5000,
+        OTHER: 15000
+      }
+    }, {
+      date: '2017-05-01',
+      category2Cost: {
+        TRAVEL: 10000,
+        FUN: 0,
+        AUTO: 10000,
+        OTHER: 10000
+      }
+    }, {
+      date: '2017-06-01',
+      category2Cost: {
+        TRAVEL: 0,
+        FUN: 0,
+        AUTO: 0,
+        OTHER: 30000
+      }
+    }, {
+      date: '2017-07-01',
+      category2Cost: {
+        TRAVEL: 0,
+        FUN: 0,
+        AUTO: 0,
+        OTHER: 30000
+      }
     },
-    transactions: [
-      {
-        date: '2016-12-01',
-        category2Cost: {
-          TRAVEL: 0,
-          FUN: 8000,
-          AUTO: 5000,
-          OTHER: 17000
-        }
-      }, {
-        date: '2017-01-01',
-        category2Cost: {
-          TRAVEL: 0,
-          FUN: 0,
-          AUTO: 10000,
-          OTHER: 20000
-        }
-      }, {
-        date: '2017-02-01',
-        category2Cost: {
-          TRAVEL: 30000,
-          FUN: 0,
-          AUTO: 0,
-          OTHER: 0
-        }
-      }, {
-        date: '2017-03-01',
-        category2Cost: {
-          TRAVEL: 0,
-          FUN: 0,
-          AUTO: 10000,
-          OTHER: 20000
-        }
-      }, {
-        date: '2017-04-01',
-        category2Cost: {
-          TRAVEL: 0,
-          FUN: 10000,
-          AUTO: 5000,
-          OTHER: 15000
-        }
-      }, {
-        date: '2017-05-01',
-        category2Cost: {
-          TRAVEL: 10000,
-          FUN: 0,
-          AUTO: 10000,
-          OTHER: 10000
-        }
-      }, {
-        date: '2017-06-01',
-        category2Cost: {
-          TRAVEL: 0,
-          FUN: 0,
-          AUTO: 0,
-          OTHER: 30000
-        }
-      }, {
-        date: '2017-07-01',
-        category2Cost: {
-          TRAVEL: 0,
-          FUN: 0,
-          AUTO: 0,
-          OTHER: 30000
-        }
-      },
-    ],
-    payroll: [
+  ],
+  payroll: [
       {date: '2016-12-01', sum: 45000},
       {date: '2017-01-01', sum: 45000},
       {date: '2017-02-01', sum: 45000},
@@ -159,6 +176,6 @@ const filterKnownClient = {
       {date: '2017-05-01', sum: 45000},
       {date: '2017-06-01', sum: 45000},
       {date: '2017-07-01', sum: 45000}
-    ]
-  }
-  ;
+  ]
+}
+
