@@ -21,7 +21,7 @@ const renderField = ({input, label, type, meta: {touched, error}}) =>
   </div>
 ;
 
-const renderHead = ({input, label, type, meta: {touched, error}}) =>
+const renderHead = ({input, label,label2, type, meta: {touched, error}}) =>
   <div>
     <h2>
       {input.value}

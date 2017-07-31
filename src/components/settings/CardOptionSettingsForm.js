@@ -74,10 +74,10 @@ CardOptionSettingsForm = reduxForm({
 })(CardOptionSettingsForm)
 
 
-// You have to connect() to any reducers that you wish to connect to yourself
+
 CardOptionSettingsForm = connect(
   state => ({
-    initialValues: {cardOptions: state.settingReducer.settings.cardOptions} // pull initial values from account reducer
+    initialValues: {cardOptions: state.settingReducer.settings.cardOptions}
   }),
 )(CardOptionSettingsForm)
 

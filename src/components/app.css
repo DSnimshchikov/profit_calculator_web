@@ -63,6 +63,35 @@ ul, menu, dir {
   background: #666;
 }
 
+/*Change the size here*/
+div.tooltip-inner {
+  color: black;
+  background-color: white;
+  max-width: 450px;
+  text-align: left;
+  padding: 15px;
+  border: 1px solid #aaaaaa;
+  font-size: 8pt;
+}
+
+div.tooltip-inner li{
+  list-style-type: circle;
+}
+
+div.tooltip-inner h4{
+  font-size: 10pt;
+  font-weight: 600;
+  padding: 0;
+  margin: 0;
+}
+
+div.tooltip-inner h3{
+  font-size: 11pt;
+  font-weight: 600;
+  padding: 0;
+  margin: 0;
+}
+
 /*selector mode to component*/
 input.cmn-toggle-round + label {
   padding: 2px;

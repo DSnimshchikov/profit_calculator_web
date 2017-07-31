@@ -86,10 +86,10 @@ SavingAccountSettingsForm = reduxForm({
 })(SavingAccountSettingsForm);
 
 
-// You have to connect() to any reducers that you wish to connect to yourself
+
 SavingAccountSettingsForm = connect(
   state => ({
-    initialValues: {savingAccounts: state.settingReducer.settings.savingAccounts} // pull initial values from account reducer
+    initialValues: {savingAccounts: state.settingReducer.settings.savingAccounts}
   }),
 )(SavingAccountSettingsForm);
 

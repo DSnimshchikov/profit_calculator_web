@@ -1,11 +1,13 @@
 import React from 'react'
 import {Field, FieldArray, reduxForm} from 'redux-form'
 import {connect} from 'react-redux'
+
 import styles from './setting.cssmodule.less'
 import {renderField, renderHead} from './settingsCommonComponents'
 import {required, number, minValue1, minValue91, maxValue1831, validateDeposits as validate} from './validate'
 
-const renderRates = ({fields, meta: {error,touched, submitFailed}}) =>
+const renderRates = ({fields, meta: {error, touched, submitFailed}}) =>
+
   <div>
     <h3>Ставки</h3>
     {fields.map((rate, index) =>
@@ -30,9 +32,9 @@ const renderRates = ({fields, meta: {error,touched, submitFailed}}) =>
         </div>
         <div className="row">
           {((error &&
-              <div className="row alert alert-danger" role="alert">
-                {error}
-              </div>)
+          <div className="row alert alert-danger" role="alert">
+            {error}
+          </div>)
           )}
         </div>
       </div>
@@ -49,7 +51,7 @@ const renderDeposits = ({fields, meta: {error, submitFailed}}) =>
           type="text"
           component={renderHead}
           label="Название"
-        />
+          />
         <Field
           name={`${deposit}.weight`}
           type="number"
@@ -57,6 +59,7 @@ const renderDeposits = ({fields, meta: {error, submitFailed}}) =>
           label="Вес"
           validate={[required, number, minValue1]}
         />
+
         <FieldArray name={`${deposit}.rates`} component={renderRates}/>
       </div>
     )}
@@ -91,10 +94,9 @@ DepositsSettingsForm = reduxForm({
 })(DepositsSettingsForm)
 
 
-// You have to connect() to any reducers that you wish to connect to yourself
 DepositsSettingsForm = connect(
   state => ({
-    initialValues: {deposits: state.settingReducer.settings.deposits} // pull initial values from account reducer
+    initialValues: {deposits: state.settingReducer.settings.deposits}
   }),
 )(DepositsSettingsForm)
 

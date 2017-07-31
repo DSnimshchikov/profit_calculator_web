@@ -2,9 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import cssmodules from 'react-css-modules'
 import Doughnut from 'react-chartjs-2'
+import {Tooltip, OverlayTrigger, Button} from 'react-bootstrap'
+
 import styles from './product.cssmodule.less'
 import ProductCardRow from './ProductCardRow'
-
 
 class Product extends React.Component {
 
@@ -95,17 +96,28 @@ class Product extends React.Component {
     }
 
     const chartOptions = {
-      legend:
-      {
+      legend: {
         display: false,
         fullWidth: false
       },
       maintainAspectRatio: true
     }
 
+    function createMarkup(data) {
+      return {__html: data}
+    }
+
     return (
+
       <div className={`${styles.card} .effect2`}>
-        <div className={styles['card-header']}>{Product.buildCardName(products)}</div>
+
+        <div className={styles['card-header']}>
+          <OverlayTrigger placement="bottom" overlay={<Tooltip id="tooltip" trigger="click"><div dangerouslySetInnerHTML={createMarkup(this.props.data.productGroup.notes)}></div></Tooltip>}>
+          <span>
+          {Product.buildCardName(products)}
+          </span>
+          </OverlayTrigger>
+          </div>
         <div className={styles['card-content-wrap']}>
           <div className={`${styles['aligned-row']} row`}>
             <div className="col-md-7">
@@ -116,7 +128,7 @@ class Product extends React.Component {
               <ProductCardRow rowName={cardOptionName} rowValue={productGroup.optionProfitSum} rowType={'OTHER'}/>
               }
             </div>
-            <div className="col-md-5 col-centered" >
+            <div className="col-md-5 col-centered">
               <div className={styles['pie-chart-container']}>
                 <Doughnut data={chartData} options={chartOptions}/>
               </div>
@@ -136,8 +148,8 @@ Product
   .displayName = 'Product'
 Product
   .propTypes = {
-    data: PropTypes.object // eslint-disable-line react/forbid-prop-types
-  }
+  data: PropTypes.object // eslint-disable-line react/forbid-prop-types
+}
 Product
   .defaultProps = {}
 

@@ -78,10 +78,10 @@ CardSettingsForm = reduxForm({
 })(CardSettingsForm);
 
 
-// You have to connect() to any reducers that you wish to connect to yourself
+
 CardSettingsForm = connect(
   state => ({
-    initialValues: {cards: state.settingReducer.settings.cards} // pull initial values from account reducer
+    initialValues: {cards: state.settingReducer.settings.cards}
   }),
 )(CardSettingsForm);
 
