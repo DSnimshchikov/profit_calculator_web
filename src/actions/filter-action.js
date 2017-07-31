@@ -30,13 +30,6 @@ function fetchFilterRequest(payload) {
   return {type: ctx.FETCH_FILTER_REQUEST, payload};
 }
 
-function updateFilterForm(payload) {
-  let meta = {
-    form: 'filter'
-  }
-  return {type: '@@redux-form/CHANGE', payload};
-}
-
 export function loadFilter(filter) {
   return (dispatch) => {
     dispatch(fetchFilterRequest(filter))
@@ -59,8 +52,8 @@ var postRequest = function (url, param) {
 };
 
 function fetchProducts(filter, dispatch) {
-  dispatch(fetchProductRequest(filter))
   var param = Object.assign({}, filter);
+  dispatch(fetchProductRequest(filter))
   if (param.daysCount >= ctx.PERIOD_DAYS_MIN && param.daysCount <= ctx.PERIOD_DAYS_MAX) {
     if (!param.refill) {
       param.monthRefillSum = 0;
@@ -68,11 +61,11 @@ function fetchProducts(filter, dispatch) {
     postRequest('/products', param)
       .then(response => response.json())
       .then(json => dispatch(fetchProductSuccess(json)))
-      .then(json => dispatch(fetchProductSuccess(json)))
       .catch(function (error) {
         dispatch(fetchProductError(error));
       });
   }
+  return filter;
 }
 
 function fetchFilter(paramFromAction, dispatch) {
@@ -81,6 +74,7 @@ function fetchFilter(paramFromAction, dispatch) {
       .then(response => response.json())
       .then(json => dispatch(fetchFilterSuccess(json)))
       .then(json => fetchProducts(json.payload, dispatch))
+      .then(json => dispatch(initialize('filter', json, false)))
       .catch(function (error) {
         dispatch(fetchFilterError(error));
       });
