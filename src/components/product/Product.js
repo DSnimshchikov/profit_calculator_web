@@ -128,7 +128,7 @@ class Product extends React.Component {
       return {__html: data.join(' ')}
     }
 
-    var classEffect = productGroup.offerByClientProduct ? 'effect2 box':'';
+    const classEffect = productGroup.offerByClientProduct ? 'effect2 box' : ''
     return (
 
       <div className={`${styles.card} ${classEffect} `}>
@@ -150,7 +150,7 @@ class Product extends React.Component {
               <ProductCardRow rowName={cardOptionName} rowValuePrefix="+" rowValue={productGroup.optionProfitSum} rowType={'OTHER'}/>
               }
             </div>
-            <div className="col-md-5 col-centered">
+            <div className={`${styles['chart-col']} col-md-5 col-centered`}>
               <div className={styles['pie-chart-container']}>
                 <Doughnut data={chartData} options={chartOptions}/>
               </div>
