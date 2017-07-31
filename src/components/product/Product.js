@@ -46,6 +46,10 @@ class Product extends React.Component {
       resultName = `Вклад "${resultName}"`
     }
 
+    if (baseProduct.refillOption && baseProduct.refillOption.name) {
+      resultName += (` + ${baseProduct.refillOption.name}`)
+    }
+
     if (cards !== undefined && cards.length) {
       const card = cards[0]
       resultName += ' + Мультикарта'
