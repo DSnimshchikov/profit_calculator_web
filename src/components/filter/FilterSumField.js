@@ -27,7 +27,7 @@ const renderField = ({forceSubmit, input, label, type, meta: {touched, error, wa
             data-range-markings-clause-value="200000">200 тыс.
         </li>
         <li className={`${styles['left-third']} e-range--markings--clause`} data-range-markings-clause="true"
-            data-range-markings-clause-value="15000000">15 млн
+            data-range-markings-clause-value="15000000">
         </li>
         <li className="e-range--markings--clause" data-range-markings-clause="true"
             data-range-markings-clause-value="30000000">30 млн

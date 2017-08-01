@@ -144,7 +144,7 @@ class Product extends React.Component {
           <div className={`${styles['aligned-row']} row`}>
             <div className="col-md-7">
               <ProductCardRow rowName={'Ставка, %'} rowValue={productGroup.maxRate} rowType={'RATE'}/>
-              <ProductCardRow rowName={'Доход по вкладу'} rowValue={productGroup.profitSum} rowType={'PROFIT'}/>
+              <ProductCardRow rowName={'Доход'} rowValue={productGroup.profitSum} rowType={'PROFIT'}/>
               <ProductCardRow rowName={'Сумма в конце срока'} rowValue={productGroup.resultSum} rowType={'OTHER'}/>
               {cardOption !== null && productGroup.optionProfitSum != null &&
               <ProductCardRow rowName={cardOptionName} rowValuePrefix="+" rowValue={productGroup.optionProfitSum} rowType={'OTHER'}/>
